@@ -171,8 +171,8 @@ function! ActivateLine()
     setlocal statusline=
     setlocal statusline+=%#LinePri#\ %{GetLineMode()}\ %#LinePriTransition#%{GetLeftSep()}
     setlocal statusline+=%#LineSec#%{GetGitText()}%#LineSecTransition#%{GetLeftSep()}
-    setlocal statusline+=%#LineMain#\ %f%{&modified?'\ ●':''}
-    setlocal statusline+=%=%{&filetype}\ %{%v:lua.GetLSPMessage()%}%#LineSecTransition#%{GetRightSep()}
+    setlocal statusline+=%#LineMain#\ %<%f%{&modified?'\ ●':''}
+    setlocal statusline+=%=\ %{&filetype}\ %{%v:lua.GetLSPMessage()%}%#LineSecTransition#%{GetRightSep()}
     setlocal statusline+=%#LineSec#\ %{fnamemodify(getcwd(),':~:t')}\ %#LinePriTransition#%{GetRightSep()}
     setlocal statusline+=%#LinePri#\ %p%%[%l/%L](%v)\ "Preserve whitespace
     setlocal statusline+=%{%GetWarningText(0)%}%{%GetErrorText(0)%}
@@ -182,8 +182,8 @@ function! DeactivateLine()
     setlocal statusline=
     setlocal statusline+=%#LinePriInactive#\ INACTIVE\ %{GetInactiveLeftSep()}
     setlocal statusline+=%{GetGitText()}%#LinePriInactiveTransition#%{GetLeftSep()}
-    setlocal statusline+=%#LineMain#\ %f%{&modified?'\ ●':''}
-    setlocal statusline+=%=%{&filetype}\ %#LinePriInactiveTransition#%{GetRightSep()}
+    setlocal statusline+=%#LineMain#\ %<%f%{&modified?'\ ●':''}
+    setlocal statusline+=%=\ %{&filetype}\ %#LinePriInactiveTransition#%{GetRightSep()}
     setlocal statusline+=%#LinePriInactive#\ %{fnamemodify(getcwd(),':~:t')}\ %{GetInactiveRightSep()}
     setlocal statusline+=\ %p%%[%l/%L](%v)\ "Preserve whitespace
     setlocal statusline+=%{%GetWarningText(1)%}%{%GetErrorText(1)%}
@@ -245,4 +245,5 @@ augroup GetGitStatus
     autocmd!
     autocmd BufReadPost,BufWritePost * call GetGitInfo()
     autocmd User FugitiveChanged call GetGitInfo()
+    autocmd User FugitiveCommit call GetGitInfo()
 augroup END
