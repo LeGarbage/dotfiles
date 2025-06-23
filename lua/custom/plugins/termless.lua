@@ -1,5 +1,5 @@
-local term_buf = -1
-local float_window = -1
+local term_buf      = -1
+local float_window  = -1
 local bottom_window = -1
 
 vim.api.nvim_create_user_command("FloatTerminal", function()
@@ -26,6 +26,7 @@ vim.api.nvim_create_user_command("FloatTerminal", function()
                 border =
                 'rounded'
             })
+        vim.cmd("set winhighlight=NormalFloat:TermNormalFloat,FloatBorder:TermFloatBorder")
         if vim.bo.buftype ~= 'terminal' then
             vim.cmd.term()
         end

@@ -81,6 +81,7 @@ local function open_float()
 end
 vim.keymap.set("n", "<leader>df", open_float)
 vim.keymap.set("n", "<C-d>", open_float)
+vim.keymap.set("n", "<S-k>", function() vim.lsp.buf.hover({ border = "rounded" }) end)
 
 --local icons = {
 --}
@@ -167,7 +168,7 @@ vim.api.nvim_create_autocmd("ModeChanged", {
 -- Open this file
 vim.keymap.set("n", "<leader>ev", "<cmd>split $MYVIMRC<cr>")
 -- Refresh the config
-vim.keymap.set("n", "<leader>sv", "<cmd>luafile $MYVIMRC<cr>")
+vim.keymap.set("n", "<leader>sv", "<cmd>source $MYVIMRC<cr>")
 
 -- Disable arrow keys
 vim.keymap.set("n", "<Up>", "")
