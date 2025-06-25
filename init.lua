@@ -11,7 +11,6 @@ vim.o.mouse = ""
 vim.o.scrolloff = 5
 vim.o.pumheight = 5
 
-vim.cmd.syntax = "ON"
 vim.o.hlsearch = false
 
 vim.opt.backspace = { "indent", "eol", "start" }
@@ -80,7 +79,7 @@ local function open_float()
     vim.diagnostic.open_float()
 end
 vim.keymap.set("n", "<leader>df", open_float)
-vim.keymap.set("n", "<C-d>", open_float)
+vim.keymap.set("i", "<C-d>", open_float)
 vim.keymap.set("n", "<S-k>", function() vim.lsp.buf.hover({ border = "rounded" }) end)
 
 --local icons = {
@@ -166,9 +165,9 @@ vim.api.nvim_create_autocmd("ModeChanged", {
 -- Set keybinds
 
 -- Open this file
-vim.keymap.set("n", "<leader>ev", "<cmd>split $MYVIMRC<cr>")
+vim.keymap.set("n", "<leader>ve", "<cmd>split $MYVIMRC<cr>")
 -- Refresh the config
-vim.keymap.set("n", "<leader>sv", "<cmd>source $MYVIMRC<cr>")
+vim.keymap.set("n", "<leader>vs", "<cmd>source $MYVIMRC<cr>")
 
 -- Disable arrow keys
 vim.keymap.set("n", "<Up>", "")
@@ -185,10 +184,6 @@ vim.keymap.set("n", "<leader>\"", "viw<esc>a\"<esc>bi\"<esc>lel")
 -- Exit insert mode
 vim.keymap.set("i", "jk", "<esc>")
 vim.keymap.set("i", "<esc>", "")
--- Save the current session and exit
-vim.keymap.set("n", "<leader>sq", "<cmd>mksession!<cr><cmd>wqa<cr>")
--- Load the old session
-vim.keymap.set("n", "<leader>sl", "<cmd>source Session.vim<cr>")
 -- Switch buffers
 vim.keymap.set("n", "<leader>b", "<C-^>")
 -- Easier window management
@@ -199,3 +194,12 @@ vim.keymap.set('n', '<leader>ff', builtin.find_files, { desc = 'Telescope find f
 vim.keymap.set('n', '<leader>fg', builtin.live_grep, { desc = 'Telescope live grep' })
 vim.keymap.set('n', '<leader>fb', builtin.buffers, { desc = 'Telescope buffers' })
 vim.keymap.set('n', '<leader>fh', builtin.help_tags, { desc = 'Telescope help tags' })
+-- Session management
+-- Load the old session
+vim.keymap.set("n", "<leader>sc", function() require("persistence").load() end)
+-- Select a session
+vim.keymap.set("n", "<leader>ss", function() require("persistence").select() end)
+-- Load the last session
+vim.keymap.set("n", "<leader>sl", function() require("persistence").load({ last = true }) end)
+-- Disable session saving for the current session
+vim.keymap.set("n", "<leader>sd", function() require("persistence").stop() end)

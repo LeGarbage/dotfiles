@@ -17,8 +17,6 @@ let s:left_sep = ''
 let s:right_sep = ''
 let s:inactive_left_sep = ''
 let s:inactive_right_sep = ''
-let s:tab_sep = ''
-let s:inactive_tab_sep = ''
 
 "Settings to make sure the statusline works
 set noshowmode
@@ -56,36 +54,55 @@ exec 'highlight TabLineMainTransition guifg=' . s:tabsecbg . ' guibg=' . s:mainb
 
 lua << EOF
 function GetLSPMessage()
-    vim.cmd("redraw")
-    local client = vim.lsp.get_clients({bufnr = 0})[1]
-    if client == nil then return '' end
+    local messages = {}
+    local clients = vim.lsp.get_clients({bufnr = 0})
+    local pending = false
+    for _, client in pairs(clients) do
+        local progress = client and client.progress and client.progress or nil
 
-    local progress = client.progress:pop()
-    local message
-    if progress ~= nil then
-        local value = progress.value
-        if value == nil then return '' end
+        if progress then
+            for item in progress do
+                local value = item.value
 
-        if value.kind == 'end' then
-            message = '󰸞 '
-        else
-            message = value.title .. '(' .. value.percentage .. '%%) '
-        end
-        vim.b.lsp_message = message
-    else
-        message = vim.b.lsp_message
-        if message == nil then
-            return ''
+                if value and value.kind ~= "end" then
+                    pending = true
+                    local message = value.title or ""
+                    if value.percentage then
+                        message = message .. "(" .. value.percentage .. "%%)"
+                    end
+
+                    table.insert(messages, message)
+                end
+            end
         end
     end
-    vim.b.lsp_status = '%#LineMainStatus#' .. message
+
+    local result = table.concat(messages, " | ")
+    if result == "" then
+        if #clients > 0 and not pending then
+            result = "󰸞"
+        else
+            result = vim.b.lsp_message or ""
+        end
+    else
+        vim.b.lsp_message = result
+    end
+
+    vim.b.lsp_status = "%#LineMainStatus#" .. result
     return vim.b.lsp_status
 end
-EOF
 
-"function! GetLSPStatus()
-"    return get(b:, 'lsp_status', '')
-"endfun
+function GetLSPProgress()
+    if vim.b.lsp_status then return vim.b.lsp_status end
+    return ""
+end
+
+function ReloadGitStatus()
+    for _, buf in ipairs(vim.api.nvim_list_bufs()) do
+        vim.api.nvim_buf_call(buf, function() vim.cmd("call GetGitInfo()") end)
+    end
+end
+EOF
 
 function! GetLeftSep()
     return s:left_sep
@@ -112,7 +129,6 @@ function! GetInactiveRightSep()
 endfun
 
 function! GetWarningText(inactive)
-    redrawstatus
     let b:warnings = luaeval('vim.diagnostic.get(0, { severity = vim.diagnostic.severity.WARN })')
 
     if len(b:warnings)
@@ -128,7 +144,6 @@ function! GetWarningText(inactive)
 endfun
 
 function! GetErrorText(inactive)
-    redrawstatus
     let b:errors = luaeval('vim.diagnostic.get(0, { severity = vim.diagnostic.severity.ERROR })')
 
     if len(b:errors)
@@ -136,7 +151,7 @@ function! GetErrorText(inactive)
         let l:separator = (a:inactive ? GetInactiveRightSep() : GetRightSep())
         let l:transition_theme = (a:inactive ? '' : (len(get(b:, 'warnings', '')) ? '%#LineErrTransition#' : '%#LineErrPriTransition#'))
         let l:theme = (a:inactive ? '' : '%#LineErr#')
-        let l:text = ' ' . 'W' . len(b:errors) . '[' . (l:first_problem.lnum + 1) . ']' . ' '
+        let l:text = ' ' . 'E' . len(b:errors) . '[' . (l:first_problem.lnum + 1) . ']' . ' '
         return l:transition_theme . l:separator . l:theme . l:text
     else
         return ''
@@ -144,7 +159,6 @@ function! GetErrorText(inactive)
 endfun
 
 function! GetGitInfo()
-    redrawstatus
     let l:branch_name = FugitiveHead()
     if len(l:branch_name) > 0
         let l:branch_name ..= ' '
@@ -172,7 +186,7 @@ function! ActivateLine()
     setlocal statusline+=%#LinePri#\ %{GetLineMode()}\ %#LinePriTransition#%{GetLeftSep()}
     setlocal statusline+=%#LineSec#%{GetGitText()}%#LineSecTransition#%{GetLeftSep()}
     setlocal statusline+=%#LineMain#\ %<%f%{&modified?'\ ●':''}
-    setlocal statusline+=%=\ %{&filetype}\ %{%v:lua.GetLSPMessage()%}%#LineSecTransition#%{GetRightSep()}
+    setlocal statusline+=%=\ %{%v:lua.GetLSPProgress()%}\ %#LineMain#%{&filetype}\ %#LineSecTransition#%{GetRightSep()}
     setlocal statusline+=%#LineSec#\ %{fnamemodify(getcwd(),':~:t')}\ %#LinePriTransition#%{GetRightSep()}
     setlocal statusline+=%#LinePri#\ %p%%[%l/%L](%v)\ "Preserve whitespace
     setlocal statusline+=%{%GetWarningText(0)%}%{%GetErrorText(0)%}
@@ -244,6 +258,5 @@ augroup END
 augroup GetGitStatus
     autocmd!
     autocmd BufReadPost,BufWritePost * call GetGitInfo()
-    autocmd User FugitiveChanged call GetGitInfo()
-    autocmd User FugitiveCommit call GetGitInfo()
+    autocmd User FugitiveChanged call v:lua.ReloadGitStatus()
 augroup END

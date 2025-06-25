@@ -121,6 +121,10 @@ define_highlight('Underlined', blue, '', 'none')
 define_highlight('Error', red, gray1, 'bold')
 define_highlight('Todo', orange, gray1, 'bold')
 
+--Snacks
+define_highlight("SnacksIndentScope", gray3, '', '')
+define_highlight("SnacksIndent", gray2, '', '')
+
 -- Completion
 define_highlight('BlinkCmpKindFunction', blue, '', '')
 define_highlight('BlinkCmpKindMethod', blue, '', '')
