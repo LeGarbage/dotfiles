@@ -36,7 +36,7 @@ return {
             keymap = {
                 preset = "none",
 
-                ['<Tab>'] = { "snippet_forward", "select_next", function(cmp)
+                ['<Tab>'] = { "select_next", "snippet_forward", function(cmp)
                     local c = vim.fn.col('.') - 1
                     local is_whitespace = c == 0 or vim.fn.getline('.'):sub(c, c):match('%s')
 
@@ -45,7 +45,7 @@ return {
                     return true
                 end, "fallback" },
 
-                ['<S-Tab>'] = { "snippet_backward", "select_prev", "fallback" },
+                ['<S-Tab>'] = { "select_prev", "snippet_backward", "fallback" },
                 ['<Enter>'] = { "accept", "fallback" },
                 ['<C-s'] = { "show_signature", "fallback" },
             },
@@ -76,7 +76,15 @@ return {
             },
 
             sources = {
-                default = { "lsp", "path", "snippets" }
+                default = { "lazydev", "lsp", "path", "snippets" },
+                providers = {
+                    lazydev = {
+                        name = "LazyDev",
+                        module = "lazydev.integrations.blink",
+                        -- make lazydev completions top priority (see `:h blink.cmp`)
+                        score_offset = 100,
+                    },
+                },
             },
 
             signature = {

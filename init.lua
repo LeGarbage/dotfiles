@@ -7,9 +7,9 @@ vim.o.belloff = "all"
 vim.o.errorbells = false
 vim.o.number = true
 
-vim.o.mouse = ""
-vim.o.scrolloff = 5
-vim.o.pumheight = 5
+vim.o.mouse = "a"
+vim.o.scrolloff = 7
+vim.o.cursorline = true
 
 vim.o.hlsearch = false
 
@@ -38,14 +38,16 @@ vim.o.list = true
 vim.cmd.colorscheme("colorless")
 
 -- *** TERMINAL ***
-vim.keymap.set({ "n", "t" }, "<leader>tb", "<cmd>BottomTerminal<cr>")
-vim.keymap.set({ "n", "t" }, "<leader>tf", "<cmd>FloatTerminal<cr>")
+-- Toggleterm
+vim.keymap.set("n", "<leader>tf", "<cmd>ToggleTerm direction=float<cr>", { desc = "Toggle floating terminal" })
+vim.keymap.set("n", "<leader>tb", "<cmd>ToggleTerm direction=horizontal<cr>", { desc = "Toggle bottom terminal" })
 vim.keymap.set("t", "jk", [[<C-\><C-n>]])
 
 -- *** PLUGINS ***
 require("config.lazy")
-require("custom.plugins.termless")
 vim.cmd("source ~/.config/nvim/custom/plugins/lessline.vim")
+
+vim.o.winbar = "%{%v:lua.require'nvim-navic'.get_location()%}"
 
 -- Diagnostic stuff
 vim.diagnostic.config({
@@ -80,6 +82,9 @@ local function open_float()
 end
 vim.keymap.set("n", "<leader>df", open_float)
 vim.keymap.set("i", "<C-d>", open_float)
+vim.keymap.set("n", "<leader>da", function()
+    vim.lsp.buf.code_action({ apply = true })
+end)
 vim.keymap.set("n", "<S-k>", function() vim.lsp.buf.hover({ border = "rounded" }) end)
 
 --local icons = {
@@ -132,17 +137,6 @@ vim.api.nvim_create_autocmd('LspAttach', {
 })
 
 -- *** AUTOCMDS ***
--- Clear the command line after 10 seconds
-local cmd_msg_clear = vim.api.nvim_create_augroup("cmd_msg_clr", { clear = true })
-function Clear_cmd()
-    vim.cmd('echon ""')
-end
-
-vim.api.nvim_create_autocmd({ "CmdLineLeave" }, {
-    pattern = ":",
-    group = cmd_msg_clear,
-    callback = function() vim.defer_fn(Clear_cmd, 10000) end
-})
 -- Relative lines in visual mode
 local visual_group = vim.api.nvim_create_augroup("visual_group", { clear = true })
 vim.api.nvim_create_autocmd("ModeChanged", {
@@ -152,12 +146,22 @@ vim.api.nvim_create_autocmd("ModeChanged", {
         vim.wo.relativenumber = true
     end,
 })
-
 vim.api.nvim_create_autocmd("ModeChanged", {
     group = visual_group,
     pattern = { "[vV\x16]*:*" },
     callback = function()
         vim.wo.relativenumber = false
+    end,
+})
+
+vim.api.nvim_create_autocmd("FileType", {
+    pattern = "*",
+    callback = function()
+        vim.opt.foldmethod = "expr"
+        vim.opt.foldexpr = "v:lua.vim.treesitter.foldexpr()"
+        vim.opt.foldlevel = 99
+        vim.opt.foldcolumn = "1"
+        vim.opt.foldtext = "getline(v:foldstart) .. ' [' .. (v:foldend - v:foldstart + 1) .. '](' .. v:foldlevel .. ')'"
     end,
 })
 
@@ -180,14 +184,21 @@ vim.keymap.set("i", "<Left>", "")
 vim.keymap.set("i", "<Right>", "")
 
 -- Add quotes arround current word
-vim.keymap.set("n", "<leader>\"", "viw<esc>a\"<esc>bi\"<esc>lel")
+vim.keymap.set("n", "<leader>\"", "viw<esc>a\"<esc>bi\"<esc>lel", { desc = "Add quotes around word" })
 -- Exit insert mode
 vim.keymap.set("i", "jk", "<esc>")
-vim.keymap.set("i", "<esc>", "")
 -- Switch buffers
 vim.keymap.set("n", "<leader>b", "<C-^>")
 -- Easier window management
 vim.keymap.set("n", "<leader>w", "<C-w>")
+-- Toggle fold
+vim.keymap.set("n", "<leader>z", "za", { desc = "Toggle fold" })
+-- Show notification history
+vim.keymap.set("n", "<leader>n", function()
+    require("snacks").notifier.show_history()
+end, { desc = "Show notification history" })
+-- Navbuddy
+vim.keymap.set('n', '<leader><leader>', "<cmd>Navbuddy<cr>", { desc = "Show navbuddy menu" })
 -- Telescope
 local builtin = require('telescope.builtin')
 vim.keymap.set('n', '<leader>ff', builtin.find_files, { desc = 'Telescope find files' })
@@ -195,11 +206,37 @@ vim.keymap.set('n', '<leader>fg', builtin.live_grep, { desc = 'Telescope live gr
 vim.keymap.set('n', '<leader>fb', builtin.buffers, { desc = 'Telescope buffers' })
 vim.keymap.set('n', '<leader>fh', builtin.help_tags, { desc = 'Telescope help tags' })
 -- Session management
--- Load the old session
-vim.keymap.set("n", "<leader>sc", function() require("persistence").load() end)
--- Select a session
-vim.keymap.set("n", "<leader>ss", function() require("persistence").select() end)
--- Load the last session
-vim.keymap.set("n", "<leader>sl", function() require("persistence").load({ last = true }) end)
--- Disable session saving for the current session
-vim.keymap.set("n", "<leader>sd", function() require("persistence").stop() end)
+vim.keymap.set("n", "<leader>sc", function() require("persistence").load() end, { desc = "Load session" })
+vim.keymap.set("n", "<leader>ss", function() require("persistence").select() end, { desc = "Select session" })
+vim.keymap.set("n", "<leader>sl", function() require("persistence").load({ last = true }) end,
+    { desc = "Load last absolute session" })
+vim.keymap.set("n", "<leader>sd", function() require("persistence").stop() end,
+    { desc = "Disable session saving for this sesison" })
+
+-- CMake
+vim.keymap.set("n", "<leader>cr", "<cmd>Task start cmake run<cr>", { silent = true, desc = "Build and run project" })
+vim.keymap.set("n", "<leader>cb", "<cmd>Task start cmake build<cr>", { silent = true, desc = "Build project" })
+vim.keymap.set("n", "<leader>cC", "<cmd>Task start cmake configure<cr>", { silent = true, desc = "Configure project" })
+vim.keymap.set("n", "<leader>cR", "<cmd>Task start cmake reconfigure<cr>",
+    { silent = true, desc = "Reconfigure project" })
+vim.keymap.set("n", "<leader>cT", "<cmd>Task set_module_param cmake target<cr>",
+    { silent = true, desc = "Set target to run" })
+vim.keymap.set("n", "<leader>cp", function()
+    local cmake_utils = require("tasks.cmake_utils.cmake_utils")
+    local cmake_presets = require("tasks.cmake_utils.cmake_presets")
+
+    vim.ui.select(cmake_presets.parse("buildPresets"), { prompt = "Select build preset" }, function(choice, idx)
+        if not idx then
+            return
+        end
+        local projectConfig = require("tasks.project_config").new()
+        if not projectConfig['cmake'] then
+            projectConfig['cmake'] = {}
+        end
+
+        projectConfig['cmake']['build_preset'] = choice
+
+        -- autoselect will invoke projectConfig:write()
+        cmake_utils.autoselectConfigurePresetFromCurrentBuildPreset(projectConfig)
+    end)
+end, { silent = true, desc = "Select Preset" })

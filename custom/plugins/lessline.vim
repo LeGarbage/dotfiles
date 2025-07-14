@@ -129,6 +129,7 @@ function! GetInactiveRightSep()
 endfun
 
 function! GetWarningText(inactive)
+    redrawstatus
     let b:warnings = luaeval('vim.diagnostic.get(0, { severity = vim.diagnostic.severity.WARN })')
 
     if len(b:warnings)
@@ -144,6 +145,7 @@ function! GetWarningText(inactive)
 endfun
 
 function! GetErrorText(inactive)
+    redrawstatus
     let b:errors = luaeval('vim.diagnostic.get(0, { severity = vim.diagnostic.severity.ERROR })')
 
     if len(b:errors)
@@ -159,6 +161,7 @@ function! GetErrorText(inactive)
 endfun
 
 function! GetGitInfo()
+    redrawstatus
     let l:branch_name = FugitiveHead()
     if len(l:branch_name) > 0
         let l:branch_name ..= ' '

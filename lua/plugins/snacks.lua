@@ -24,6 +24,9 @@ return {
                     enabled = false,
                 },
             },
+            input = {
+                enabled = true,
+            },
             notifier = {
                 enabled = true,
                 timeout = 0,
@@ -84,11 +87,19 @@ return {
                     end
                 end,
             },
+            statuscolumn = {
+                folds = {
+                    open = true,
+                    left = { "sign" },
+                }
+            },
             dashboard = {
                 preset = {
                     keys = {
                         { icon = " ", key = "f", desc = "Find File", action = ":Telescope find_files" },
-                        { icon = " ", key = "s", desc = "Restore Session", section = "session" },
+                        { icon = " ", key = "r", desc = "Restore Session", section = "session" },
+                        { icon = " ", key = "s", desc = "List Sessions", action = function() require("persistence")
+                                .select() end },
                         { icon = "󰒓 ", key = "c", desc = "Open Config", action = ":e $MYVIMRC" },
                         { icon = "󰒲 ", key = "l", desc = "Manage Plugins", action = ":Lazy" },
                         { icon = " ", key = "q", desc = "Quit NVim", action = ":qa" },
