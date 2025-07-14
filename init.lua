@@ -39,8 +39,9 @@ vim.cmd.colorscheme("colorless")
 
 -- *** TERMINAL ***
 -- Toggleterm
-vim.keymap.set("n", "<leader>tf", "<cmd>ToggleTerm direction=float<cr>", { desc = "Toggle floating terminal" })
-vim.keymap.set("n", "<leader>tb", "<cmd>ToggleTerm direction=horizontal<cr>", { desc = "Toggle bottom terminal" })
+vim.keymap.set({ "n", "t" }, "<leader>tf", "<cmd>ToggleTerm direction=float<cr>", { desc = "Toggle floating terminal" })
+vim.keymap.set({ "n", "t" }, "<leader>tb", "<cmd>ToggleTerm direction=horizontal<cr>",
+    { desc = "Toggle bottom terminal" })
 vim.keymap.set("t", "jk", [[<C-\><C-n>]])
 
 -- *** PLUGINS ***
@@ -168,10 +169,12 @@ vim.api.nvim_create_autocmd("FileType", {
 -- *** MAPPINGS ***
 -- Set keybinds
 
--- Open this file
-vim.keymap.set("n", "<leader>ve", "<cmd>split $MYVIMRC<cr>")
--- Refresh the config
-vim.keymap.set("n", "<leader>vs", "<cmd>source $MYVIMRC<cr>")
+-- Config utilities
+vim.keymap.set("n", "<leader>ve", "<cmd>split $MYVIMRC<cr>", { desc = "Open init.lua in split" })
+vim.keymap.set("n", "<leader>vs", function()
+    vim.cmd("source $MYVIMRC")
+    vim.notify("Successfuly sourced init.lua", vim.log.levels.INFO, { title = "init.lua" })
+end, { desc = "Source init.lua" })
 
 -- Disable arrow keys
 vim.keymap.set("n", "<Up>", "")
@@ -186,11 +189,11 @@ vim.keymap.set("i", "<Right>", "")
 -- Add quotes arround current word
 vim.keymap.set("n", "<leader>\"", "viw<esc>a\"<esc>bi\"<esc>lel", { desc = "Add quotes around word" })
 -- Exit insert mode
-vim.keymap.set("i", "jk", "<esc>")
+vim.keymap.set("i", "jk", "<esc>", { desc = "Exit insert mode" })
 -- Switch buffers
-vim.keymap.set("n", "<leader>b", "<C-^>")
+vim.keymap.set("n", "<leader>b", "<C-^>", { desc = "Swap between buffers" })
 -- Easier window management
-vim.keymap.set("n", "<leader>w", "<C-w>")
+vim.keymap.set("n", "<leader>w", "<C-w>", { desc = "Alias for <C-w> for easier window management" })
 -- Toggle fold
 vim.keymap.set("n", "<leader>z", "za", { desc = "Toggle fold" })
 -- Show notification history
@@ -205,6 +208,14 @@ vim.keymap.set('n', '<leader>ff', builtin.find_files, { desc = 'Telescope find f
 vim.keymap.set('n', '<leader>fg', builtin.live_grep, { desc = 'Telescope live grep' })
 vim.keymap.set('n', '<leader>fb', builtin.buffers, { desc = 'Telescope buffers' })
 vim.keymap.set('n', '<leader>fh', builtin.help_tags, { desc = 'Telescope help tags' })
+vim.keymap.set('n', '<leader>fi', builtin.current_buffer_fuzzy_find, { desc = 'Telescope in current buffer' })
+vim.keymap.set('n', '<leader>fr', builtin.registers, { desc = 'Telescope registers' })
+vim.keymap.set("n", "<leader>vf", function()
+    builtin.find_files({
+        cwd = vim.fn.stdpath("config")
+    })
+end)
+
 -- Session management
 vim.keymap.set("n", "<leader>sc", function() require("persistence").load() end, { desc = "Load session" })
 vim.keymap.set("n", "<leader>ss", function() require("persistence").select() end, { desc = "Select session" })
@@ -214,29 +225,9 @@ vim.keymap.set("n", "<leader>sd", function() require("persistence").stop() end,
     { desc = "Disable session saving for this sesison" })
 
 -- CMake
-vim.keymap.set("n", "<leader>cr", "<cmd>Task start cmake run<cr>", { silent = true, desc = "Build and run project" })
-vim.keymap.set("n", "<leader>cb", "<cmd>Task start cmake build<cr>", { silent = true, desc = "Build project" })
-vim.keymap.set("n", "<leader>cC", "<cmd>Task start cmake configure<cr>", { silent = true, desc = "Configure project" })
-vim.keymap.set("n", "<leader>cR", "<cmd>Task start cmake reconfigure<cr>",
-    { silent = true, desc = "Reconfigure project" })
-vim.keymap.set("n", "<leader>cT", "<cmd>Task set_module_param cmake target<cr>",
+vim.keymap.set("n", "<leader>cr", "<cmd>Taskless run<cr>", { silent = true, desc = "Build and run project" })
+vim.keymap.set("n", "<leader>cb", "<cmd>Taskless build<cr>", { silent = true, desc = "Build project" })
+vim.keymap.set("n", "<leader>cc", "<cmd>Taskless configure<cr>", { silent = true, desc = "Configure project" })
+vim.keymap.set("n", "<leader>ct", "<cmd>Taskless target<cr>",
     { silent = true, desc = "Set target to run" })
-vim.keymap.set("n", "<leader>cp", function()
-    local cmake_utils = require("tasks.cmake_utils.cmake_utils")
-    local cmake_presets = require("tasks.cmake_utils.cmake_presets")
-
-    vim.ui.select(cmake_presets.parse("buildPresets"), { prompt = "Select build preset" }, function(choice, idx)
-        if not idx then
-            return
-        end
-        local projectConfig = require("tasks.project_config").new()
-        if not projectConfig['cmake'] then
-            projectConfig['cmake'] = {}
-        end
-
-        projectConfig['cmake']['build_preset'] = choice
-
-        -- autoselect will invoke projectConfig:write()
-        cmake_utils.autoselectConfigurePresetFromCurrentBuildPreset(projectConfig)
-    end)
-end, { silent = true, desc = "Select Preset" })
+vim.keymap.set("n", "<leader>cp", "<cmd>Taskless preset<cr>", { silent = true, desc = "Select Preset" })

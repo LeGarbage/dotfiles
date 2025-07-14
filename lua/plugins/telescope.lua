@@ -1,6 +1,6 @@
 return {
     'nvim-telescope/telescope.nvim',
-    dependencies = { 'nvim-lua/plenary.nvim', 'nvim-telescope/telescope-fzy-native.nvim', 'nvim-telescope/telescope-ui-select.nvim', },
+    dependencies = { 'nvim-lua/plenary.nvim', { 'nvim-telescope/telescope-fzy-native.nvim', build = 'make' }, 'nvim-telescope/telescope-ui-select.nvim', },
     config = function()
         local actions = require("telescope.actions")
         require('telescope').setup {
@@ -13,7 +13,8 @@ return {
             },
 
             extensions = {
-                ["ui-select"] = { require("telescope.themes").get_dropdown({}) }
+                ["ui-select"] = { require("telescope.themes").get_dropdown({}) },
+                ["fzf"] = {}
             }
         }
         require('telescope').load_extension('fzy_native')

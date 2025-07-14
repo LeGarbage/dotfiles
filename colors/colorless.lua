@@ -26,8 +26,8 @@ local indigo      = '#7681de'
 local pink        = '#ff69b4'
 local warning     = '#d6a940'
 local error       = '#de3758'
-local info        = '#337a80'
-local hint        = gray4
+local info        = '#13b0bf'
+local hint        = '#4ab235'
 
 local function define_highlight(group, fg, bg, attr)
     if string.len(fg) ~= 0 then
