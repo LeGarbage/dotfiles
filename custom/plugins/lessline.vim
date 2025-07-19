@@ -53,9 +53,16 @@ exec 'highlight TabLineMainTransition guifg=' . s:tabsecbg . ' guibg=' . s:mainb
 "exec 'highlight LinePri guifg=' . s:gray2 . ' guibg=' .  blue
 
 lua << EOF
-function GetLSPMessage()
+function GetLSPMessage(detaching)
     local messages = {}
+
     local clients = vim.lsp.get_clients({bufnr = 0})
+    if detaching and #clients <= 1 then
+        vim.b.lsp_status = "%#LineMainStatus#"
+        return vim.b.lsp_status
+    end
+
+
     local pending = false
     for _, client in pairs(clients) do
         local progress = client and client.progress and client.progress or nil
@@ -255,7 +262,8 @@ augroup SetLineStatus
     autocmd!
     autocmd BufEnter,WinEnter * call ActivateLine()
     autocmd BufLeave,WinLeave * call DeactivateLine()
-    autocmd LspProgress * call v:lua.GetLSPMessage()
+    autocmd LspProgress * call v:lua.GetLSPMessage(v:false)
+    autocmd LspDetach * call v:lua.GetLSPMessage(v:true)
 augroup END
 
 augroup GetGitStatus

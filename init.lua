@@ -1,7 +1,7 @@
 vim.o.hidden = true
 vim.g.mapleader = " "
 
-vim.opt.sessionoptions = { "buffers", "curdir", "folds", "help", "tabpages", "winsize" }
+vim.opt.sessionoptions = { "buffers", "curdir", "folds", "help", "tabpages", "terminal", "winsize" }
 
 vim.o.belloff = "all"
 vim.o.errorbells = false
@@ -137,6 +137,21 @@ vim.api.nvim_create_autocmd('LspAttach', {
     end,
 })
 
+vim.api.nvim_create_autocmd('LspDetach', {
+    callback = function(args)
+        -- Get the detaching client
+        local client = assert(vim.lsp.get_client_by_id(args.data.client_id))
+        -- Remove the autocommand to format the buffer on save, if it exists
+        if client:supports_method('textDocument/formatting') then
+            vim.api.nvim_clear_autocmds({
+                event = 'BufWritePre',
+                buffer = args.buf,
+                group = 'my.lsp',
+            })
+        end
+    end,
+})
+
 -- *** AUTOCMDS ***
 -- Relative lines in visual mode
 local visual_group = vim.api.nvim_create_augroup("visual_group", { clear = true })
@@ -155,6 +170,7 @@ vim.api.nvim_create_autocmd("ModeChanged", {
     end,
 })
 
+require("custom.foldtext")
 vim.api.nvim_create_autocmd("FileType", {
     pattern = "*",
     callback = function()
@@ -162,7 +178,7 @@ vim.api.nvim_create_autocmd("FileType", {
         vim.opt.foldexpr = "v:lua.vim.treesitter.foldexpr()"
         vim.opt.foldlevel = 99
         vim.opt.foldcolumn = "1"
-        vim.opt.foldtext = "getline(v:foldstart) .. ' [' .. (v:foldend - v:foldstart + 1) .. '](' .. v:foldlevel .. ')'"
+        vim.opt.foldtext = "v:lua.HighlightedFoldtext()"
     end,
 })
 
@@ -186,22 +202,21 @@ vim.keymap.set("i", "<Down>", "")
 vim.keymap.set("i", "<Left>", "")
 vim.keymap.set("i", "<Right>", "")
 
--- Add quotes arround current word
+-- General utils
 vim.keymap.set("n", "<leader>\"", "viw<esc>a\"<esc>bi\"<esc>lel", { desc = "Add quotes around word" })
--- Exit insert mode
 vim.keymap.set("i", "jk", "<esc>", { desc = "Exit insert mode" })
--- Switch buffers
 vim.keymap.set("n", "<leader>b", "<C-^>", { desc = "Swap between buffers" })
--- Easier window management
 vim.keymap.set("n", "<leader>w", "<C-w>", { desc = "Alias for <C-w> for easier window management" })
--- Toggle fold
 vim.keymap.set("n", "<leader>z", "za", { desc = "Toggle fold" })
--- Show notification history
+
+-- Snacks
 vim.keymap.set("n", "<leader>n", function()
     require("snacks").notifier.show_history()
 end, { desc = "Show notification history" })
+
 -- Navbuddy
 vim.keymap.set('n', '<leader><leader>', "<cmd>Navbuddy<cr>", { desc = "Show navbuddy menu" })
+
 -- Telescope
 local builtin = require('telescope.builtin')
 vim.keymap.set('n', '<leader>ff', builtin.find_files, { desc = 'Telescope find files' })
@@ -210,11 +225,16 @@ vim.keymap.set('n', '<leader>fb', builtin.buffers, { desc = 'Telescope buffers' 
 vim.keymap.set('n', '<leader>fh', builtin.help_tags, { desc = 'Telescope help tags' })
 vim.keymap.set('n', '<leader>fi', builtin.current_buffer_fuzzy_find, { desc = 'Telescope in current buffer' })
 vim.keymap.set('n', '<leader>fr', builtin.registers, { desc = 'Telescope registers' })
+vim.keymap.set('n', '<leader>fj', builtin.jumplist, { desc = 'Telescope jump points' })
 vim.keymap.set("n", "<leader>vf", function()
     builtin.find_files({
         cwd = vim.fn.stdpath("config")
     })
-end)
+end, { desc = "Telescope config dir" })
+vim.keymap.set('n', '<leader>ft', "<cmd>TodoTelescope<cr>", { desc = 'Telescope todos' })
+
+-- Oil
+vim.keymap.set('n', "<leader>o", "<cmd>Oil<cr>", { desc = "Open oil" })
 
 -- Session management
 vim.keymap.set("n", "<leader>sc", function() require("persistence").load() end, { desc = "Load session" })
@@ -224,10 +244,26 @@ vim.keymap.set("n", "<leader>sl", function() require("persistence").load({ last 
 vim.keymap.set("n", "<leader>sd", function() require("persistence").stop() end,
     { desc = "Disable session saving for this sesison" })
 
--- CMake
+-- Dap
+local dap = require("dap")
+vim.keymap.set("n", "<leader>d", require('persistent-breakpoints.api').toggle_breakpoint,
+    { desc = "Toggle breakpoint", nowait = true })
+vim.keymap.set("n", "<leader>d<space>", require('persistent-breakpoints.api').toggle_breakpoint,
+    { desc = "Toggle breakpoint", nowait = true })
+vim.keymap.set("n", "<leader>d?", function()
+    require("dapui").eval(nil)
+end, { desc = "Evaluate under cursor" })
+vim.keymap.set("n", "<leader>dc", dap.continue, { desc = "Continue" })
+vim.keymap.set("n", "<leader>dq", dap.terminate, { desc = "Quit debugging session" })
+vim.keymap.set("n", "<leader>dr", dap.restart, { desc = "Restart" })
+vim.keymap.set("n", "<Up>", dap.restart_frame, { desc = "Restart frame" })
+vim.keymap.set("n", "<Down>", dap.step_over, { desc = "Step over" })
+vim.keymap.set("n", "<Left>", dap.step_out, { desc = "Step out" })
+vim.keymap.set("n", "<Right>", dap.step_into, { desc = "Step into" })
+
+-- Taskless
 vim.keymap.set("n", "<leader>cr", "<cmd>Taskless run<cr>", { silent = true, desc = "Build and run project" })
 vim.keymap.set("n", "<leader>cb", "<cmd>Taskless build<cr>", { silent = true, desc = "Build project" })
 vim.keymap.set("n", "<leader>cc", "<cmd>Taskless configure<cr>", { silent = true, desc = "Configure project" })
-vim.keymap.set("n", "<leader>ct", "<cmd>Taskless target<cr>",
-    { silent = true, desc = "Set target to run" })
+vim.keymap.set("n", "<leader>ct", "<cmd>Taskless target<cr>", { silent = true, desc = "Set target to run" })
 vim.keymap.set("n", "<leader>cp", "<cmd>Taskless preset<cr>", { silent = true, desc = "Select Preset" })

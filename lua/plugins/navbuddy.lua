@@ -43,6 +43,6 @@ return {
                 Operator = ' ',
                 TypeParameter = ' '
             }
-        }
+        },
     }
 }
