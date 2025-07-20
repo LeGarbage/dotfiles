@@ -44,10 +44,11 @@ return {
                     cmp.show()
                     return true
                 end, "fallback" },
-
+                ['<C-n>'] = { "snippet_forward", "fallback" },
+                ['<C-p>'] = { "snippet_backward", "fallback" },
                 ['<S-Tab>'] = { "select_prev", "snippet_backward", "fallback" },
                 ['<Enter>'] = { "accept", "fallback" },
-                ['<C-s'] = { "show_signature", "fallback" },
+                ['<C-s>'] = { "show_signature", "fallback" },
             },
 
             completion = {
@@ -89,10 +90,27 @@ return {
 
             signature = {
                 enabled = true,
+                trigger = {
+                    show_on_keyword = true,
+                    show_on_insert = true,
+                },
                 window = {
                     border = "rounded"
-                }
-            }
+                },
+            },
+            cmdline = {
+                keymap = {
+                    preset = 'inherit',
+                    ['<Tab>'] = { "select_next", "show_and_insert" },
+                    ['<Enter>'] = { "accept_and_enter", "fallback" },
+                },
+                completion = {
+                    menu = { auto_show = false, },
+                    list = {
+                        selection = { preselect = false, auto_insert = true },
+                    },
+                },
+            },
         },
 
         opts_extend = { "sources.default" },

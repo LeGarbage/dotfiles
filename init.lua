@@ -267,3 +267,4 @@ vim.keymap.set("n", "<leader>cb", "<cmd>Taskless build<cr>", { silent = true, de
 vim.keymap.set("n", "<leader>cc", "<cmd>Taskless configure<cr>", { silent = true, desc = "Configure project" })
 vim.keymap.set("n", "<leader>ct", "<cmd>Taskless target<cr>", { silent = true, desc = "Set target to run" })
 vim.keymap.set("n", "<leader>cp", "<cmd>Taskless preset<cr>", { silent = true, desc = "Select Preset" })
+vim.keymap.set("n", "<leader>cd", "<cmd>Taskless debug<cr>", { silent = true, desc = "Debug project" })

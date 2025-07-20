@@ -8,7 +8,9 @@ return {
             require('nvim-treesitter').setup({
                 highlight = {
                     enable = true,
-                }
+
+                    disable = { "cpp", "c", "lua", },
+                },
             })
             local languages = { 'c', 'lua', 'cpp', 'gitignore', 'html', 'css', 'javascript', 'python', 'markdown',
                 'cmake', 'vim', 'vimdoc', }
@@ -19,7 +21,6 @@ return {
                 group = plug_group,
                 callback = function()
                     vim.treesitter.start()
-                    vim.wo.foldexpr = 'v:lua.vim.treesitter.foldexpr()'
                 end,
             })
         end,
