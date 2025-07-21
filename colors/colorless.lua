@@ -138,7 +138,7 @@ vim.cmd("hi link NvimDapVirtualText DiagnosticHint")
 
 -- Navic
 define_highlight("Winbar", gray5, gray1, "underdotted guisp=" .. gray4)
-define_highlight("WinbarNC", gray5, gray1, "underdotted guisp=" .. gray4)
+define_highlight("WinbarNC", gray4, gray1, "underdotted guisp=" .. gray4)
 define_highlight("NavicIconsFile", cyan, '', '')
 define_highlight("NavicIconsModule", pink, '', '')
 define_highlight("NavicIconsNamespace", yellow, '', '')

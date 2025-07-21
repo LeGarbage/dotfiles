@@ -1,3 +1,4 @@
+" NO LONGER IN USE
 "Color Palette
 let s:gray1 = '#212121'
 let s:gray2  = '#292929'

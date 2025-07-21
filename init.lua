@@ -10,6 +10,7 @@ vim.o.number = true
 vim.o.mouse = "a"
 vim.o.scrolloff = 7
 vim.o.cursorline = true
+vim.o.showmode = false
 
 vim.o.hlsearch = false
 
@@ -46,11 +47,8 @@ vim.keymap.set("t", "jk", [[<C-\><C-n>]])
 
 -- *** PLUGINS ***
 require("config.lazy")
-vim.cmd("source ~/.config/nvim/custom/plugins/lessline.vim")
+-- vim.cmd("source ~/.config/nvim/custom/plugins/lessline.vim")
 
-vim.o.winbar = "%{%v:lua.require'nvim-navic'.get_location()%}"
-
--- Diagnostic stuff
 vim.diagnostic.config({
     underline = {
         severity = { min = vim.diagnostic.severity.INFO }
@@ -60,10 +58,10 @@ vim.diagnostic.config({
     },
     signs = {
         text = {
-            [vim.diagnostic.severity.ERROR] = '>>',
-            [vim.diagnostic.severity.WARN] = '--',
-            [vim.diagnostic.severity.HINT] = '!',
-            [vim.diagnostic.severity.INFO] = '^',
+            [vim.diagnostic.severity.ERROR] = '󰅚',
+            [vim.diagnostic.severity.WARN] = '󰀪',
+            [vim.diagnostic.severity.HINT] = '󰌶',
+            [vim.diagnostic.severity.INFO] = '󰋽',
         },
     },
     float = {

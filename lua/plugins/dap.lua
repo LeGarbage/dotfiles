@@ -21,22 +21,18 @@ return {
 
             ui.setup()
             dap.listeners.before.attach.dapui_config = function()
-                vim.o.laststatus = 3
                 ui.open()
                 vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<C-w>=", false, true, true), "n", false)
             end
             dap.listeners.before.launch.dapui_config = function()
-                vim.o.laststatus = 3
                 ui.open()
                 vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<C-w>=", false, true, true), "n", false)
             end
             dap.listeners.before.event_terminated.dapui_config = function()
-                vim.o.laststatus = 2
                 ui.close()
                 vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<C-w>=", false, true, true), "n", false)
             end
             dap.listeners.before.event_exited.dapui_config = function()
-                vim.o.laststatus = 2
                 ui.close()
                 vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<C-w>=", false, true, true), "n", false)
             end
