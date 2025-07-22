@@ -44,6 +44,7 @@ local theme = {
 return {
     {
         "nvim-lualine/lualine.nvim",
+        dependencies = { "cbochs/grapple.nvim" },
         opts = {
             options = {
                 globalstatus = true,
@@ -62,8 +63,8 @@ return {
                     {
                         'filename',
                         path = 1,
-                        symbols = { modified = '●', readonly = 'ϱ' }
-                    }
+                        symbols = { modified = '●', readonly = 'ϱ' },
+                    },
                 },
                 lualine_x = {
                     {
@@ -83,8 +84,18 @@ return {
                             local navic = require("nvim-navic")
                             return navic.get_location()
                         end,
-                        draw_empty = true,
-                        color = "Winbar"
+                        color = "Winbar",
+                    },
+                },
+                lualine_x = {
+                    {
+                        function()
+                            return require("grapple").statusline()
+                        end,
+                        cond = function()
+                            return package.loaded["grapple"] and require("grapple").exists()
+                        end,
+                        color = "Winbar",
                     },
                 },
             },
@@ -95,8 +106,17 @@ return {
                         path = 1,
                         symbols = { modified = '●', readonly = 'ϱ' },
                         draw_empty = true,
-                        color = "WinbarNC",
                     }
+                },
+                lualine_x = {
+                    {
+                        function()
+                            return require("grapple").statusline()
+                        end,
+                        cond = function()
+                            return package.loaded["grapple"] and require("grapple").exists()
+                        end,
+                    },
                 },
             },
             extensions = {

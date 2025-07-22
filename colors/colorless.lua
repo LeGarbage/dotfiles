@@ -99,6 +99,8 @@ define_highlight('VertSplit', gray4, gray1, 'none')
 define_highlight('Visual', gray5, gray3, '')
 define_highlight('WarningMsg', red, '', '')
 define_highlight('WildMenu', gray2, indigo, '')
+define_highlight("Winbar", gray5, gray2, '')
+define_highlight("WinbarNC", gray4, gray2, '')
 define_highlight('TermFloatBorder', gray5, gray2, '')
 define_highlight('TermNormalFloat', gray5, gray2, '')
 
@@ -126,6 +128,7 @@ define_highlight('@variable', red, '', '')
 define_highlight('@property', blue2, '', '')
 
 -- Treesitter context
+vim.cmd("hi link TreesitterContextLineNumber NormalFloat")
 define_highlight("TreesitterContextBottom", "", "", "underdotted guisp=" .. gray4)
 define_highlight("TreesitterContextLineNumberBottom", "", "", "underdotted guisp=" .. gray4)
 
@@ -134,11 +137,9 @@ define_highlight("SnacksIndentScope", gray3, '', '')
 define_highlight("SnacksIndent", gray2, '', '')
 
 -- Debugger
-vim.cmd("hi link NvimDapVirtualText DiagnosticHint")
+vim.cmd("hi link NvimDapVirtualText DiagnosticInfo")
 
 -- Navic
-define_highlight("Winbar", gray5, gray1, "underdotted guisp=" .. gray4)
-define_highlight("WinbarNC", gray4, gray1, "underdotted guisp=" .. gray4)
 define_highlight("NavicIconsFile", cyan, '', '')
 define_highlight("NavicIconsModule", pink, '', '')
 define_highlight("NavicIconsNamespace", yellow, '', '')
