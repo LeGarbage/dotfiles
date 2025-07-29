@@ -89,11 +89,25 @@ return {
                 },
                 lualine_x = {
                     {
+                        icon = "󰛢",
                         function()
-                            return require("grapple").statusline()
-                        end,
-                        cond = function()
-                            return package.loaded["grapple"] and require("grapple").exists()
+                            local active = "[%s]"
+                            local inactive = " %s "
+
+                            local tags = require("grapple").tags()
+                            if not tags then return end
+
+                            local status = ""
+                            for i, tag in ipairs(tags) do
+                                local tag_name = tostring(i)
+                                if i <= 4 then
+                                    tag_name = ({ 'h', 'j', 'k', 'l' })[i]
+                                end
+                                status = status ..
+                                    string.format(vim.fn.expand("%:p") == tag.path and active or inactive, tag_name)
+                            end
+
+                            return status
                         end,
                         color = "Winbar",
                     },
@@ -110,12 +124,27 @@ return {
                 },
                 lualine_x = {
                     {
+                        icon = "󰛢",
                         function()
-                            return require("grapple").statusline()
+                            local active = "[%s]"
+                            local inactive = " %s "
+
+                            local tags = require("grapple").tags()
+                            if not tags then return end
+
+                            local status = ""
+                            for i, tag in ipairs(tags) do
+                                local tag_name = tostring(i)
+                                if i <= 4 then
+                                    tag_name = ({ 'h', 'j', 'k', 'l' })[i]
+                                end
+                                status = status ..
+                                    string.format(vim.fn.expand("%:p") == tag.path and active or inactive, tag_name)
+                            end
+
+                            return status
                         end,
-                        cond = function()
-                            return package.loaded["grapple"] and require("grapple").exists()
-                        end,
+                        color = "WinbarNC",
                     },
                 },
             },

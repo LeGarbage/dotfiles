@@ -93,7 +93,7 @@ function HighlightedFoldtext()
 
     local folded = {
         { " ", "FoldedIcon" },
-        { "+" .. vim.v.foldend - vim.v.foldstart .. " lines", "FoldedText" },
+        { "+" .. vim.v.foldend - vim.v.foldstart - 1 .. " lines", "FoldedText" },
         { " ", "FoldedIcon" },
     }
 
