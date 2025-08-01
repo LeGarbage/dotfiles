@@ -13,7 +13,7 @@ return {
             local ui = require("dapui")
             local mason_dap = require("mason-nvim-dap")
 
-            require("nvim-dap-virtual-text").setup({})
+            require("nvim-dap-virtual-text").setup({ all_references = true })
 
             require("persistent-breakpoints").setup({
                 load_breakpoints_event = { "BufReadPost" },
