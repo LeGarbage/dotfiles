@@ -63,7 +63,7 @@ return {
                     {
                         'filename',
                         path = 1,
-                        symbols = { modified = '●', readonly = 'ϱ' },
+                        symbols = { modified = 'δ', readonly = 'ϱ', unnamed = 'α', new = 'ν' },
                     },
                 },
                 lualine_x = {
@@ -118,7 +118,7 @@ return {
                     {
                         'filename',
                         path = 1,
-                        symbols = { modified = '●', readonly = 'ϱ' },
+                        symbols = { modified = 'δ', readonly = 'ϱ', unnamed = 'α', new = 'ν' },
                         draw_empty = true,
                     }
                 },
