@@ -31,6 +31,9 @@ vim.o.expandtab = true
 vim.o.ignorecase = true
 vim.o.smartcase = true
 
+vim.opt.conceallevel = 2
+vim.opt.concealcursor = 'nc'
+
 vim.o.undofile = true
 
 vim.opt.listchars = { trail = "~", tab = "->" }
