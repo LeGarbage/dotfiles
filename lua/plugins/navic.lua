@@ -1,6 +1,7 @@
 return {
     {
         "SmiteshP/nvim-navic",
+        enabled = false,
         opts = {
             lsp = {
                 auto_attach = true,

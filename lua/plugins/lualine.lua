@@ -44,7 +44,7 @@ local theme = {
 return {
     {
         "nvim-lualine/lualine.nvim",
-        dependencies = { "cbochs/grapple.nvim" },
+        dependencies = { "nvim-tree/nvim-web-devicons", "cbochs/grapple.nvim" },
         opts = {
             options = {
                 globalstatus = true,
@@ -81,8 +81,8 @@ return {
                 lualine_c = {
                     {
                         function()
-                            local navic = require("nvim-navic")
-                            return navic.get_location()
+                            ---@diagnostic disable-next-line: undefined-field
+                            return _G.dropbar()
                         end,
                         color = "Winbar",
                     },

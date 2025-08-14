@@ -1,6 +1,7 @@
 return {
     {
         "hasansujon786/nvim-navbuddy",
+        enabled = false,
         dependencies = {
             "neovim/nvim-lspconfig",
             "MunifTanjim/nui.nvim",
