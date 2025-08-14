@@ -236,6 +236,9 @@ vim.keymap.set('n', '<leader>fi', builtin.current_buffer_fuzzy_find, { desc = 'T
 vim.keymap.set('n', '<leader>fr', builtin.registers, { desc = 'Telescope registers' })
 vim.keymap.set('n', '<leader>fj', builtin.jumplist, { desc = 'Telescope jump points' })
 vim.keymap.set('n', '<leader>fd', builtin.diagnostics, { desc = 'Telescope diagnostics' })
+vim.keymap.set('n', '<leader>fo', function()
+    require("telescope").extensions.file_browser.file_browser({ cwd = "%:p:h" })
+end, { desc = 'Telescope diagnostics' })
 vim.keymap.set("n", "<leader>vf", function()
     builtin.find_files({
         cwd = vim.fn.stdpath("config")
