@@ -97,22 +97,29 @@ return {
                 preset = {
                     keys = {
                         { icon = " ", key = "f", desc = "Find File", action = ":Telescope find_files" },
-                        { icon = " ", key = "r", desc = "Restore Session", section = "session" },
-                        { icon = " ", key = "s", desc = "List Sessions", action = function() require("persistence")
-                                .select() end },
-                        { icon = "󰒓 ", key = "c", desc = "Open Config", action = ":e $MYVIMRC" },
+                        { icon = " ", key = "a", desc = "Open Agenda", action = ":Org agenda" },
+                        {
+                            icon = " ",
+                            key = "s",
+                            desc = "List Sessions",
+                            action = function()
+                                require("persistence")
+                                    .select()
+                            end
+                        },
                         { icon = "󰒲 ", key = "l", desc = "Manage Plugins", action = ":Lazy" },
                         { icon = " ", key = "q", desc = "Quit NVim", action = ":qa" },
                     },
                 },
                 formats = {
                     key = { "%s", hl = "Special" },
-                    icon = { "%s", hl = "Normal" },
+                    icon = { "%s", hl = "Special" },
                     desc = { "%s", hl = "Normal" },
                 },
                 sections = {
-                    { text = { neovim_text, hl = "Function" },                                           padding = 3 },
-                    { section = "keys",                                                                  gap = 1,    padding = 2 },
+                    { text = { neovim_text, hl = "Function" }, padding = 3 },
+                    { section = "keys", gap = 1, padding = 2 },
+                    { icon = " ", title = "Projects", section = "projects", indent = 2, padding = 2 },
                     { text = { vim.fn.system("fortune -s"), hl = "String", width = 0, align = "center" } },
                 },
             },
