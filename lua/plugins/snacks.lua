@@ -96,7 +96,7 @@ return {
             dashboard = {
                 preset = {
                     keys = {
-                        { icon = " ", key = "f", desc = "Find File", action = ":Telescope find_files" },
+                        { icon = " ", key = "f", desc = "Find File", action = "<leader>ff" },
                         { icon = " ", key = "a", desc = "Open Agenda", action = ":Org agenda" },
                         {
                             icon = " ",

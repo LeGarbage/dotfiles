@@ -121,6 +121,10 @@ return {
         "lukas-reineke/headlines.nvim",
         dependencies = { "nvim-treesitter/nvim-treesitter", "nvim-orgmode/orgmode" },
         opts = {
+            markdown = {
+                headline_highlights = {},
+                fat_headlines = false,
+            },
             org = {
                 headline_highlights = {},
                 fat_headlines = false,

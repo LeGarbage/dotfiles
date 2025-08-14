@@ -4,8 +4,8 @@ return {
         -- dir = "~/projects/taskless",
         -- name = "taskless",
         -- lazy = false,
-        config = function(opts)
-            require("taskless").setup(opts)
-        end
+        opts = {
+            close_window = true,
+        },
     }
 }
