@@ -9,30 +9,66 @@ return {
             require('orgmode').setup({
                 org_agenda_files = '~/org/**/*',
                 org_default_notes_file = '~/org/refile.org',
+                org_todo_keywords = { 'TODO', 'STARTED', 'WAITING', '|', 'DONE', 'CANCELLED' },
+                org_startup_folded = "inherit",
+                org_agenda_start_on_weekday = 0,
                 calendar_week_start_day = 0,
                 org_capture_templates = {
                     t = {
                         description = "Task",
-                        template = "* TODO %?\n %u",
+                        template = "* TODO %?\n %T",
+                        target = '~/org/agenda.org'
                     },
                     n = {
                         description = "Note",
                         template = "* %?",
                     },
-                    ---@diagnostic disable-next-line
-                    e = 'Event',
-                    er = {
+                    r = {
                         description = 'Recurring',
-                        template = '** %?\n %T',
-                        target = '~/org/calendar.org',
-                        headline = 'Recurring'
+                        template = '* %?\n %T',
+                        target = '~/org/calendar/recurring.org',
                     },
-                    eo = {
-                        description = 'One-time',
-                        template = '** %?\n %T',
-                        target = '~/org/calendar.org',
-                        headline = 'One-time'
+                    e = {
+                        description = 'Event',
+                        template = '* %?\n %T',
+                        target = '~/org/calendar/events.org',
                     },
+                    j = {
+                        description = 'Journal',
+                        template = '* %<%A %B %d, %Y>\n  %U\n  %?',
+                        target = '~/org/journal/%<%Y-%m>.org',
+                    }
+                },
+
+                mappings = {
+                    org = {
+                        ---@diagnostic disable-next-line
+                        org_refile = false,
+                    },
+                },
+
+                notifications = {
+                    cron_enabled = true,
+                    cron_notifier = function(tasks)
+                        for _, task in ipairs(tasks) do
+                            local title = string.format('%s (%s)', task.category, task.humanized_duration)
+                            local subtitle = string.format('%s %s %s', string.rep('*', task.level), task.todo, task
+                                .title)
+                            local date = string.format('%s: %s', task.type, task.time:to_string())
+
+                            -- Linux
+                            if vim.fn.executable('notify-send') == 1 then
+                                vim.system({
+                                    'notify-send',
+                                    '--icon=/home/logan/.local/share/nvim/lazy/orgmode/assets/nvim-orgmode-small.png',
+                                    '--app-name=orgmode',
+                                    title,
+                                    string.format('%s\n%s', subtitle, date),
+                                })
+                            end
+                        end
+                    end,
+
                 },
 
                 ui = {

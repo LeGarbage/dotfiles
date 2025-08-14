@@ -171,6 +171,7 @@ vim.api.nvim_create_autocmd("ModeChanged", {
     end,
 })
 
+-- Use treesitter for folding
 require("custom.foldtext")
 vim.api.nvim_create_autocmd("FileType", {
     pattern = "*",
@@ -183,9 +184,16 @@ vim.api.nvim_create_autocmd("FileType", {
     end,
 })
 
--- *** MAPPINGS ***
--- Set keybinds
+vim.api.nvim_create_autocmd("BufWritePre", {
+    pattern = "*.org",
+    callback = function()
+        local cursorpos = vim.api.nvim_win_get_cursor(0)
+        vim.cmd([[normal! gggqG]])
+        vim.api.nvim_win_set_cursor(0, cursorpos)
+    end
+})
 
+-- *** KEYMAPS ***
 -- Config utilities
 vim.keymap.set("n", "<leader>ve", "<cmd>split $MYVIMRC<cr>", { desc = "Open init.lua in split" })
 vim.keymap.set("n", "<leader>vs", function()
@@ -204,7 +212,7 @@ vim.keymap.set("i", "<Left>", "")
 vim.keymap.set("i", "<Right>", "")
 
 -- General utils
-vim.keymap.set("n", "<leader>\"", "viw<esc>a\"<esc>bi\"<esc>lel", { desc = "Add quotes around word" })
+vim.keymap.set("n", [[<leader>"]], "viw<esc>a\"<esc>bi\"<esc>lel", { desc = "Add quotes around word" })
 vim.keymap.set("i", "jk", "<esc>", { desc = "Exit insert mode" })
 vim.keymap.set("n", "<leader>b", "<C-^>", { desc = "Swap between buffers" })
 vim.keymap.set("n", "<leader>w", "<C-w>", { desc = "Alias for <C-w> for easier window management" })
