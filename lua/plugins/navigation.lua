@@ -42,6 +42,9 @@ return {
         "stevearc/aerial.nvim",
         dependencies = { "nvim-tree/nvim-web-devicons" },
         opts = {
+            backends = {
+                ['_'] = { "lsp", "treesitter", "markdown", "asciidoc", "man" },
+            },
             filter_kind = false,
             icons = icons,
             show_guides = true,

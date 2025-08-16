@@ -17,7 +17,7 @@ return {
                     t = {
                         description = "Task",
                         template = "* TODO %?\n %T",
-                        target = '~/org/agenda.org'
+                        target = '~/org/calendar/agenda.org'
                     },
                     n = {
                         description = "Note",
