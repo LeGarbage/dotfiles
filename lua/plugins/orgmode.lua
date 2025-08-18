@@ -16,26 +16,26 @@ return {
                 org_capture_templates = {
                     t = {
                         description = "Task",
-                        template = "* TODO %?\n %T",
+                        template = "* TODO %?\n%T\n%U",
                         target = '~/org/calendar/agenda.org'
                     },
                     n = {
                         description = "Note",
-                        template = "* %?",
+                        template = "* %?\n%U",
                     },
                     r = {
                         description = 'Recurring',
-                        template = '* %?\n %T',
+                        template = '* %?\n%T\n%U',
                         target = '~/org/calendar/recurring.org',
                     },
                     e = {
                         description = 'Event',
-                        template = '* %?\n %T',
+                        template = '* %?\n%T\n%U',
                         target = '~/org/calendar/events.org',
                     },
                     j = {
                         description = 'Journal',
-                        template = '* %<%A %B %d, %Y>\n  %U\n  %?',
+                        template = '* %<%A %B %d, %Y>\n%U\n%?',
                         target = '~/org/journal/%<%Y-%m>.org',
                     }
                 },

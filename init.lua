@@ -185,16 +185,6 @@ vim.api.nvim_create_autocmd("FileType", {
     end,
 })
 
-vim.api.nvim_create_autocmd("BufWritePre", {
-    group = init_group,
-    pattern = "*.org",
-    callback = function()
-        local cursorpos = vim.api.nvim_win_get_cursor(0)
-        vim.cmd([[normal! gggqG]])
-        vim.api.nvim_win_set_cursor(0, cursorpos)
-    end
-})
-
 vim.api.nvim_create_autocmd("TextYankPost", {
     group = init_group,
     pattern = "*",
