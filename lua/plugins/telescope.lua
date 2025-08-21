@@ -4,7 +4,6 @@ return {
         'nvim-lua/plenary.nvim',
         { 'nvim-telescope/telescope-fzf-native.nvim', build = 'make' },
         'nvim-telescope/telescope-ui-select.nvim',
-        'nvim-telescope/telescope-file-browser.nvim',
     },
     config = function()
         local actions = require("telescope.actions")
@@ -20,14 +19,9 @@ return {
             extensions = {
                 ["ui-select"] = { require("telescope.themes").get_dropdown({}) },
                 ["fzf"] = {},
-                ["file_browser"] = {
-                    hijack_netrw = true,
-                    display_stat = false,
-                },
             }
         }
         require('telescope').load_extension('fzf')
         require('telescope').load_extension('ui-select')
-        require('telescope').load_extension('file_browser')
     end,
 }

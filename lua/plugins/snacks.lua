@@ -26,6 +26,12 @@ return {
             },
             input = {
                 enabled = true,
+                b = {
+                    completion = true,
+                },
+            },
+            image = {
+                enabled = true,
             },
             notifier = {
                 enabled = true,
