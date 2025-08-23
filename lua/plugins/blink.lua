@@ -77,7 +77,7 @@ return {
             },
 
             sources = {
-                default = { "lazydev", "lsp", "path", "snippets" },
+                default = { "lazydev", "lsp", "path", "buffer", "snippets" },
                 per_filetype = {
                     org = { 'orgmode' }
                 },
