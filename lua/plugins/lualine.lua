@@ -152,6 +152,7 @@ return {
                 "fugitive",
                 "lazy",
                 "mason",
+                "aerial",
                 "nvim-dap-ui",
                 "oil",
                 "toggleterm",

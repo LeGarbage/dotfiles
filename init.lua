@@ -52,6 +52,16 @@ vim.keymap.set("t", "jk", [[<C-\><C-n>]])
 require("config.lazy")
 -- vim.cmd("source ~/.config/nvim/custom/plugins/lessline.vim")
 
+-- Configure illuminate here due to issue with lazy
+require("illuminate").configure({
+    filetypes_denylist = {
+        'fugitive',
+        'TelescopePrompt',
+        'aerial-nav',
+        'oil',
+    },
+})
+
 vim.diagnostic.config({
     underline = {
         severity = { min = vim.diagnostic.severity.INFO }

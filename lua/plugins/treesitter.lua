@@ -81,14 +81,28 @@ return {
                 mode = { "x", "o" }
             },
             {
-                "ab",
+                "aa",
+                function()
+                    require("nvim-treesitter-textobjects.select").select_textobject("@parameter.outer", "textobjects")
+                end,
+                mode = { "x", "o" }
+            },
+            {
+                "ia",
+                function()
+                    require("nvim-treesitter-textobjects.select").select_textobject("@parameter.inner", "textobjects")
+                end,
+                mode = { "x", "o" }
+            },
+            {
+                "ak",
                 function()
                     require("nvim-treesitter-textobjects.select").select_textobject("@block.inner", "textobjects")
                 end,
                 mode = { "x", "o" }
             },
             {
-                "ib",
+                "ik",
                 function()
                     require("nvim-treesitter-textobjects.select").select_textobject("@block.outer", "textobjects")
                 end,
@@ -109,7 +123,7 @@ return {
                 mode = { "x", "o", "n" }
             },
             {
-                "]b",
+                "]k",
                 function()
                     require("nvim-treesitter-textobjects.move").goto_next_start("@block.outer", "textobjects")
                 end,
@@ -130,7 +144,7 @@ return {
                 mode = { "x", "o", "n" }
             },
             {
-                "]B",
+                "]K",
                 function()
                     require("nvim-treesitter-textobjects.move").goto_next_end("@block.outer", "textobjects")
                 end,
@@ -151,7 +165,7 @@ return {
                 mode = { "x", "o", "n" }
             },
             {
-                "[b",
+                "[k",
                 function()
                     require("nvim-treesitter-textobjects.move").goto_previous_start("@block.outer", "textobjects")
                 end,
@@ -172,7 +186,7 @@ return {
                 mode = { "x", "o", "n" }
             },
             {
-                "[B",
+                "[K",
                 function()
                     require("nvim-treesitter-textobjects.move").goto_previous_end("@function.outer", "textobjects")
                 end,

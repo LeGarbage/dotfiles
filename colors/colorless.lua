@@ -11,6 +11,7 @@ vim.g.colors_name = "colorless"
 -- Color Palette
 local gray1       = '#212121'
 local gray2       = '#292929'
+local gray2point5 = '#353535'
 local gray3       = '#474646'
 local gray4       = '#6a6c6c'
 local gray5       = '#b7bdc0'
@@ -74,7 +75,7 @@ define_highlight('Folded', gray3, gray1, '')
 define_highlight('IncSearch', yellow, '', '')
 define_highlight('LineNr', gray3, '', '')
 vim.g.matchparen_disable_cursor_hl = true
-define_highlight('MatchParen', red, '', 'bold')
+define_highlight('MatchParen', red, 'NvimDarkGrey4', 'bold')
 define_highlight('ModeMsg', green, '', '')
 define_highlight('MoreMsg', green, '', '')
 define_highlight('NonText', gray4, '', 'none')
@@ -140,6 +141,11 @@ define_highlight("SnacksIndent", gray2, '', '')
 
 -- Debugger
 vim.cmd("hi link NvimDapVirtualText DiagnosticInfo")
+
+-- Illuminate
+define_highlight("IlluminatedWordText", "", gray2point5, "")
+define_highlight("IlluminatedWordRead", "", gray2point5, "")
+define_highlight("IlluminatedWordWrite", "", gray2point5, "")
 
 -- Navic
 define_highlight("NavicIconsFile", cyan, '', '')
