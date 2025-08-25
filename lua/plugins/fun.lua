@@ -15,5 +15,9 @@ return {
                 timeout = 60 * 1000 * 2
             }
         }
+    },
+    {
+        "seandewar/killersheep.nvim",
+        opts = {}
     }
 }
