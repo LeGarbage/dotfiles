@@ -17,7 +17,6 @@ return {
                     t = {
                         description = "Task",
                         template = "* TODO %?\n%T\n%U",
-                        target = '~/org/calendar/agenda.org'
                     },
                     n = {
                         description = "Note",
@@ -118,17 +117,10 @@ return {
         end
     },
     {
-        "lukas-reineke/headlines.nvim",
-        dependencies = { "nvim-treesitter/nvim-treesitter", "nvim-orgmode/orgmode" },
+        "MeanderingProgrammer/render-markdown.nvim",
+        dependencies = { "nvim-treesitter/nvim-treesitter", "nvim-tree/nvim-web-devicons", "nvim-orgmode/orgmode" },
         opts = {
-            markdown = {
-                headline_highlights = {},
-                fat_headlines = false,
-            },
-            org = {
-                headline_highlights = {},
-                fat_headlines = false,
-            },
+            completions = { blink = { enabled = true } },
         },
     },
 }
