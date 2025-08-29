@@ -1,7 +1,7 @@
 return {
     {
         "LeGarbage/taskless.nvim",
-        -- dir = "~/projects/taskless",
+        -- dir = "~/projects/taskless.nvim",
         -- name = "taskless",
         -- lazy = false,
         opts = {

@@ -59,6 +59,8 @@ require("illuminate").configure({
         'TelescopePrompt',
         'aerial-nav',
         'oil',
+        'snacks_input',
+        'snacks_dashboard',
     },
 })
 
@@ -84,7 +86,7 @@ vim.diagnostic.config({
         source = false,
         header = "",
         prefix = "",
-        suffix = "",
+        -- suffix = "",
     },
     severity_sort = true,
     update_in_insert = true,
