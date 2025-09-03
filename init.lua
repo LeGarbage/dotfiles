@@ -233,7 +233,6 @@ vim.keymap.set("i", "<Left>", "")
 vim.keymap.set("i", "<Right>", "")
 
 -- General utils
-vim.keymap.set("n", [[<leader>"]], "viw<esc>a\"<esc>bi\"<esc>lel", { desc = "Add quotes around word" })
 vim.keymap.set("i", "jk", "<esc>", { desc = "Exit insert mode" })
 vim.keymap.set("n", "<leader>b", "<C-^>", { desc = "Swap between buffers" })
 vim.keymap.set("n", "<leader>w", "<C-w>", { desc = "Alias for <C-w> for easier window management" })
