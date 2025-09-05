@@ -59,6 +59,8 @@ return {
                     ["<esc>"] = "actions.close"
                 },
                 preview = true,
+                height = 0.6,
+                width = 0.3,
             }
         }
     },
