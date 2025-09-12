@@ -197,6 +197,7 @@ vim.api.nvim_create_autocmd("FileType", {
     end,
 })
 
+-- Check spelling for org and markdown
 vim.api.nvim_create_autocmd("FileType", {
     group = init_group,
     pattern = "org,markdown",
@@ -211,6 +212,14 @@ vim.api.nvim_create_autocmd("TextYankPost", {
     pattern = "*",
     callback = function()
         vim.highlight.on_yank({ timeout = 300 })
+    end
+})
+
+-- *** COMMANDS ***
+vim.api.nvim_create_user_command("G", "Neogit", {
+    nargs = "*",
+    complete = function(args, _, _)
+        return vim.fn.getcompletion("Neogit " .. args, "cmdline")
     end
 })
 
@@ -241,12 +250,12 @@ vim.keymap.set("n", "<C-u>", "<C-u>zz", { desc = "Jump up" })
 vim.keymap.set("n", "<C-d>", "<C-d>zz", { desc = "Jump down" })
 
 -- Snacks
-vim.keymap.set("n", "<leader>n", function()
+vim.keymap.set("n", "<leader>no", function()
     require("snacks").notifier.show_history()
 end, { desc = "Show notification history" })
 
--- Navbuddy
--- vim.keymap.set('n', '<leader><leader>', "<cmd>Navbuddy<cr>", { desc = "Show navbuddy menu" })
+-- Neogit
+vim.keymap.set("n", "<leader>ng", "<cmd>Neogit<cr>", { desc = "Open Neogit" })
 
 -- Aerial
 vim.keymap.set('n', '<leader>a', "<cmd>AerialToggle!<cr>", { desc = "Toggle aerial sidebar" })
