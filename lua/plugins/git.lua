@@ -9,6 +9,26 @@ return {
         opts = {
             graph_style = "kitty",
             kind = "split_above_all",
+            process_spinner = true,
+            commit_editor = {
+                kind = "floating",
+                show_staged_diff = false,
+            },
+            commit_select_view = {
+                kind = "floating",
+            },
+            log_view = {
+                kind = "floating",
+            },
+            reflog_view = {
+                kind = "floating",
+            },
+            stash = {
+                kind = "floating",
+            },
+            refs_view = {
+                kind = "floating",
+            },
             signs = {
                 -- { CLOSED, OPENED }
                 hunk = { "", "" },
