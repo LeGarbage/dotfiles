@@ -19,6 +19,9 @@ return {
             bigfile = {
                 enabled = true
             },
+            bufdelete = {
+                enabled = true
+            },
             indent = {
                 animate = {
                     enabled = false,
@@ -96,7 +99,6 @@ return {
             statuscolumn = {
                 folds = {
                     open = true,
-                    left = { "sign" },
                 }
             },
             dashboard = {

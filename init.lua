@@ -216,12 +216,18 @@ vim.api.nvim_create_autocmd("TextYankPost", {
 })
 
 -- *** COMMANDS ***
+-- Git
 vim.api.nvim_create_user_command("G", "Neogit", {
     nargs = "*",
     complete = function(args, _, _)
         return vim.fn.getcompletion("Neogit " .. args, "cmdline")
     end
 })
+
+-- Snacks bufdelete
+vim.api.nvim_create_user_command("Bd", function(opts)
+    Snacks.bufdelete.delete({ file = opts.fargs[1] })
+end, { nargs = "?", complete = "buffer" })
 
 -- *** KEYMAPS ***
 -- Config utilities
