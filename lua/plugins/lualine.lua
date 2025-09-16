@@ -148,8 +148,26 @@ return {
                     },
                 },
             },
+            tabline = {
+                lualine_a = {
+                    {
+                        'buffers',
+
+                        component_separators = { left = "|", right = "|" },
+                        section_separators = { left = "", right = "" },
+
+                        buffers_color = {
+                            active = theme.normal.b,
+                            inactive = theme.normal.c
+                        },
+                        symbols = {
+                            modified = " δ",
+                            alternate_file = "ψ "
+                        },
+                    }
+                }
+            },
             extensions = {
-                "fugitive",
                 "lazy",
                 "mason",
                 "aerial",
