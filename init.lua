@@ -217,7 +217,9 @@ vim.api.nvim_create_autocmd("TextYankPost", {
 
 -- *** COMMANDS ***
 -- Git
-vim.api.nvim_create_user_command("G", "Neogit", {
+vim.api.nvim_create_user_command("G", function(opts)
+    vim.cmd("Neogit " .. opts.args)
+end, {
     nargs = "*",
     complete = function(args, _, _)
         return vim.fn.getcompletion("Neogit " .. args, "cmdline")

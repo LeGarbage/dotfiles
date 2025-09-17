@@ -79,13 +79,12 @@ return {
             sources = {
                 default = { "lazydev", "lsp", "path", "buffer", "snippets" },
                 per_filetype = {
-                    org = { 'orgmode' }
+                    org = { 'orgmode', 'buffer' }
                 },
                 providers = {
                     orgmode = {
                         name = 'Orgmode',
                         module = 'orgmode.org.autocompletion.blink',
-                        fallbacks = { 'buffer' },
                         score_offset = 100,
                     },
                     lazydev = {

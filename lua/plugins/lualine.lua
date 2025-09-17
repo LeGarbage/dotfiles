@@ -63,18 +63,25 @@ return {
                     {
                         'filename',
                         path = 1,
-                        symbols = { modified = 'δ', readonly = 'ϱ', unnamed = 'α', new = 'ν' },
+                        newfile_status = true,
+                        symbols = { modified = 'δ', readonly = 'ϱ', unnamed = 'α', newfile = 'ν' },
                     },
                 },
                 lualine_x = {
                     {
                         'lsp_status',
                         symbols = { done = '󰸞' }
-                    }, 'filetype'
+                    },
+                    'filetype'
                 },
-                lualine_y = { function()
-                    return vim.fn.fnamemodify(vim.fn.getcwd(), ':~:t')
-                end },
+                lualine_y = {
+                    {
+                        'diff',
+                    },
+                    function()
+                        return vim.fn.fnamemodify(vim.fn.getcwd(), ':~:t')
+                    end
+                },
                 lualine_z = { '%p%%', '%l/%L' }
             },
             winbar = {
@@ -118,7 +125,7 @@ return {
                     {
                         'filename',
                         path = 1,
-                        symbols = { modified = 'δ', readonly = 'ϱ', unnamed = 'α', new = 'ν' },
+                        symbols = { modified = 'δ', readonly = 'ϱ', unnamed = 'α', newfile = 'ν' },
                         draw_empty = true,
                     }
                 },
@@ -165,6 +172,23 @@ return {
                             alternate_file = "ψ "
                         },
                     }
+                },
+                lualine_z = {
+                    {
+                        'tabs',
+
+                        cond = function()
+                            return #vim.api.nvim_list_tabpages() > 1
+                        end,
+
+                        component_separators = { left = "|", right = "|" },
+                        section_separators = { left = "", right = "" },
+
+                        tabs_color = {
+                            active = theme.normal.b,
+                            inactive = theme.normal.c
+                        },
+                    },
                 }
             },
             extensions = {
