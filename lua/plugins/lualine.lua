@@ -64,7 +64,7 @@ return {
                         'filename',
                         path = 1,
                         newfile_status = true,
-                        symbols = { modified = 'δ', readonly = 'ϱ', unnamed = 'α', newfile = 'ν' },
+                        symbols = { modified = 'δ', readonly = 'ϱ', unnamed = 'χ', newfile = 'ν' },
                     },
                 },
                 lualine_x = {
@@ -125,7 +125,7 @@ return {
                     {
                         'filename',
                         path = 1,
-                        symbols = { modified = 'δ', readonly = 'ϱ', unnamed = 'α', newfile = 'ν' },
+                        symbols = { modified = 'δ', readonly = 'ϱ', unnamed = 'χ', newfile = 'ν' },
                         draw_empty = true,
                     }
                 },
@@ -155,42 +155,44 @@ return {
                     },
                 },
             },
-            tabline = {
-                lualine_a = {
-                    {
-                        'buffers',
-
-                        component_separators = { left = "|", right = "|" },
-                        section_separators = { left = "", right = "" },
-
-                        buffers_color = {
-                            active = theme.normal.b,
-                            inactive = theme.normal.c
-                        },
-                        symbols = {
-                            modified = " δ",
-                            alternate_file = "ψ "
-                        },
-                    }
-                },
-                lualine_z = {
-                    {
-                        'tabs',
-
-                        cond = function()
-                            return #vim.api.nvim_list_tabpages() > 1
-                        end,
-
-                        component_separators = { left = "|", right = "|" },
-                        section_separators = { left = "", right = "" },
-
-                        tabs_color = {
-                            active = theme.normal.b,
-                            inactive = theme.normal.c
-                        },
-                    },
-                }
-            },
+            -- NOTE: Re-enable once coloring of icons gets fixed
+            --
+            -- tabline = {
+            --     lualine_a = {
+            --         {
+            --             'buffers',
+            --
+            --             component_separators = { left = "|", right = "|" },
+            --             section_separators = { left = "", right = "" },
+            --
+            --             buffers_color = {
+            --                 active = theme.normal.b,
+            --                 inactive = theme.normal.c
+            --             },
+            --             symbols = {
+            --                 modified = " δ",
+            --                 alternate_file = "ψ "
+            --             },
+            --         }
+            --     },
+            --     lualine_z = {
+            --         {
+            --             'tabs',
+            --
+            --             cond = function()
+            --                 return #vim.api.nvim_list_tabpages() > 1
+            --             end,
+            --
+            --             component_separators = { left = "|", right = "|" },
+            --             section_separators = { left = "", right = "" },
+            --
+            --             tabs_color = {
+            --                 active = theme.normal.b,
+            --                 inactive = theme.normal.c
+            --             },
+            --         },
+            --     }
+            -- },
             extensions = {
                 "lazy",
                 "mason",
