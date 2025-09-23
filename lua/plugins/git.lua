@@ -8,6 +8,7 @@ return {
         },
         opts = {
             graph_style = "kitty",
+            initial_branch_name = "main",
             kind = "split_above_all",
             process_spinner = true,
             commit_editor = {
