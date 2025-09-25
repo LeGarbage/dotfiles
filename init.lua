@@ -194,19 +194,31 @@ vim.api.nvim_create_autocmd("FileType", {
         vim.opt.foldlevel = 99
         vim.opt.foldcolumn = "1"
         vim.opt.foldtext = "v:lua.HighlightedFoldtext()"
+
+        vim.bo.indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
     end,
 })
 
 -- Check spelling for org and markdown
 vim.api.nvim_create_autocmd("FileType", {
     group = init_group,
-    pattern = "org,markdown",
+    pattern = { "org", "markdown" },
     callback = function()
         vim.wo.spell = true
         vim.bo.spelllang = "en_us"
     end
 })
 
+-- Start treesitter for jsx, md, and ord
+vim.api.nvim_create_autocmd("FileType", {
+    group = init_group,
+    pattern = { "javascriptreact", "markdown", "org" },
+    callback = function()
+        vim.treesitter.start()
+    end
+})
+
+-- Breifly highlight text after it's yanked
 vim.api.nvim_create_autocmd("TextYankPost", {
     group = init_group,
     pattern = "*",

@@ -8,8 +8,7 @@ return {
             require('nvim-treesitter').setup({
                 highlight = {
                     enable = true,
-
-                    disable = { "cpp", "c", "lua", },
+                    additional_vim_regex_highlighting = false,
                 },
             })
             local languages = { 'c', 'lua', 'cpp', 'gitignore', 'html', 'css', 'javascript', 'python', 'markdown',
