@@ -35,6 +35,10 @@ return {
             },
             image = {
                 enabled = true,
+                doc = {
+                    inline = false,
+                    float = false,
+                },
             },
             notifier = {
                 enabled = true,

@@ -99,7 +99,10 @@ vim.keymap.set("i", "<C-d>", open_float)
 vim.keymap.set("n", "<leader>da", function()
     vim.lsp.buf.code_action({ apply = true })
 end)
-vim.keymap.set("n", "<S-k>", function() vim.lsp.buf.hover({ border = "rounded" }) end)
+vim.keymap.set("n", "<S-k>", function()
+    vim.lsp.buf.hover({ border = "rounded" })
+    Snacks.image.hover()
+end)
 
 --local icons = {
 --}
