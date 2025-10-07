@@ -12,6 +12,9 @@ return {
             },
             view_options = {
                 show_hidden = true,
+                is_always_hidden = function(name)
+                    return vim.endswith(name, ".uid")
+                end
             },
             skip_confirm_for_simple_edits = true,
         }

@@ -36,7 +36,7 @@ vim.opt.concealcursor = 'nc'
 
 vim.o.undofile = true
 
-vim.opt.listchars = { trail = "~", tab = "->" }
+vim.opt.listchars = { trail = "~", tab = "⭲ " }
 vim.o.list = true
 
 vim.cmd.colorscheme("colorless")
@@ -52,7 +52,7 @@ vim.keymap.set("t", "jk", [[<C-\><C-n>]])
 require("config.lazy")
 -- vim.cmd("source ~/.config/nvim/custom/plugins/lessline.vim")
 
--- Configure illuminate here due to issue with lazy
+-- Configure illuminate here due to using .configure instead of .setup
 require("illuminate").configure({
     filetypes_denylist = {
         'fugitive',
@@ -63,6 +63,8 @@ require("illuminate").configure({
         'snacks_dashboard',
     },
 })
+
+-- *** DIAGNOSTICS ***
 
 vim.diagnostic.config({
     underline = {
@@ -111,6 +113,8 @@ end)
 --for i, kind in ipairs(completion_kinds) do
 --    completion_kinds[i] = icons[kind] and icons[kind] .. kind or kind
 --end
+
+-- *** LSP ***
 
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities.textDocument.foldingRange = {
@@ -168,6 +172,11 @@ vim.api.nvim_create_autocmd('LspDetach', {
     end,
 })
 
+-- Enable LSPs not installed by Mason
+
+vim.lsp.enable('gdscript')
+vim.lsp.enable('gdshader_lsp')
+
 -- *** AUTOCMDS ***
 -- Relative lines in visual mode
 local init_group = vim.api.nvim_create_augroup("init_group", { clear = true })
@@ -212,10 +221,10 @@ vim.api.nvim_create_autocmd("FileType", {
     end
 })
 
--- Start treesitter for jsx, md, and ord
+-- Start treesitter for jsx, gdscript, md, and org
 vim.api.nvim_create_autocmd("FileType", {
     group = init_group,
-    pattern = { "javascriptreact", "markdown", "org" },
+    pattern = { "javascriptreact", "markdown", "org", "gdscript" },
     callback = function()
         vim.treesitter.start()
     end

@@ -26,6 +26,9 @@ return {
                 animate = {
                     enabled = false,
                 },
+                filter = function(bufnr)
+                    return vim.o.expandtab
+                end,
             },
             input = {
                 enabled = true,

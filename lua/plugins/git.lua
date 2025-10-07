@@ -37,5 +37,8 @@ return {
                 section = { "", "" },
             },
         }
+    },
+    {
+        'lewis6991/gitsigns.nvim'
     }
 }
