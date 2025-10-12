@@ -216,7 +216,8 @@ vim.api.nvim_create_autocmd("FileType", {
     group = init_group,
     pattern = { "org", "markdown" },
     callback = function()
-        vim.wo.spell = true
+        local winid = vim.api.nvim_get_current_win()
+        vim.wo[winid][0].spell = true
         vim.bo.spelllang = "en_us"
     end
 })

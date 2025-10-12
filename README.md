@@ -1,7 +1,5 @@
 # DOTFILES
 
-## USAGE
-
 To link all config files, run
 ```
 stow */
