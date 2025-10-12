@@ -12,7 +12,7 @@ return {
                 },
             })
             local languages = { 'c', 'lua', 'cpp', 'gitignore', 'html', 'css', 'javascript', 'python', 'markdown',
-                'cmake', 'vim', 'vimdoc', }
+                'cmake', 'vim', 'vimdoc', 'bash' }
             require('nvim-treesitter').install(languages)
             local plug_group = vim.api.nvim_create_augroup("plug_group", { clear = true })
             vim.api.nvim_create_autocmd('FileType', {

@@ -1,0 +1,29 @@
+#
+# ~/.bashrc
+#
+
+# If not running interactively, don't do anything
+[[ $- != *i* ]] && return
+
+alias ls='ls --color=auto'
+alias grep='grep --color=auto'
+alias vim='nvim'
+alias gvim='nvim --listen /tmp/godot.pipe'
+alias dotstow='stow --dotfile'
+
+export PATH=$PATH:/home/logan/pikchr
+
+export NIX_SHELL_PRESERVE_PROMPT=1
+
+set -o vi
+
+BLUE="\[\033[0;34m\]"
+BOLD="\[\033[1m\]"
+RESET="\[\033[0m\]"
+
+if [ -n "$IN_NIX_SHELL" ]; then
+    export PS1="${BLUE}${BOLD}[nix-shell \W]η${RESET} "
+else
+    export PS1="[\u@\H \W]λ "
+fi
+. "$HOME/.cargo/env"
