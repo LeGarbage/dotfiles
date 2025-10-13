@@ -1,11 +1,11 @@
-# DOTFILES
+* DOTFILES
 
 To link all config files, run
-```
-stow */
-```
+#+begin_src sh
+$ stow */
+#+end_src
 
 To link a specific program's config file, for example bash, run
-```
-stow bash
-```
+#+begin_src sh
+$ stow bash
+#+end_src

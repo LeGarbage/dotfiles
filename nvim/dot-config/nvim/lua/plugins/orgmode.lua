@@ -11,7 +11,7 @@ return {
                 org_default_notes_file = '~/org/refile.org',
                 org_todo_keywords = { 'TODO', 'STARTED', 'WAITING', '|', 'DONE', 'CANCELLED' },
                 org_startup_folded = "inherit",
-                org_agenda_start_on_weekday = 0,
+                org_agenda_start_on_weekday = 7,
                 calendar_week_start_day = 0,
                 org_capture_templates = {
                     t = {
