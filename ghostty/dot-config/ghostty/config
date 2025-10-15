@@ -30,3 +30,5 @@ palette = 13=#e75699
 palette = 14=#3979bc
 palette = 15=#ffffff
 font-family = "CommitMono Nerd Font"
+keybind = global:cmd+backquote=toggle_quick_terminal
+quick-terminal-size = 50%,80%
