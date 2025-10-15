@@ -82,7 +82,7 @@ return {
                         return vim.fn.fnamemodify(vim.fn.getcwd(), ':~:t')
                     end
                 },
-                lualine_z = { '%p%%', '%l/%L' }
+                lualine_z = { '%p%%', '%l/%L:%v' }
             },
             winbar = {
                 lualine_c = {

@@ -9,11 +9,11 @@ alias ls='ls --color=auto'
 alias grep='grep --color=auto'
 alias vim='nvim'
 alias gvim='nvim --listen /tmp/godot.pipe'
-alias dotstow='stow --dotfile'
 
 export PATH=$PATH:/home/logan/pikchr
 
 export NIX_SHELL_PRESERVE_PROMPT=1
+export MANPAGER="nvim +Man!"
 
 set -o vi
 
@@ -26,4 +26,7 @@ if [ -n "$IN_NIX_SHELL" ]; then
 else
     export PS1="[\u@\H \W]λ "
 fi
-. "$HOME/.cargo/env"
+
+if [ -f $HOME/.cargo/env ]
+    . "$HOME/.cargo/env"
+fi
