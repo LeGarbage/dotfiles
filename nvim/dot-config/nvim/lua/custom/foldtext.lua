@@ -1,4 +1,4 @@
----@module Foldtext
+---@diagnostic disable: need-check-nil
 ---Based on https://www.reddit.com/r/neovim/comments/16sqyjz/finally_we_can_have_highlighted_folds/
 ---Updated with vim.treesitter._fold.foldtext()
 

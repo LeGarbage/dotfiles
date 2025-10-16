@@ -9,18 +9,28 @@ return {
         local actions = require("telescope.actions")
         local make_entry = require("telescope.make_entry")
 
+        -- Preserve original generator
+        -- Returns a function that formats each entry
         local original_gen = make_entry.gen_from_buffer
 
+        -- Custom entry generator
         local function buffer_entry(opts)
+            -- Use the default generator as a baseline
             local gen = original_gen(opts)
+
+            -- Entry generator
             return function(entry)
                 local original = gen(entry)
+
+                -- Extract the flags (active, hidden, alt, etc.)
                 local flags = original.indicator
 
+                -- Fix telescope's interpretation of hidden and active buffers
                 if flags:find("a") and #vim.fn.win_findbuf(original.bufnr) == 0 then
                     flags = flags:gsub("a", " ")
                 end
 
+                -- Sub the symbols
                 flags = flags:gsub("%%", "θ")
                 flags = flags:gsub("h", "β")
                 flags = flags:gsub("a", "α")
@@ -28,10 +38,12 @@ return {
                 flags = flags:gsub("+", "δ")
                 flags = flags:gsub("=", "ϱ")
 
+                -- Inject the new flags
                 original.indicator = flags
                 return original
             end
         end
+        -- Overwrite the old telescope buffer list generator with custom
         make_entry.gen_from_buffer = buffer_entry
         require('telescope').setup {
             defaults = {

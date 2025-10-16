@@ -27,6 +27,6 @@ else
     export PS1="[\u@\H \W]λ "
 fi
 
-if [ -f $HOME/.cargo/env ]
+if [ -f $HOME/.cargo/env ]; then
     . "$HOME/.cargo/env"
 fi
