@@ -21,6 +21,11 @@ local function parse_org(ctx)
                 (paragraph . (expr) @quote
                     (#eq? @quote ">")
                 )
+
+                (listitem (bullet) @list)
+
+                (listitem (checkbox) @checkbox)
+
             ]]
         )
     end
@@ -32,6 +37,8 @@ local function parse_org(ctx)
     local codeblock_highlight = "ColorColumn"
     local bullets = { "◉", "○", "✸", "✿" }
     local headline_highlights = { "Headline" }
+    local list_bullet = "•"
+    local checkbox_symbols = { x = { "✓", "@org.keyword.done" }, ["-"] = { "", "@org.checkbox.halfchecked" } }
 
     local bullet_highlights = {
         "@org.headline.level1",
@@ -79,6 +86,45 @@ local function parse_org(ctx)
                     hl_eol = true,
                 },
             })
+        end
+
+        if capture == "list" then
+            table.insert(marks, {
+                start_row = start_row,
+                start_col = start_column,
+                opts = {
+                    virt_text = { { list_bullet, headline_highlights[1] } },
+                    virt_text_pos = "overlay"
+                }
+            })
+        end
+
+        if capture == "checkbox" then
+            local status_node = node:field('status')[1]
+            if status_node then
+                local status_text = vim.treesitter.get_node_text(status_node, ctx.buf)
+                local status_symbol = checkbox_symbols[status_text:lower()]
+                if status_symbol then
+                    table.insert(marks, {
+                        start_row = start_row,
+                        start_col = start_column,
+                        opts = {
+                            virt_text = { { "[", "NonText" }, status_symbol, { "]", "NonText" } },
+                            virt_text_pos = "overlay"
+                        }
+                    })
+                end
+            else
+                print(end_column)
+                table.insert(marks, {
+                    start_row = start_row,
+                    start_col = start_column,
+                    opts = {
+                        end_col = end_column,
+                        hl_group = "NonText",
+                    }
+                })
+            end
         end
 
         if capture == "dash" then
