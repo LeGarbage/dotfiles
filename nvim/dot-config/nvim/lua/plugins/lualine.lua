@@ -1,3 +1,14 @@
+local function diff_source()
+    local gitsigns = vim.b.gitsigns_status_dict
+    if gitsigns then
+        return {
+            added = gitsigns.added,
+            modified = gitsigns.changed,
+            removed = gitsigns.removed
+        }
+    end
+end
+
 local colors = {
     gray1  = '#212121',
     gray2  = '#292929',
@@ -52,7 +63,7 @@ return {
             },
             sections = {
                 lualine_b = {
-                    { 'branch', icon = '󰘬' },
+                    { 'b:gitsigns_head', icon = '󰘬' },
                     {
                         'diagnostics',
                         sources = { 'nvim_diagnostic' },
@@ -76,7 +87,7 @@ return {
                 },
                 lualine_y = {
                     {
-                        'diff',
+                        'diff', source = diff_source
                     },
                     function()
                         return vim.fn.fnamemodify(vim.fn.getcwd(), ':~:t')

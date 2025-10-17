@@ -26,7 +26,7 @@ return {
                 animate = {
                     enabled = false,
                 },
-                filter = function(bufnr)
+                filter = function()
                     return vim.o.expandtab
                 end,
             },
@@ -132,9 +132,9 @@ return {
                     desc = { "%s", hl = "Normal" },
                 },
                 sections = {
-                    { text = { neovim_text, hl = "Function" }, padding = 3 },
-                    { section = "keys", gap = 1, padding = 2 },
-                    { icon = " ", title = "Projects", section = "projects", indent = 2, padding = 2 },
+                    { text = { neovim_text, hl = "Function" },                                           padding = 3 },
+                    { section = "keys",                                                                  gap = 1,    padding = 2 },
+                    -- { icon = " ", title = "Projects", section = "projects", indent = 2, padding = 2 },
                     { text = { vim.fn.system("fortune -s"), hl = "String", width = 0, align = "center" } },
                 },
             },

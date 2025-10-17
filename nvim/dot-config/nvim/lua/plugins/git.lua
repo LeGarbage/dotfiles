@@ -7,6 +7,7 @@ return {
             "nvim-telescope/telescope.nvim",
         },
         opts = {
+            disable_hint = true,
             graph_style = "kitty",
             initial_branch_name = "main",
             kind = "split_above_all",

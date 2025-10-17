@@ -31,7 +31,7 @@ local function parse_org(ctx)
     end
     local marks = {}
     local dash_highlight = "Dash"
-    local dash_string = "-"
+    local dash_string = "─"
     local quote_highlight = "Quote"
     local quote_string = "┃"
     local codeblock_highlight = "ColorColumn"
@@ -302,6 +302,9 @@ return {
         ft = { "markdown", "org" },
         opts = {
             completions = { blink = { enabled = true } },
+            sign = {
+                enabled = false,
+            },
             custom_handlers = {
                 org = {
                     parse = parse_org

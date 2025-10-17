@@ -18,6 +18,7 @@ return {
     },
     {
         "seandewar/killersheep.nvim",
-        opts = {}
+        opts = {},
+        cmd = "KillKillKill"
     }
 }
