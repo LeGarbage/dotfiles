@@ -79,7 +79,8 @@ return {
             sources = {
                 default = { "lazydev", "lsp", "path", "buffer", "snippets" },
                 per_filetype = {
-                    org = { 'orgmode', 'buffer' }
+                    org = { 'orgmode', 'buffer' },
+                    markdown = { inherit_defaults = true }
                 },
                 providers = {
                     orgmode = {

@@ -215,7 +215,6 @@ return {
         ft = { 'org' },
         config = function()
             -- Setup orgmode
-            ---@diagnostic disable-next-line: missing-fields
             require('orgmode').setup({
                 org_agenda_files = '~/org/**/*',
                 org_default_notes_file = '~/org/refile.org',
@@ -244,14 +243,14 @@ return {
                     },
                     j = {
                         description = 'Journal',
-                        template = '* %<%A %B %d, %Y>\n%U\n%?',
+                        template = '-----\n* %<%A %B %d, %Y>\n%U\n%?',
                         target = '~/org/journal/%<%Y-%m>.org',
                     }
                 },
 
                 mappings = {
                     org = {
-                        ---@diagnostic disable-next-line
+                        ---@diagnostic disable-next-line: assign-type-mismatch
                         org_refile = false,
                     },
                 },
