@@ -68,7 +68,8 @@ return {
     {
         "ggandor/leap.nvim",
         config = function()
-            require("leap").set_default_mappings()
+            vim.keymap.set({ "n", "x", "o" }, "s", "<Plug>(leap)")
+            vim.keymap.set("n", "S", "<Plug>(leap-from-window)")
             require("leap").opts.preview_filter =
                 function(ch0, ch1, ch2)
                     return not (

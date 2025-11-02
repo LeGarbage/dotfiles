@@ -318,6 +318,12 @@ vim.keymap.set('n', '<leader>ft', "<cmd>TodoTelescope<cr>", { desc = 'Telescope 
 -- Oil
 vim.keymap.set('n', "<leader>fo", "<cmd>Oil<cr>", { desc = "Open oil" })
 
+-- Gitsigns
+---@diagnostic disable-next-line: param-type-mismatch
+vim.keymap.set('n', "]h", function() require("gitsigns").nav_hunk("next") end, { desc = "Next hunk" })
+---@diagnostic disable-next-line: param-type-mismatch
+vim.keymap.set('n', "[h", function() require("gitsigns").nav_hunk("prev") end, { desc = "Previous hunk" })
+
 -- Session management
 vim.keymap.set("n", "<leader>ss", function()
     local session_manager = require("session_manager")

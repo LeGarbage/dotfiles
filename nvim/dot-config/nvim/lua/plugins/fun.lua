@@ -12,7 +12,8 @@ return {
         "nullromo/fishtank.nvim",
         opts = {
             screensaver = {
-                timeout = 60 * 1000 * 2
+                -- 10 minutes
+                timeout = 60 * 1000 * 10
             }
         }
     },

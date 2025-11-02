@@ -54,12 +54,6 @@ return {
                 },
             },
 
-            -- pickers = {
-            --     buffers = {
-            --         entry_maker = buffer_entry({})
-            --     }
-            -- },
-
             extensions = {
                 ["ui-select"] = { require("telescope.themes").get_dropdown({}) },
                 ["fzf"] = {},

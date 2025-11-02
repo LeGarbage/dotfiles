@@ -8,7 +8,7 @@ return {
         },
         opts = {
             disable_hint = true,
-            graph_style = "kitty",
+            graph_style = "ascii",
             initial_branch_name = "main",
             kind = "split_above_all",
             process_spinner = true,
