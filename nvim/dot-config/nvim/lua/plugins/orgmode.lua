@@ -218,32 +218,28 @@ return {
             require('orgmode').setup({
                 org_agenda_files = '~/org/**/*',
                 org_default_notes_file = '~/org/refile.org',
-                org_todo_keywords = { 'TODO', 'STARTED', 'WAITING', '|', 'DONE', 'CANCELLED' },
+                -- org_todo_keywords = { 'TODO', 'STARTED', 'WAITING', '|', 'DONE', 'CANCELLED' },
                 org_startup_folded = "inherit",
+                -- org_startup_indented = true,
+                -- org_indent_mode_turns_on_hiding_stars = false,
                 org_agenda_start_on_weekday = 7,
                 calendar_week_start_day = 0,
                 org_capture_templates = {
                     t = {
                         description = "Task",
-                        template = "* TODO %?\n%T\n%U",
+                        template = "* TODO %?\n  %T\n  %U",
                     },
                     n = {
                         description = "Note",
-                        template = "* %?\n%U",
-                    },
-                    r = {
-                        description = 'Recurring',
-                        template = '* %?\n%T\n%U',
-                        target = '~/org/calendar/recurring.org',
+                        template = "* %?\n  %U",
                     },
                     e = {
                         description = 'Event',
-                        template = '* %?\n%T\n%U',
-                        target = '~/org/calendar/events.org',
+                        template = '* %?\n  %T\n  %U',
                     },
                     j = {
                         description = 'Journal',
-                        template = '-----\n* %<%A %B %d, %Y>\n%U\n%?',
+                        template = '-----\n* %<%A %B %d, %Y>\n  %U\n  %?',
                         target = '~/org/journal/%<%Y-%m>.org',
                     }
                 },

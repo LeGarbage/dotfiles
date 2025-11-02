@@ -107,6 +107,12 @@ return {
                 },
                 lualine_x = {
                     {
+                        function()
+                            ---@diagnostic disable-next-line: undefined-field
+                            return _G.orgmode.statusline()
+                        end
+                    },
+                    {
                         icon = "󰛢",
                         function()
                             local active = "[%s]"

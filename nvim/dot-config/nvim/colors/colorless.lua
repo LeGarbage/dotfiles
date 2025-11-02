@@ -136,6 +136,13 @@ define_highlight('@tag.html', red, '', '')
 define_highlight('@tag.delimiter', gray5, '', '')
 define_highlight('@tag.attribute', blue2, '', '')
 
+-- Org
+define_highlight('@org.agenda.time_grid', gray5, '', '')
+define_highlight('@org.agenda.weekend', '', '', 'italic')
+define_highlight('@org.agenda.scheduled_past', yellow, '', '')
+define_highlight('@org.agenda.deadline', orange, '', '')
+define_highlight('@org.agenda.scheduled', blue, '', '')
+
 -- Treesitter context
 vim.cmd("hi link TreesitterContextLineNumber NormalFloat")
 define_highlight("TreesitterContextBottom", "", "", "underdotted guisp=" .. gray4)
