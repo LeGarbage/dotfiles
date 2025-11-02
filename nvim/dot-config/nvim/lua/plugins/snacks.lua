@@ -26,8 +26,8 @@ return {
                 animate = {
                     enabled = false,
                 },
-                filter = function()
-                    return vim.o.expandtab
+                filter = function(buf)
+                    return vim.o.expandtab and (vim.filetype.match({ buf = buf }) ~= "org")
                 end,
             },
             input = {
@@ -112,14 +112,13 @@ return {
                 preset = {
                     keys = {
                         { icon = " ", key = "f", desc = "Find File", action = "<leader>ff" },
-                        { icon = " ", key = "a", desc = "Open Agenda", action = ":Org agenda" },
+                        { icon = " ", key = "a", desc = "Open Agenda", action = ":Org agenda a" },
                         {
                             icon = " ",
                             key = "s",
                             desc = "List Sessions",
                             action = function()
-                                require("persistence")
-                                    .select()
+                                require("session_manager").load_session(false)
                             end
                         },
                         { icon = "󰒲 ", key = "l", desc = "Manage Plugins", action = ":Lazy" },

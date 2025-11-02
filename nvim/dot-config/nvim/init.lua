@@ -55,12 +55,13 @@ require("config.lazy")
 -- Configure illuminate here due to using .configure instead of .setup
 require("illuminate").configure({
     filetypes_denylist = {
-        'fugitive',
+        'NeogitStatus',
         'TelescopePrompt',
         'aerial-nav',
         'oil',
         'snacks_input',
         'snacks_dashboard',
+        'orgagenda',
     },
 })
 
@@ -98,9 +99,6 @@ local function open_float()
 end
 vim.keymap.set("n", "<leader>df", open_float)
 vim.keymap.set("i", "<C-d>", open_float)
-vim.keymap.set("n", "<leader>da", function()
-    vim.lsp.buf.code_action({ apply = true })
-end)
 vim.keymap.set("n", "<S-k>", function()
     vim.lsp.buf.hover({ border = "rounded" })
     Snacks.image.hover()
@@ -200,14 +198,16 @@ require("custom.foldtext")
 vim.api.nvim_create_autocmd("FileType", {
     group = init_group,
     pattern = "*",
-    callback = function()
+    callback = function(opt)
         vim.opt.foldmethod = "expr"
         vim.opt.foldexpr = "v:lua.vim.treesitter.foldexpr()"
         vim.opt.foldlevel = 99
         vim.opt.foldcolumn = "1"
         vim.opt.foldtext = "v:lua.HighlightedFoldtext()"
 
-        vim.bo.indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
+        if opt.match ~= "org" then
+            vim.bo.indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
+        end
     end,
 })
 
@@ -219,6 +219,8 @@ vim.api.nvim_create_autocmd("FileType", {
         local winid = vim.api.nvim_get_current_win()
         vim.wo[winid][0].spell = true
         vim.bo.spelllang = "en_us"
+
+        vim.bo.textwidth = 80
     end
 })
 
@@ -317,12 +319,15 @@ vim.keymap.set('n', '<leader>ft', "<cmd>TodoTelescope<cr>", { desc = 'Telescope 
 vim.keymap.set('n', "<leader>fo", "<cmd>Oil<cr>", { desc = "Open oil" })
 
 -- Session management
-vim.keymap.set("n", "<leader>sc", function() require("persistence").load() end, { desc = "Load session" })
-vim.keymap.set("n", "<leader>ss", function() require("persistence").select() end, { desc = "Select session" })
-vim.keymap.set("n", "<leader>sl", function() require("persistence").load({ last = true }) end,
-    { desc = "Load last absolute session" })
-vim.keymap.set("n", "<leader>sd", function() require("persistence").stop() end,
-    { desc = "Disable session saving for this sesison" })
+vim.keymap.set("n", "<leader>ss", function()
+    local session_manager = require("session_manager")
+    session_manager.save_current_session()
+    session_manager.load_session(false)
+end, { desc = "Load session" })
+vim.keymap.set("n", "<leader>sl", function() require("session_manager").load_last_session(false) end,
+    { desc = "Load last session" })
+vim.keymap.set("n", "<leader>sd", function() require("session_manager").delete_session() end,
+    { desc = "Delete session" })
 
 -- Dap
 local dap = require("dap")
