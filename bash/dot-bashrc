@@ -15,13 +15,11 @@ export PATH=$PATH:/home/logan/pikchr
 export NIX_SHELL_PRESERVE_PROMPT=1
 export MANPAGER="nvim +Man!"
 
-set -o vi
-
 BLUE="\[\033[0;34m\]"
 BOLD="\[\033[1m\]"
 RESET="\[\033[0m\]"
 
-if [ -n "$IN_NIX_SHELL" ]; then
+if [ -n "$IN_NIX_SHELL" ] || [ -n "$NIX_GCROOT" ]; then
     export PS1="${BLUE}${BOLD}[nix-shell \W]η${RESET} "
 else
     export PS1="[\u@\H \W]λ "
