@@ -194,7 +194,7 @@ vim.api.nvim_create_autocmd("ModeChanged", {
 })
 
 -- Use treesitter for folding
-require("custom.foldtext")
+-- require("custom.foldtext")
 vim.api.nvim_create_autocmd("FileType", {
     group = init_group,
     pattern = "*",
@@ -203,7 +203,7 @@ vim.api.nvim_create_autocmd("FileType", {
         vim.opt.foldexpr = "v:lua.vim.treesitter.foldexpr()"
         vim.opt.foldlevel = 99
         vim.opt.foldcolumn = "1"
-        vim.opt.foldtext = "v:lua.HighlightedFoldtext()"
+        -- vim.opt.foldtext = "v:lua.HighlightedFoldtext()"
 
         if opt.match ~= "org" then
             vim.bo.indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
