@@ -8,6 +8,7 @@ return {
     config = function()
         local actions = require("telescope.actions")
         local make_entry = require("telescope.make_entry")
+        local telescope = require("telescope")
 
         -- Preserve original generator
         -- Returns a function that formats each entry
@@ -45,7 +46,7 @@ return {
         end
         -- Overwrite the old telescope buffer list generator with custom
         make_entry.gen_from_buffer = buffer_entry
-        require('telescope').setup {
+        telescope.setup({
             defaults = {
                 mappings = {
                     i = {
@@ -56,10 +57,12 @@ return {
 
             extensions = {
                 ["ui-select"] = { require("telescope.themes").get_dropdown({}) },
-                ["fzf"] = {},
+                fzf = {},
+                aerial = {},
             }
-        }
-        require('telescope').load_extension('fzf')
-        require('telescope').load_extension('ui-select')
+        })
+        telescope.load_extension('fzf')
+        telescope.load_extension('ui-select')
+        telescope.load_extension('aerial')
     end,
 }

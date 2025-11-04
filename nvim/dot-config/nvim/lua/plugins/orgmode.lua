@@ -227,7 +227,7 @@ return {
                 org_capture_templates = {
                     t = {
                         description = "Task",
-                        template = "* TODO %?\n  %T\n  %U",
+                        template = "* TODO %?\n  %U",
                     },
                     n = {
                         description = "Note",

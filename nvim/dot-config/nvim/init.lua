@@ -297,6 +297,7 @@ vim.keymap.set('n', '<leader>a', "<cmd>AerialToggle!<cr>", { desc = "Toggle aeri
 vim.keymap.set('n', '<leader><leader>', "<cmd>AerialNavToggle<cr>", { desc = "Toggle aerial nav" })
 vim.keymap.set('n', '<leader>,', "<cmd>AerialPrev<cr>", { desc = "Aerial jump backward" })
 vim.keymap.set('n', '<leader>.', "<cmd>AerialNext<cr>", { desc = "Aerial jump forward" })
+vim.keymap.set('n', '<leader>fa', "<cmd>Telescope aerial<cr>", { desc = 'Telescope aerial' })
 
 -- Telescope
 local builtin = require('telescope.builtin')
@@ -325,11 +326,8 @@ vim.keymap.set('n', "]h", function() require("gitsigns").nav_hunk("next") end, {
 vim.keymap.set('n', "[h", function() require("gitsigns").nav_hunk("prev") end, { desc = "Previous hunk" })
 
 -- Session management
-vim.keymap.set("n", "<leader>ss", function()
-    local session_manager = require("session_manager")
-    session_manager.save_current_session()
-    session_manager.load_session(false)
-end, { desc = "Load session" })
+vim.keymap.set("n", "<leader>ss", function() require("session_manager").load_session(false) end,
+    { desc = "Load session" })
 vim.keymap.set("n", "<leader>sl", function() require("session_manager").load_last_session(false) end,
     { desc = "Load last session" })
 vim.keymap.set("n", "<leader>sd", function() require("session_manager").delete_session() end,
