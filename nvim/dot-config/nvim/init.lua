@@ -199,9 +199,8 @@ vim.api.nvim_create_autocmd("FileType", {
     group = init_group,
     pattern = "*",
     callback = function(opt)
-        vim.opt.foldmethod = "expr"
-        vim.opt.foldexpr = "v:lua.vim.treesitter.foldexpr()"
         vim.opt.foldlevel = 99
+        vim.o.foldlevelstart = 99
         vim.opt.foldcolumn = "1"
         -- vim.opt.foldtext = "v:lua.HighlightedFoldtext()"
 
