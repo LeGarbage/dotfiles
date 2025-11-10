@@ -9,3 +9,8 @@ To link a specific program's config file, for example bash, run
 #+begin_src sh
 $ stow bash
 #+end_src
+
+** Possible upcoming changes
+   - Use [[https://quickshell.org/][quickshell]] to extend Hyprland's
+     capabilities and replace Hyprpanel
+
