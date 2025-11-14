@@ -170,10 +170,10 @@ vim.api.nvim_create_autocmd('LspDetach', {
     end,
 })
 
--- Enable LSPs not installed by Mason
-
-vim.lsp.enable('gdscript')
-vim.lsp.enable('gdshader_lsp')
+-- Override qmlls command
+vim.lsp.config.qmlls = {
+    cmd = { "qmlls6" }
+}
 
 -- *** AUTOCMDS ***
 -- Relative lines in visual mode
@@ -204,6 +204,7 @@ vim.api.nvim_create_autocmd("FileType", {
         vim.opt.foldcolumn = "1"
         -- vim.opt.foldtext = "v:lua.HighlightedFoldtext()"
 
+        -- Org does its own indent handling
         if opt.match ~= "org" then
             vim.bo.indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
         end
@@ -223,12 +224,13 @@ vim.api.nvim_create_autocmd("FileType", {
     end
 })
 
--- Start treesitter for jsx, gdscript, md, and org
+-- Start treesitter for all languages
 vim.api.nvim_create_autocmd("FileType", {
     group = init_group,
-    pattern = { "javascriptreact", "markdown", "org", "gdscript" },
+    pattern = "*",
     callback = function()
-        vim.treesitter.start()
+        -- This call will fail if the language does not have a parser
+        pcall(vim.treesitter.start)
     end
 })
 

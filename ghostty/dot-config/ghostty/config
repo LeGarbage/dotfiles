@@ -10,6 +10,7 @@ theme = Galaxy
 cursor-color = cell-foreground
 cursor-text = cell-background
 cursor-style-blink = false
+shell-integration-features = no-cursor
 font-family = "CommitMono Nerd Font"
 keybind = global:cmd+backquote=toggle_quick_terminal
 quick-terminal-size = 50%,80%
