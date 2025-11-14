@@ -1,0 +1,12 @@
+* LeShell
+
+  A minimal and functional Quickshell built from the ground up to be the
+  ultimate shell
+
+** Features
+
+   Coming soon
+
+** Installation
+
+   Coming soon
