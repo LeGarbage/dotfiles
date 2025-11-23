@@ -90,6 +90,9 @@ return {
                         'diff', source = diff_source
                     },
                     function()
+                        return require("direnv").statusline()
+                    end,
+                    function()
                         return vim.fn.fnamemodify(vim.fn.getcwd(), ':~:t')
                     end
                 },
