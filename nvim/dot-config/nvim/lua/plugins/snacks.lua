@@ -45,63 +45,7 @@ return {
             },
             notifier = {
                 enabled = true,
-                timeout = 0,
-                style = function(buf, notif, ctx)
-                    ctx.opts.focusable = false
-                    local title = vim.trim(notif.icon .. " " .. (notif.title or ""))
-                    if title ~= "" then
-                        ctx.opts.title = { { " " .. title .. " ", ctx.hl.title } }
-                        ctx.opts.title_pos = "center"
-                    end
-                    vim.api.nvim_buf_set_lines(buf, 0, -1, false, vim.split(notif.msg, "\n"))
-                    ctx.opts.on_win = function(win)
-                        local animation_time = 400
-                        local notification_timeout = 5000
-
-                        local animate = require("snacks.animate")
-                        local config = vim.api.nvim_win_get_config(win.win)
-                        local target_col = config.col or 0
-                        local rel = config.relative
-                        local row = config.row or 0
-                        local width = config.width
-                        local screen_width = vim.o.columns
-                        vim.api.nvim_win_set_config(win.win,
-                            { col = screen_width + width, row = row, relative = rel, fixed = true })
-
-                        animate.add(screen_width + width, target_col, function(val)
-                            if (not win.closed) or vim.api.nvim_win_is_valid(win.win) then
-                                vim.api.nvim_win_set_config(win.win, { col = val, row = row, relative = rel })
-                            else
-                                animate.del("ease-in-" .. win.win)
-                            end
-                        end, {
-                            duration = { total = animation_time },
-                            fps = 60,
-                            easing = "outCubic",
-                            id = "ease-in-" .. win.win
-                        })
-
-                        vim.defer_fn(function()
-                            animate.add(target_col, screen_width + width, function(val)
-                                if (not win.closed) or vim.api.nvim_win_is_valid(win.win) then
-                                    vim.api.nvim_win_set_config(win.win, { col = val, row = row, relative = rel })
-                                else
-                                    animate.del("ease-out-" .. win.win)
-                                end
-                            end, {
-                                duration = { total = animation_time },
-                                fps = 60,
-                                easing = "outCubic",
-                                id = "ease-out-" .. win.win
-                            })
-
-                            vim.defer_fn(function()
-                                animate.del("ease-out-" .. win.win)
-                                require("snacks.notifier").hide(win.id)
-                            end, animation_time)
-                        end, notification_timeout)
-                    end
-                end,
+                timeout = 5000,
             },
             statuscolumn = {
                 folds = {
