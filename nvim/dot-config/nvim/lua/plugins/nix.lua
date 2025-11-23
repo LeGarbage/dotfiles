@@ -5,7 +5,7 @@ return {
             require("direnv").setup({
                 statusline = {
                     enabled = true,
-                    icon = " "
+                    icon = "󰇧 "
                 },
 
                 keybindings = {

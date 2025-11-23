@@ -64,6 +64,9 @@ return {
             sections = {
                 lualine_b = {
                     { 'b:gitsigns_head', icon = '󰘬' },
+                    function()
+                        return require("direnv").statusline()
+                    end,
                     {
                         'diagnostics',
                         sources = { 'nvim_diagnostic' },
@@ -89,9 +92,7 @@ return {
                     {
                         'diff', source = diff_source
                     },
-                    function()
-                        return require("direnv").statusline()
-                    end,
+                    { 'overseer', colored = false },
                     function()
                         return vim.fn.fnamemodify(vim.fn.getcwd(), ':~:t')
                     end

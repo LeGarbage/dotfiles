@@ -351,10 +351,10 @@ vim.keymap.set("n", "<Down>", dap.step_over, { desc = "Step over" })
 vim.keymap.set("n", "<Left>", dap.step_out, { desc = "Step out" })
 vim.keymap.set("n", "<Right>", dap.step_into, { desc = "Step into" })
 
--- Taskless
-vim.keymap.set("n", "<leader>cr", "<cmd>Taskless run<cr>", { silent = true, desc = "Build and run project" })
-vim.keymap.set("n", "<leader>cb", "<cmd>Taskless build<cr>", { silent = true, desc = "Build project" })
-vim.keymap.set("n", "<leader>cc", "<cmd>Taskless configure<cr>", { silent = true, desc = "Configure project" })
-vim.keymap.set("n", "<leader>ct", "<cmd>Taskless target<cr>", { silent = true, desc = "Set target to run" })
-vim.keymap.set("n", "<leader>cp", "<cmd>Taskless preset<cr>", { silent = true, desc = "Select Preset" })
-vim.keymap.set("n", "<leader>cd", "<cmd>Taskless debug<cr>", { silent = true, desc = "Debug project" })
+-- Overseer
+vim.keymap.set("n", "<leader>cr", "<cmd>OverseerRun<cr>",
+    { silent = true, desc = "Run an Overseer task from a template" })
+vim.keymap.set("n", "<leader>ct", "<cmd>OverseerToggle<cr>",
+    { silent = true, desc = "Toggle the Overseer tasks window" })
+vim.keymap.set("n", "<leader>cs", "<cmd>OverseerShell<cr>",
+    { silent = true, desc = "Run a shell command as an Overseer task" })
