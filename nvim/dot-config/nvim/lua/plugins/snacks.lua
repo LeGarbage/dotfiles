@@ -27,7 +27,8 @@ return {
                     enabled = false,
                 },
                 filter = function(buf)
-                    return vim.o.expandtab and (vim.filetype.match({ buf = buf }) ~= "org")
+                    return vim.o.expandtab and (vim.filetype.match({ buf = buf }) ~= "org") and
+                    (vim.bo[buf].buftype ~= "nofile")
                 end,
             },
             input = {
