@@ -173,8 +173,9 @@ vim.api.nvim_create_autocmd('LspDetach', {
 
 -- Override qmlls command
 vim.lsp.config.qmlls = {
-    cmd = { "qmlls6" }
+    cmd = { "qmlls" }
 }
+vim.lsp.enable("qmlls")
 
 -- *** AUTOCMDS ***
 -- Relative lines in visual mode
@@ -206,7 +207,8 @@ vim.api.nvim_create_autocmd("FileType", {
         -- vim.opt.foldtext = "v:lua.HighlightedFoldtext()"
 
         -- Org does its own indent handling
-        if opt.match ~= "org" then
+        -- Don't enable treesitter intents when not spported
+        if opt.match ~= "org" and vim.treesitter.query.get(vim.bo.filetype, "indents") then
             vim.bo.indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
         end
     end,

@@ -5,8 +5,10 @@ return {
             require("direnv").setup({
                 statusline = {
                     enabled = true,
-                    icon = "󰇧 "
+                    icon = "󰇧"
                 },
+
+                autoload_direnv = true,
 
                 keybindings = {
                     allow = "<leader>ea",
@@ -14,7 +16,6 @@ return {
                     reload = "<leader>er",
                     edit = "<leader>ee",
                 },
-
             })
         end,
     }

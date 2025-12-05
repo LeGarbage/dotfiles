@@ -92,7 +92,7 @@ return {
                     {
                         'diff', source = diff_source
                     },
-                    { 'overseer', colored = false },
+                    { 'overseer' },
                     function()
                         return vim.fn.fnamemodify(vim.fn.getcwd(), ':~:t')
                     end

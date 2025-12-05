@@ -249,6 +249,10 @@ return {
                         ---@diagnostic disable-next-line: assign-type-mismatch
                         org_refile = false,
                     },
+                    capture = {
+                        org_capture_finalize = "<C-c><C-c>",
+                        org_capture_kill = "<C-c><C-k>"
+                    }
                 },
 
                 ui = {
@@ -275,6 +279,22 @@ return {
                 },
             })
         end,
+    },
+    {
+        "chipsenkbeil/org-roam.nvim",
+        event = "VeryLazy",
+        dependencies = {
+            "nvim-orgmode/orgmode"
+        },
+        opts = {
+            directory = "~/org/roam",
+            bindings = {
+                prefix = "<leader>r"
+            },
+        },
+        -- config = function()
+        --     require("org-roam").setup()
+        -- end
     },
     {
         "nvim-orgmode/telescope-orgmode.nvim",
