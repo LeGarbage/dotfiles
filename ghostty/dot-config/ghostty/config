@@ -6,11 +6,12 @@ clipboard-read = allow
 clipboard-write = allow
 window-padding-balance = true
 window-padding-color = extend
-theme = Galaxy
+theme = One Double Dark
 cursor-color = cell-foreground
 cursor-text = cell-background
 cursor-style-blink = false
-shell-integration-features = no-cursor
-font-family = "CommitMono Nerd Font"
+font-family = "CommitMono Nerd Font Propo"
+
 keybind = global:cmd+backquote=toggle_quick_terminal
 quick-terminal-size = 50%,80%
+keybind = ctrl+enter=unbind
