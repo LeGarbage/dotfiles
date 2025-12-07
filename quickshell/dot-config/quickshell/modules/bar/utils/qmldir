@@ -1,0 +1,2 @@
+singleton HyprUtils 1.0 HyprUtils.qml
+singleton Network 1.0 Network.qml

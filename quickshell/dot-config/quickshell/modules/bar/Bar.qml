@@ -2,43 +2,61 @@ import Quickshell
 import Quickshell.Widgets
 import QtQuick
 import QtQuick.Layouts
-import "components"
+import "widgets"
 
-PanelWindow {
+Variants {
+    model: Quickshell.screens
 
-    color: "blue"
+    PanelWindow {
+        id: root
 
-    anchors {
-        left: true
-        right: true
-        bottom: true
-    }
+        required property var modelData
+        screen: modelData
 
-    implicitHeight: wrapper.implicitHeight
+        color: "#282C34"
 
-    required property ShellScreen screen
+        implicitHeight: wrapper.implicitHeight
 
-    WrapperItem {
-        id: wrapper
-
-        topMargin: 7
-        bottomMargin: 7
-        leftMargin: 10
-        rightMargin: 10
-        child: bar
-
-        anchors.fill: parent
-    }
-
-    RowLayout {
-        id: bar
-
-        Clock {}
-
-        Item {
-            Layout.fillWidth: enabled
+        anchors {
+            left: true
+            right: true
+            bottom: true
         }
 
-        Clock {}
+        WrapperItem {
+            id: wrapper
+
+            leftMargin: 8
+            rightMargin: 8
+            topMargin: 5
+            bottomMargin: 5
+
+            child: layout
+
+            anchors.fill: parent
+        }
+
+        RowLayout {
+            id: layout
+            spacing: 0
+
+            RowLayout {
+                Layout.alignment: Qt.AlignLeft
+                Workspaces {
+                    screen: root.modelData
+                }
+            }
+
+            RowLayout {
+                Layout.alignment: Qt.AlignRight
+                Tray {
+                    screen: root.modelData
+                }
+                System {
+                    screen: root.modelData
+                }
+                Clock {}
+            }
+        }
     }
 }
