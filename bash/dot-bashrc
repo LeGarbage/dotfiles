@@ -8,23 +8,26 @@
 alias ls='ls --color=auto'
 alias grep='grep --color=auto'
 alias vim='nvim'
-alias gvim='nvim --listen /tmp/godot.pipe'
 
-export PATH=$PATH:/home/logan/pikchr
+# Safety aliases
+alias rm='rm -I'
+alias mv='mv -i'
+alias cp='cp -i'
+alias ln='ln -i'
 
-export NIX_SHELL_PRESERVE_PROMPT=1
+# Use nvim as manpager
 export MANPAGER="nvim +Man!"
 
-BLUE="\[\033[0;34m\]"
-BOLD="\[\033[1m\]"
-RESET="\[\033[0m\]"
+# Options
+shopt -s autocd
+shopt -s cdspell
+shopt -s globstar
 
-if [ -n "$IN_NIX_SHELL" ] || [ -n "$NIX_GCROOT" ]; then
-    export PS1="${BLUE}${BOLD}[nix-shell \W]η${RESET} "
-else
-    export PS1="[\u@\H \W]λ "
-fi
+# Use vim motions
+set -o vi
 
-if [ -f $HOME/.cargo/env ]; then
-    . "$HOME/.cargo/env"
-fi
+# Enable direnv
+eval "$(direnv hook bash)"
+
+# Enable starship
+eval "$(starship init bash)"

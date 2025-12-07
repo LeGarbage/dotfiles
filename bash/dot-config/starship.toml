@@ -1,0 +1,39 @@
+add_newline = false
+format = '''
+┌──\[${custom.userhost}$nix_shell\]$directory$git_branch$git_state$cmd_duration$direnv
+└─$character'''
+
+[character]
+success_symbol = '[λ](bright-white)'
+error_symbol = '[λ](red bold)'
+
+[cmd_duration]
+format = '─\[[$duration]($style)\]'
+
+[directory]
+format = '─\[[$path]($style)[$read_only]($read_only_style)\]'
+
+[direnv]
+disabled = false
+format = '─\[[$loaded/$allowed]($style)\]'
+
+[git_branch]
+format = '─\[[$symbol$branch(:$remote_branch)]($style)\]'
+symbol = '󰘬 '
+
+[git_state]
+format = '─\[[$state( $progress_current/$progress_total)]($style)\]'
+
+[nix_shell]
+format = '[nix-shell]($style)'
+
+[time]
+disabled = false
+format = '[$time]($style)'
+time_format = '%R'
+
+[custom.userhost]
+command = 'echo $(whoami)@$(hostname -s)'
+when = '[ -z "$IN_NIX_SHELL"]'
+style = 'bright-white'
+format = '[$output]($style)'
