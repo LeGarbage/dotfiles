@@ -1,0 +1,33 @@
+configuration {
+    case-smart: true;
+    show-icons: true;
+    matching: "fuzzy";
+
+    scroll-method: 1;
+
+    drun-match-fields: "name";
+    drun-display-format: "{name}";
+
+    window-format: "{t}";
+
+    calc {
+        no-bold: false;
+        terse: true;
+        no-history: true;
+        calc-command: "wl-copy {result}";
+    }
+}
+
+@theme "spotlight-dark"
+
+* {
+    font: "CommitMonoNerdFont 12";
+
+    bg0:    #242424;
+    bg1:    #7E7E7E;
+    bg2:    #0860f2;
+
+    fg0:    #DEDEDE;
+    fg1:    #FFFFFF;
+    fg2:    #DEDEDE;
+}
