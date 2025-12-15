@@ -356,8 +356,34 @@ vim.keymap.set("n", "<Right>", dap.step_into, { desc = "Step into" })
 
 -- Overseer
 vim.keymap.set("n", "<leader>cr", "<cmd>OverseerRun<cr>",
-    { silent = true, desc = "Run an Overseer task from a template" })
+    { desc = "Run an Overseer task from a template" })
 vim.keymap.set("n", "<leader>ct", "<cmd>OverseerToggle<cr>",
-    { silent = true, desc = "Toggle the Overseer tasks window" })
+    { desc = "Toggle the Overseer tasks window" })
 vim.keymap.set("n", "<leader>cs", "<cmd>OverseerShell<cr>",
-    { silent = true, desc = "Run a shell command as an Overseer task" })
+    { desc = "Run a shell command as an Overseer task" })
+
+local winid = -1
+vim.keymap.set("n", "<leader>co", function()
+    if vim.api.nvim_win_is_valid(winid) then
+        vim.api.nvim_win_close(winid, false)
+    else
+        winid = vim.api.nvim_open_win(0, false, {
+            split = "below",
+            height = 12,
+        })
+
+        require("overseer").create_task_output_view(winid, {
+            list_task_opts = {
+                filter = function(task)
+                    return task.time_start ~= nil
+                end
+            },
+            select = function(_, tasks)
+                table.sort(tasks, function(a, b)
+                    return a.time_start > b.time_start
+                end)
+                return tasks[1]
+            end
+        })
+    end
+end, { desc = "Open an output stream of the last task's output" })
