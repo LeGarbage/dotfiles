@@ -21,8 +21,6 @@ set_wallpaper() {
             WALLPAPER_ID=$(basename "$(dirname "$WALLPAPER_PATH")")
 
             linux-wallpaperengine --screen-root "$1" --bg "$WALLPAPER_ID" --silent --scaling fill &
-        else
-            linux-wallpaperengine --screen-root "$1" --bg 2718110798 --silent --scaling fill &
         fi
 }
 
@@ -32,36 +30,36 @@ start_wallpapers() {
     done
 }
 
-pause_wallpapers() {
-    pkill -STOP -f linux-wallpaperengine
-}
-
-continue_wallpapers() {
-    pkill -CONT -f linux-wallpaperengine
-}
+# pause_wallpapers() {
+#     pkill -STOP -f linux-wallpaperengine
+# }
+#
+# continue_wallpapers() {
+#     pkill -CONT -f linux-wallpaperengine
+# }
 
 stop_wallpapers() {
     pkill -SIGINT -f linux-wallpaperengine
 }
 
-watch_battery() {
-    # Do an initial chack incase the computer is unplugged on startup
-    if [ "$(cat $AC_PATH)" -eq 1 ]; then
-        continue_wallpapers
-    else
-        pause_wallpapers
-    fi
-
-    acpi_listen | while read -r event; do
-        if echo "$event" | grep -q "ac_adapter"; then
-            if [ "$(cat $AC_PATH)" -eq 1 ]; then
-                continue_wallpapers
-            else
-                pause_wallpapers
-            fi
-        fi
-    done
-}
+# watch_battery() {
+#     # Do an initial chack incase the computer is unplugged on startup
+#     if [ "$(cat $AC_PATH)" -eq 1 ]; then
+#         continue_wallpapers
+#     else
+#         pause_wallpapers
+#     fi
+#
+#     acpi_listen | while read -r event; do
+#         if echo "$event" | grep -q "ac_adapter"; then
+#             if [ "$(cat $AC_PATH)" -eq 1 ]; then
+#                 continue_wallpapers
+#             else
+#                 pause_wallpapers
+#             fi
+#         fi
+#     done
+# }
 
 watch_monitors() {
     socat - UNIX-CONNECT:"$HYPRLAND_SOCKET" | while read -r event; do
@@ -88,7 +86,7 @@ watch_monitors() {
 case "$1" in
     start)
         start_wallpapers
-        watch_battery &
+        # watch_battery &
         watch_monitors &
         ;;
     stop)

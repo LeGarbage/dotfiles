@@ -25,6 +25,9 @@ window {
 
     location:       center;
     width:          640;
+
+    border: 2px;
+    border-color: @fg1;
     border-radius:  8;
 }
 
@@ -32,7 +35,7 @@ inputbar {
     font:       "Montserrat 20";
     padding:    12px;
     spacing:    12px;
-    children:   [ icon-search, entry ];
+    children:   [ icon-search, entry, prompt ];
 }
 
 icon-search {
@@ -41,7 +44,11 @@ icon-search {
     size: 28px;
 }
 
-icon-search, entry, element-icon, element-text {
+prompt {
+    text-color: @bg1;
+}
+
+icon-search, entry, element-icon, element-text, prompt {
     vertical-align: 0.5;
 }
 
