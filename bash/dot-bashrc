@@ -18,6 +18,28 @@ alias ln='ln -i'
 # Use nvim as manpager
 export MANPAGER="nvim +Man!"
 
+export HISTCONTROL=ignoreboth
+
+# List of commands to ignore in history
+HISTIGNORE_COMMANDS=(
+    "clear"
+    "ls"
+    "history"
+    "[bf]g"
+    "exit"
+    "* --help"
+    "* -h"
+)
+
+# Also ignore the ignored commands with a trailing space
+for item in "${HISTIGNORE_COMMANDS[@]}"; do
+    HISTIGNORE+="$item:"
+    HISTIGNORE+="$item :"
+done
+
+HISTIGNORE="${HISTIGNORE%:}"
+export HISTIGNORE
+
 # Options
 shopt -s autocd
 shopt -s cdspell
