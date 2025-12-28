@@ -6,23 +6,22 @@ if vim.fn.exists("syntax_on") then
     vim.cmd.syntax = "reset"
 end
 
-vim.g.colors_name = "colorless"
+vim.g.colors_name = "onedark"
 
 -- Color Palette
-local gray1       = '#212121'
-local gray2       = '#292929'
-local gray2point5 = '#353535'
-local gray3       = '#474646'
-local gray4       = '#6a6c6c'
-local gray5       = '#b7bdc0'
-local red         = '#dd7186'
-local green       = '#87bb7c'
-local yellow      = '#d5b875'
-local blue        = '#70ace5'
+local gray1       = '#282c34'
+local gray2       = '#31353f'
+local gray3       = '#393f4a'
+local gray4       = '#5c6370'
+local gray5       = '#abb2bf'
+local red         = '#e86671'
+local green       = '#98c379'
+local yellow      = '#e5c07b'
+local blue        = '#61afef'
 local blue2       = '#5873dd'
-local purple      = '#a48add'
-local cyan        = '#69c5ce'
-local orange      = '#d7956e'
+local purple      = '#c678dd'
+local cyan        = '#56b6c2'
+local orange      = '#d19a66'
 local indigo      = '#7681de'
 local pink        = '#ff69b4'
 local warning     = '#d6a940'
@@ -157,9 +156,9 @@ define_highlight("SnacksIndent", gray2, '', '')
 vim.cmd("hi link NvimDapVirtualText DiagnosticInfo")
 
 -- Illuminate
-define_highlight("IlluminatedWordText", "", gray2point5, "")
-define_highlight("IlluminatedWordRead", "", gray2point5, "")
-define_highlight("IlluminatedWordWrite", "", gray2point5, "")
+define_highlight("IlluminatedWordText", "", gray3, "")
+define_highlight("IlluminatedWordRead", "", gray3, "")
+define_highlight("IlluminatedWordWrite", "", gray3, "")
 
 -- Completion
 define_highlight('BlinkCmpKindFunction', blue, '', '')

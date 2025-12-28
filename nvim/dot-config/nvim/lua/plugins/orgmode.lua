@@ -282,6 +282,7 @@ return {
     },
     {
         "chipsenkbeil/org-roam.nvim",
+        enabled = false,
         event = "VeryLazy",
         dependencies = {
             "nvim-orgmode/orgmode"

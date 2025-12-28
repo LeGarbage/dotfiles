@@ -10,19 +10,19 @@ local function diff_source()
 end
 
 local colors = {
-    gray1  = '#212121',
-    gray2  = '#292929',
-    gray3  = '#474646',
-    gray4  = '#6a6c6c',
-    gray5  = '#b7bdc0',
-    red    = '#de3758',
-    green  = '#2f8c1c',
-    yellow = '#d6a940',
-    blue   = '#3663c9',
-    purple = '#6333cc',
-    cyan   = '#337a80',
-    orange = '#bf6430',
-    indigo = '#ff69b4',
+    gray1  = '#282c34',
+    gray2  = '#31353f',
+    gray3  = '#393f4a',
+    gray4  = '#5c6370',
+    gray5  = '#abb2bf',
+    red    = '#e86671',
+    green  = '#98c379',
+    yellow = '#e5c07b',
+    blue   = '#61afef',
+    purple = '#c678dd',
+    cyan   = '#56b6c2',
+    orange = '#d19a66',
+    indigo = '#7681de',
 }
 local theme = {
     normal = {

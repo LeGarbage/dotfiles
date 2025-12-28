@@ -40,7 +40,7 @@ vim.o.undofile = true
 vim.opt.listchars = { trail = "~", tab = "⭲ " }
 vim.o.list = true
 
-vim.cmd.colorscheme("colorless")
+vim.cmd.colorscheme("onedark")
 
 -- *** TERMINAL ***
 -- Toggleterm
