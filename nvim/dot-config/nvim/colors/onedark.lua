@@ -77,7 +77,7 @@ define_highlight('FoldedText', gray1, gray4, '')
 define_highlight('IncSearch', yellow, '', '')
 define_highlight('LineNr', gray3, '', '')
 vim.g.matchparen_disable_cursor_hl = true
-define_highlight('MatchParen', red, 'NvimDarkGrey4', 'bold')
+define_highlight('MatchParen', red, gray3, 'bold')
 define_highlight('ModeMsg', green, '', '')
 define_highlight('MoreMsg', green, '', '')
 define_highlight('NonText', gray4, '', 'none')
@@ -125,6 +125,7 @@ define_highlight('Macro', purple, '', '')
 define_highlight('Type', yellow, '', 'none')
 define_highlight('Structure', cyan, '', '')
 define_highlight('Special', indigo, '', '')
+define_highlight('Delimiter', gray5, '', '')
 define_highlight('Underlined', blue, '', 'none')
 define_highlight('Error', red, gray1, 'bold')
 define_highlight('Todo', orange, gray1, 'bold')
@@ -176,6 +177,9 @@ define_highlight('BlinkCmpKindKeyword', purple, '', '')
 define_highlight('BlinkCmpKindConstant', orange, '', '')
 define_highlight('BlinkCmpKindSnippet', pink, '', '')
 define_highlight('BlinkCmpKindFile', cyan, '', '')
+
+-- Pairs
+define_highlight('BlinkPairsUnmatched', error, '', '')
 
 -- CSS
 define_highlight('cssAttrComma', gray5, '', '')

@@ -123,5 +123,15 @@ return {
         },
 
         opts_extend = { "sources.default" },
+    },
+    {
+        "saghen/blink.pairs",
+        version = "*",
+        dependencies = "saghen/blink.download",
+        opts = {
+            highlights = {
+                enabled = false
+            }
+        }
     }
 }
