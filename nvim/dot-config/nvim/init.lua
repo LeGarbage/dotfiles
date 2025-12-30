@@ -42,16 +42,8 @@ vim.o.list = true
 
 vim.cmd.colorscheme("onedark")
 
--- *** TERMINAL ***
--- Toggleterm
-vim.keymap.set({ "n", "t" }, "<leader>tf", "<cmd>ToggleTerm direction=float<cr>", { desc = "Toggle floating terminal" })
-vim.keymap.set({ "n", "t" }, "<leader>tb", "<cmd>ToggleTerm direction=horizontal<cr>",
-    { desc = "Toggle bottom terminal" })
-vim.keymap.set("t", "jk", [[<C-\><C-n>]])
-
 -- *** PLUGINS ***
 require("config.lazy")
--- vim.cmd("source ~/.config/nvim/custom/plugins/lessline.vim")
 
 -- Configure illuminate here due to using .configure instead of .setup
 require("illuminate").configure({
@@ -67,20 +59,17 @@ require("illuminate").configure({
 })
 
 -- *** DIAGNOSTICS ***
-
 vim.diagnostic.config({
     underline = {
         severity = { min = vim.diagnostic.severity.INFO }
     },
-    virtual_text = {
-        --prefix = '',
-    },
+    virtual_text = true,
     signs = {
         text = {
             [vim.diagnostic.severity.ERROR] = '󰅚',
             [vim.diagnostic.severity.WARN] = '󰀪',
-            [vim.diagnostic.severity.HINT] = '󰌶',
             [vim.diagnostic.severity.INFO] = '󰋽',
+            [vim.diagnostic.severity.HINT] = '󰌶',
         },
     },
     float = {
@@ -105,14 +94,6 @@ vim.keymap.set("n", "<S-k>", function()
     Snacks.image.hover()
 end)
 
---local icons = {
---}
---
---local completion_kinds = vim.lsp.protocol.CompletionItemKind
---for i, kind in ipairs(completion_kinds) do
---    completion_kinds[i] = icons[kind] and icons[kind] .. kind or kind
---end
-
 -- *** LSP ***
 
 local capabilities = vim.lsp.protocol.make_client_capabilities()
@@ -126,7 +107,6 @@ vim.lsp.config("*", {
     capabilities = capabilities,
 })
 
-vim.opt.shortmess:append("c")
 vim.api.nvim_create_autocmd('LspAttach', {
     group = vim.api.nvim_create_augroup('my.lsp', {}),
     callback = function(args)
@@ -138,7 +118,7 @@ vim.api.nvim_create_autocmd('LspAttach', {
                 function()
                     vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled({ bufnr = 0 }),
                         { bufnr = 0 })
-                end)
+                end, { desc = "Toggle inlay hints" })
         end
 
         -- Auto-format ("lint") on save.
@@ -170,12 +150,6 @@ vim.api.nvim_create_autocmd('LspDetach', {
         end
     end,
 })
-
--- Override qmlls command
-vim.lsp.config.qmlls = {
-    cmd = { "qmlls" }
-}
-vim.lsp.enable("qmlls")
 
 -- *** AUTOCMDS ***
 -- Relative lines in visual mode
@@ -336,6 +310,12 @@ vim.keymap.set("n", "<leader>sl", function() require("session_manager").load_las
     { desc = "Load last session" })
 vim.keymap.set("n", "<leader>sd", function() require("session_manager").delete_session() end,
     { desc = "Delete session" })
+
+-- Toggleterm
+vim.keymap.set({ "n", "t" }, "<leader>tf", "<cmd>ToggleTerm direction=float<cr>", { desc = "Toggle floating terminal" })
+vim.keymap.set({ "n", "t" }, "<leader>tb", "<cmd>ToggleTerm direction=horizontal<cr>",
+    { desc = "Toggle bottom terminal" })
+vim.keymap.set("t", "jk", [[<C-\><C-n>]])
 
 -- Dap
 local dap = require("dap")
