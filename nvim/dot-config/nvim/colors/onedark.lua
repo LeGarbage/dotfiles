@@ -76,6 +76,7 @@ define_highlight('FoldedIcon', gray4, '', '')
 define_highlight('FoldedText', gray1, gray4, '')
 define_highlight('IncSearch', yellow, '', '')
 define_highlight('LineNr', gray3, '', '')
+define_highlight('LspInlayHint', gray4, '', 'italic')
 vim.g.matchparen_disable_cursor_hl = true
 define_highlight('MatchParen', red, gray3, 'bold')
 define_highlight('ModeMsg', green, '', '')

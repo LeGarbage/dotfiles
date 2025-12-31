@@ -87,8 +87,7 @@ vim.diagnostic.config({
 local function open_float()
     vim.diagnostic.open_float()
 end
-vim.keymap.set("n", "<leader>df", open_float)
-vim.keymap.set("i", "<C-d>", open_float)
+vim.keymap.set({ "n", "i" }, "<C-k>", open_float)
 vim.keymap.set("n", "<S-k>", function()
     vim.lsp.buf.hover({ border = "rounded" })
     Snacks.image.hover()
@@ -114,7 +113,7 @@ vim.api.nvim_create_autocmd('LspAttach', {
         -- Add inlay hints
         if client:supports_method('textDocument/inlayHint') then
             -- Toggle inlay hints
-            vim.keymap.set("n", "<leader>dy",
+            vim.keymap.set("n", "<leader>di",
                 function()
                     vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled({ bufnr = 0 }),
                         { bufnr = 0 })
@@ -153,7 +152,7 @@ vim.api.nvim_create_autocmd('LspDetach', {
 
 -- *** AUTOCMDS ***
 -- Relative lines in visual mode
-local init_group = vim.api.nvim_create_augroup("init_group", { clear = true })
+local init_group = vim.api.nvim_create_augroup("my.init_group", {})
 vim.api.nvim_create_autocmd("ModeChanged", {
     group = init_group,
     pattern = { "*:[vV\x16]*" },
