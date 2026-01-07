@@ -22,23 +22,41 @@ WidgetBase {
             // For each workspace on this monitor
             model: Utils.HyprUtils.workspaces.filter(workspace => (workspace.monitor === workspaces.monitor))
 
-            WrapperRectangle {
-                id: wrapper
-                // Get the current workspace in the loop
+            Item {
+                id: root
                 required property HyprlandWorkspace modelData
-                property bool focused: workspaces.monitor.activeWorkspace === modelData
 
-                margin: 2
-                radius: height / 2
+                implicitWidth: wrapper.implicitWidth
+                implicitHeight: wrapper.implicitHeight
 
-                // Show the wrapper on the focused workspace
-                color: focused ? "white" : "transparent"
+                WrapperRectangle {
+                    id: wrapper
+                    // Get the current workspace in the loop
+                    property bool focused: workspaces.monitor.activeWorkspace === root.modelData
 
-                StyledText {
-                    // Don't display anything if the workspace doesn't exist
-                    text: wrapper.modelData?.id || ""
-                    // Color the focused workspace differently
-                    color: wrapper.focused ? "#21252B" : "white"
+                    margin: 2
+                    // radius: height / 2
+                    radius: 4
+
+                    // Show the wrapper on the focused workspace
+                    color: mouse.containsMouse ? "#3E4451" : focused ? "white" : "transparent"
+
+                    StyledText {
+                        // Don't display anything if the workspace doesn't exist
+                        text: root.modelData?.id || ""
+                        // Color the focused workspace differently
+                        color: wrapper.focused || mouse.containsMouse ? "#21252B" : "white"
+                    }
+                }
+                MouseArea {
+                    id: mouse
+
+                    anchors.fill: wrapper
+                    hoverEnabled: true
+
+                    onClicked: {
+                        root.modelData.activate();
+                    }
                 }
             }
         }

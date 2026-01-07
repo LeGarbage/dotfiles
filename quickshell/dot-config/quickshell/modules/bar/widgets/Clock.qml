@@ -1,18 +1,47 @@
 import QtQuick
 import Quickshell
 import "../components"
+import "../panels"
 
-WidgetBase {
-    id: clock
-    StyledText {
-        id: clockText
+Item {
+    implicitWidth: clock.implicitWidth
+    implicitHeight: clock.implicitHeight
 
-        color: "white"
-        text: Qt.formatDateTime(systemClock.date, "hh:mm")
+    WidgetBase {
+        id: clock
+        StyledText {
+            id: clockText
+
+            color: "white"
+            text: Qt.formatDateTime(systemClock.date, "hh:mm")
+        }
+
+        SystemClock {
+            id: systemClock
+            precision: SystemClock.Minutes
+        }
     }
 
-    SystemClock {
-        id: systemClock
-        precision: SystemClock.Minutes
+    MouseArea {
+        anchors.fill: clock
+
+        onClicked: {
+            timePanel.toggle()
+        }
+    }
+
+    TimePanel {
+        id: timePanel
+
+        anchor {
+            item: clock
+
+            edges: Edges.Bottom | Edges.Right
+            gravity: Edges.Top
+
+            onAnchoring: {
+                timePanel.anchor.rect = clock.mapFromItem(clock, 0, -10);
+            }
+        }
     }
 }

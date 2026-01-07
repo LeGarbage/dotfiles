@@ -2,6 +2,7 @@ import Quickshell
 import Quickshell.Widgets
 import QtQuick
 import QtQuick.Layouts
+import "components"
 import "widgets"
 
 Variants {
@@ -47,15 +48,40 @@ Variants {
                 }
             }
 
+            HorizontalLine {
+                Layout.fillWidth: true
+            }
+
             RowLayout {
+                spacing: 0
+
                 Layout.alignment: Qt.AlignRight
                 Tray {
                     screen: root.modelData
                 }
-                System {
+                HorizontalLine {
+                    implicitWidth: 5
+                    visible: extra.visible
+                }
+                Extra {
+                    id: extra
                     screen: root.modelData
                 }
-                Clock {}
+                HorizontalLine {
+                    implicitWidth: 5
+                    visible: system.visible
+                }
+                System {
+                    id: system
+                    screen: root.modelData
+                }
+                HorizontalLine {
+                    implicitWidth: 5
+                    visible: clock.visible
+                }
+                Clock {
+                    id: clock
+                }
             }
         }
     }

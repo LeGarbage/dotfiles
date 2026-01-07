@@ -1,7 +1,10 @@
+//@ pragma UseQApplication
+//@ pragma Env QT_STYLE_OVERRIDE=Fusion
+
 import Quickshell
-import "modules/drawers"
+import "modules/bar"
 
 ShellRoot {
     id: root
-    Drawers {}
+    Bar {}
 }
