@@ -176,44 +176,6 @@ return {
                     },
                 },
             },
-            -- NOTE: Re-enable once coloring of icons gets fixed
-            --
-            -- tabline = {
-            --     lualine_a = {
-            --         {
-            --             'buffers',
-            --
-            --             component_separators = { left = "|", right = "|" },
-            --             section_separators = { left = "", right = "" },
-            --
-            --             buffers_color = {
-            --                 active = theme.normal.b,
-            --                 inactive = theme.normal.c
-            --             },
-            --             symbols = {
-            --                 modified = " δ",
-            --                 alternate_file = "ψ "
-            --             },
-            --         }
-            --     },
-            --     lualine_z = {
-            --         {
-            --             'tabs',
-            --
-            --             cond = function()
-            --                 return #vim.api.nvim_list_tabpages() > 1
-            --             end,
-            --
-            --             component_separators = { left = "|", right = "|" },
-            --             section_separators = { left = "", right = "" },
-            --
-            --             tabs_color = {
-            --                 active = theme.normal.b,
-            --                 inactive = theme.normal.c
-            --             },
-            --         },
-            --     }
-            -- },
             extensions = {
                 "lazy",
                 "mason",
@@ -221,6 +183,7 @@ return {
                 "nvim-dap-ui",
                 "oil",
                 "toggleterm",
+                "overseer"
             },
         }
     }

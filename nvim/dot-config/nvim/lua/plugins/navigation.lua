@@ -46,14 +46,13 @@ return {
             backends = {
                 ['_'] = { "lsp", "treesitter", "markdown", "asciidoc", "man" },
             },
-            filter_kind = false,
             icons = icons,
             show_guides = true,
             attach_mode = "global",
 
             nav = {
                 win_opts = {
-                    winblend = 10,
+                    winblend = 0,
                 },
                 keymaps = {
                     ["q"] = "actions.close",

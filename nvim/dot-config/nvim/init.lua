@@ -40,6 +40,8 @@ vim.o.undofile = true
 vim.opt.listchars = { trail = "~", tab = "⭲ " }
 vim.o.list = true
 
+vim.opt.shortmess:append("c")
+
 vim.cmd.colorscheme("onedark")
 
 -- *** PLUGINS ***

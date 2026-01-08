@@ -16,4 +16,7 @@ vim.api.nvim_create_autocmd("LspAttach", {
     end,
 })
 
+vim.o.softtabstop = 2
+vim.o.shiftwidth = 2
+
 vim.lsp.enable("hls")
