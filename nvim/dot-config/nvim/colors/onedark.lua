@@ -28,6 +28,10 @@ local warning     = '#d6a940'
 local error       = '#de3758'
 local info        = '#13b0bf'
 local hint        = '#4ab235'
+local diff_add    = "#31392b"
+local diff_delete = "#382b2c"
+local diff_change = "#1c3448"
+local diff_text   = "#2c5372"
 
 local function define_highlight(group, fg, bg, attr)
     if string.len(fg) ~= 0 then
@@ -62,10 +66,10 @@ define_highlight('CursorColumn', '', gray2, '')
 define_highlight('CursorLine', '', gray2, 'none')
 define_highlight('CursorLineNr', gray5, gray2, 'none')
 define_highlight('Directory', blue, '', '')
-define_highlight('DiffAdd', green, gray2, 'none')
-define_highlight('DiffChange', yellow, gray2, 'none')
-define_highlight('DiffDelete', red, gray2, 'none')
-define_highlight('DiffText', blue, gray2, 'none')
+define_highlight('DiffAdd', 'NONE', diff_add, 'none')
+define_highlight('DiffChange', 'NONE', diff_change, 'none')
+define_highlight('DiffDelete', 'NONE', diff_delete, 'none')
+define_highlight('DiffText', 'NONE', diff_text, 'none')
 define_highlight('ErrorMsg', red, gray1, 'bold')
 define_highlight('NormalFloat', gray5, gray2, '')
 define_highlight('FloatBorder', gray5, gray2, '')
@@ -91,10 +95,10 @@ define_highlight('Question', blue, '', 'none')
 define_highlight('Search', gray1, yellow, '')
 define_highlight('SignColumn', gray5, gray1, '')
 define_highlight('SpecialKey', gray4, '', '')
-define_highlight('SpellCap', warning, gray2, 'undercurl guisp=' .. warning)
-define_highlight('SpellBad', error, gray2, 'undercurl guisp=' .. error)
-define_highlight('SpellRare', info, gray2, 'undercurl guisp=' .. info)
-define_highlight('SpellLocal', hint, gray2, 'undercurl guisp=' .. hint)
+define_highlight('SpellCap', warning, '', 'undercurl guisp=' .. warning)
+define_highlight('SpellBad', error, '', 'undercurl guisp=' .. error)
+define_highlight('SpellRare', info, '', 'undercurl guisp=' .. info)
+define_highlight('SpellLocal', hint, '', 'undercurl guisp=' .. hint)
 define_highlight('StatusLine', gray5, gray3, 'none')
 define_highlight('StatusLineNC', gray2, gray4, '')
 define_highlight('TabLine', gray4, gray2, 'none')
