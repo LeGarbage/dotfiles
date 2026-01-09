@@ -170,15 +170,18 @@ vim.api.nvim_create_autocmd("ModeChanged", {
     end,
 })
 
--- Use treesitter for folding
 vim.api.nvim_create_autocmd("FileType", {
     group = init_group,
     pattern = "*",
     callback = function(opt)
+        -- Set folding
         vim.opt.foldlevel = 99
         vim.o.foldlevelstart = 99
         vim.opt.foldcolumn = "1"
-        -- vim.opt.foldtext = "v:lua.HighlightedFoldtext()"
+
+        -- Enable treesitter
+        -- This call will fail if the language does not have a parser
+        pcall(vim.treesitter.start)
 
         -- Org does its own indent handling
         -- Don't enable treesitter intents when not spported
@@ -201,13 +204,13 @@ vim.api.nvim_create_autocmd("FileType", {
     end
 })
 
--- Start treesitter for all languages
+-- Disable Snacks' statuscolumn where it may cause issues
 vim.api.nvim_create_autocmd("FileType", {
     group = init_group,
-    pattern = "*",
+    pattern = { "oil", "man" },
     callback = function()
-        -- This call will fail if the language does not have a parser
-        pcall(vim.treesitter.start)
+        local winid = vim.api.nvim_get_current_win()
+        vim.wo[winid][0].statuscolumn = ""
     end
 })
 
