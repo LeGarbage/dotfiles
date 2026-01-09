@@ -171,7 +171,6 @@ vim.api.nvim_create_autocmd("ModeChanged", {
 })
 
 -- Use treesitter for folding
--- require("custom.foldtext")
 vim.api.nvim_create_autocmd("FileType", {
     group = init_group,
     pattern = "*",

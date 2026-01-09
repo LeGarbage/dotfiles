@@ -142,6 +142,24 @@ define_highlight('@tag.html', red, '', '')
 define_highlight('@tag.delimiter', gray5, '', '')
 define_highlight('@tag.attribute', blue2, '', '')
 
+-- Terminal
+vim.g.terminal_color_0  = gray1
+vim.g.terminal_color_1  = red
+vim.g.terminal_color_2  = green
+vim.g.terminal_color_3  = yellow
+vim.g.terminal_color_4  = blue
+vim.g.terminal_color_5  = purple
+vim.g.terminal_color_6  = cyan
+vim.g.terminal_color_7  = gray5
+vim.g.terminal_color_8  = gray4
+vim.g.terminal_color_9  = red
+vim.g.terminal_color_10 = green
+vim.g.terminal_color_11 = yellow
+vim.g.terminal_color_12 = blue
+vim.g.terminal_color_13 = purple
+vim.g.terminal_color_14 = cyan
+vim.g.terminal_color_15 = gray5
+
 -- Org
 define_highlight('@org.agenda.time_grid', gray5, '', '')
 define_highlight('@org.agenda.weekend', '', '', 'italic')

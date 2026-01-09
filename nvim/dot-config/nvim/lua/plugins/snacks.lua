@@ -28,7 +28,7 @@ return {
                 },
                 filter = function(buf)
                     return vim.o.expandtab and (vim.filetype.match({ buf = buf }) ~= "org") and
-                    (vim.bo[buf].buftype ~= "nofile")
+                        (vim.bo[buf].buftype ~= "nofile")
                 end,
             },
             input = {
@@ -49,9 +49,7 @@ return {
                 timeout = 5000,
             },
             statuscolumn = {
-                folds = {
-                    open = true,
-                }
+                enabled = true,
             },
             dashboard = {
                 preset = {
