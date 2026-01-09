@@ -55,7 +55,7 @@ local theme = {
 return {
     {
         "nvim-lualine/lualine.nvim",
-        dependencies = { "nvim-tree/nvim-web-devicons", "cbochs/grapple.nvim" },
+        dependencies = { "nvim-tree/nvim-web-devicons" },
         opts = {
             options = {
                 globalstatus = true,
@@ -116,29 +116,6 @@ return {
                             return _G.orgmode.statusline()
                         end
                     },
-                    {
-                        icon = "󰛢",
-                        function()
-                            local active = "[%s]"
-                            local inactive = " %s "
-
-                            local tags = require("grapple").tags()
-                            if not tags then return end
-
-                            local status = ""
-                            for i, tag in ipairs(tags) do
-                                local tag_name = tostring(i)
-                                if i <= 4 then
-                                    tag_name = ({ 'h', 'j', 'k', 'l' })[i]
-                                end
-                                status = status ..
-                                    string.format(vim.fn.expand("%:p") == tag.path and active or inactive, tag_name)
-                            end
-
-                            return status
-                        end,
-                        color = "Winbar",
-                    },
                 },
             },
             inactive_winbar = {
@@ -149,31 +126,6 @@ return {
                         symbols = { modified = 'δ', readonly = 'ϱ', unnamed = 'χ', newfile = 'ν' },
                         draw_empty = true,
                     }
-                },
-                lualine_x = {
-                    {
-                        icon = "󰛢",
-                        function()
-                            local active = "[%s]"
-                            local inactive = " %s "
-
-                            local tags = require("grapple").tags()
-                            if not tags then return end
-
-                            local status = ""
-                            for i, tag in ipairs(tags) do
-                                local tag_name = tostring(i)
-                                if i <= 4 then
-                                    tag_name = ({ 'h', 'j', 'k', 'l' })[i]
-                                end
-                                status = status ..
-                                    string.format(vim.fn.expand("%:p") == tag.path and active or inactive, tag_name)
-                            end
-
-                            return status
-                        end,
-                        color = "WinbarNC",
-                    },
                 },
             },
             extensions = {
