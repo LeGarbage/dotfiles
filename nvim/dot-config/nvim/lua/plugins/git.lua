@@ -7,7 +7,7 @@ return {
         },
         opts = {
             disable_hint = true,
-            graph_style = "ascii",
+            graph_style = "unicode",
             initial_branch_name = "main",
             kind = "split_above_all",
             process_spinner = true,

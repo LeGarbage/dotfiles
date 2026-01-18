@@ -31,12 +31,6 @@ return {
                         (vim.bo[buf].buftype ~= "nofile")
                 end,
             },
-            input = {
-                enabled = true,
-                b = {
-                    completion = true,
-                },
-            },
             image = {
                 enabled = true,
                 doc = {

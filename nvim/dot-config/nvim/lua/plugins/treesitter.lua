@@ -28,9 +28,8 @@ return {
         "nvim-treesitter/nvim-treesitter-context",
         opts = {
             enabled = true,
-            trim_scope = "inner",
-            max_lines = 0,
             mode = "topline",
+            multiwindow = true
         }
     },
     {
