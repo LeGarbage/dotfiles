@@ -50,6 +50,11 @@ local theme = {
         b = { bg = colors.gray3, fg = colors.gray5 },
         c = { bg = colors.gray2, fg = colors.gray4 }
     },
+    inactive = {
+        a = { bg = colors.gray4, fg = colors.gray2 },
+        b = { bg = colors.gray3, fg = colors.gray5 },
+        c = { bg = colors.gray2, fg = colors.gray4 }
+    },
 }
 
 return {
@@ -59,6 +64,7 @@ return {
         opts = {
             options = {
                 globalstatus = true,
+                always_show_tabline = false,
                 theme = theme,
             },
             sections = {
@@ -128,6 +134,19 @@ return {
                     }
                 },
             },
+            tabline = {
+                lualine_a = {
+                    {
+                        'tabs',
+                        max_length = vim.o.columns,
+                        use_mode_colors = true,
+                        mode = 2,
+                        tabs_color = {
+                            inactive = 'lualine_c_inactive',
+                        },
+                    }
+                }
+            },
             extensions = {
                 "lazy",
                 "mason",
@@ -135,7 +154,9 @@ return {
                 "nvim-dap-ui",
                 "oil",
                 "toggleterm",
-                "overseer"
+                "overseer",
+                "quickfix",
+                "man"
             },
         }
     }
