@@ -17,6 +17,13 @@ return {
                     edit = "<leader>ee",
                 },
             })
+
+            vim.api.nvim_create_autocmd("User", {
+                pattern = "DirenvLoaded",
+                callback = function()
+                    vim.cmd("LspStart")
+                end
+            })
         end,
     }
 }

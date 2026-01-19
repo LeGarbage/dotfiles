@@ -18,7 +18,7 @@ vim.opt.backspace = { "indent", "eol", "start" }
 
 vim.o.wrap = true
 vim.o.linebreak = true
-vim.o.showbreak = "+++"
+vim.o.showbreak = "+++ "
 
 vim.o.showcmd = true
 
@@ -33,7 +33,7 @@ vim.o.ignorecase = true
 vim.o.smartcase = true
 
 vim.opt.conceallevel = 2
-vim.opt.concealcursor = 'nc'
+vim.opt.concealcursor = ''
 
 vim.o.undofile = true
 
@@ -94,6 +94,10 @@ vim.keymap.set("n", "<S-k>", function()
     vim.lsp.buf.hover({ border = "rounded" })
     Snacks.image.hover()
 end)
+
+vim.keymap.set("n", "<leader>ds", function()
+    vim.diagnostic.setqflist()
+end, { desc = "Add diagnostics to quickfix list" })
 
 -- *** LSP ***
 
@@ -262,8 +266,17 @@ vim.keymap.set("i", "jk", "<esc>", { desc = "Exit insert mode" })
 vim.keymap.set("n", "<leader>b", "<C-^>", { desc = "Swap between buffers" })
 vim.keymap.set("n", "<leader>w", "<C-w>", { desc = "Alias for <C-w> for easier window management" })
 vim.keymap.set("n", "<leader>z", "za", { desc = "Toggle fold" })
-vim.keymap.set("n", "<C-u>", "<C-u>zz", { desc = "Jump up" })
-vim.keymap.set("n", "<C-d>", "<C-d>zz", { desc = "Jump down" })
+vim.keymap.set("n", "<C-u>", "<C-u>zz")
+vim.keymap.set("n", "<C-d>", "<C-d>zz")
+vim.keymap.set("n", "n", "nzzzv")
+vim.keymap.set("n", "N", "Nzzzv")
+vim.keymap.set("n", "<leader>cc", function()
+    if vim.wo.colorcolumn == "" then
+        vim.wo.colorcolumn = "80"
+    else
+        vim.wo.colorcolumn = ""
+    end
+end, { desc = "Toggle colorcolumn" })
 
 -- Snacks
 vim.keymap.set("n", "<leader>no", function()
@@ -301,10 +314,16 @@ vim.keymap.set('n', '<leader>ft', "<cmd>TodoTelescope<cr>", { desc = 'Telescope 
 vim.keymap.set('n', "<leader>fo", "<cmd>Oil<cr>", { desc = "Open oil" })
 
 -- Gitsigns
----@diagnostic disable-next-line: param-type-mismatch
 vim.keymap.set('n', "]h", function() require("gitsigns").nav_hunk("next") end, { desc = "Next hunk" })
----@diagnostic disable-next-line: param-type-mismatch
 vim.keymap.set('n', "[h", function() require("gitsigns").nav_hunk("prev") end, { desc = "Previous hunk" })
+vim.keymap.set('n', "<leader>hr", function() require("gitsigns").reset_hunk() end, { desc = "Reset hunk" })
+vim.keymap.set('v', "<leader>hr", function() require("gitsigns").reset_hunk({ vim.fn.line("."), vim.fn.line("v") }) end,
+    { desc = "Reset hunk" })
+vim.keymap.set('n', "<leader>hi", function() require("gitsigns").preview_hunk_inline() end, { desc = "Preview hunk" })
+vim.keymap.set('n', "<leader>hb", function() require("gitsigns").toggle_current_line_blame() end, { desc = "Blame line" })
+vim.keymap.set('n', "<leader>hQ", function() require("gitsigns").setqflist("all") end, { desc = "Quickfix repo diff" })
+vim.keymap.set('n', "<leader>hq", function() require("gitsigns").setqflist() end, { desc = "Quickfix buffer diff" })
+vim.keymap.set({ 'o', 'x' }, "ih", function() require("gitsigns").select_hunk() end)
 
 -- Session management
 vim.keymap.set("n", "<leader>ss", function() require("session_manager").load_session(false) end,
@@ -322,10 +341,8 @@ vim.keymap.set("t", "jk", [[<C-\><C-n>]])
 
 -- Dap
 local dap = require("dap")
-vim.keymap.set("n", "<leader>d", require('persistent-breakpoints.api').toggle_breakpoint,
-    { desc = "Toggle breakpoint", nowait = true })
-vim.keymap.set("n", "<leader>d<space>", require('persistent-breakpoints.api').toggle_breakpoint,
-    { desc = "Toggle breakpoint", nowait = true })
+vim.keymap.set("n", "<leader>dd", require('persistent-breakpoints.api').toggle_breakpoint,
+    { desc = "Toggle breakpoint" })
 vim.keymap.set("n", "<leader>d?", function()
     require("dapui").eval(nil)
 end, { desc = "Evaluate under cursor" })

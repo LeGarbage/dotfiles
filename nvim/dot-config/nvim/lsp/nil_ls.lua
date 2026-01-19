@@ -5,6 +5,12 @@ return {
                 command = {
                     "nixfmt"
                 }
+            },
+            nix = {
+                maxMemoryMB = nil,
+                flake = {
+                    autoEvalInputs = true
+                }
             }
         }
     }

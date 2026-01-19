@@ -6,7 +6,8 @@ return {
         config = function()
             require("session_manager").setup({
                 -- Disable automatic session loading
-                autoload_mode = require("session_manager.config").AutoloadMode.Disabled
+                autoload_mode = require("session_manager.config").AutoloadMode.Disabled,
+                autosave_ignore_dirs = { "~" }
             })
         end,
     }
