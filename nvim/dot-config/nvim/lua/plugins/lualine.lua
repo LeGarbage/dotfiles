@@ -9,6 +9,17 @@ local function diff_source()
     end
 end
 
+local function get_lsps()
+    local buf_clients = vim.lsp.get_clients({ bufnr = 0 })
+    local buf_client_names = {}
+
+    for _, client in ipairs(buf_clients) do
+        table.insert(buf_client_names, client.name)
+    end
+
+    return buf_client_names
+end
+
 local colors = {
     gray1  = '#282c34',
     gray2  = '#31353f',
@@ -84,13 +95,16 @@ return {
                         'filename',
                         path = 1,
                         newfile_status = true,
-                        symbols = { modified = 'δ', readonly = 'ϱ', unnamed = 'χ', newfile = 'ν' },
+                        symbols = { modified = '●' }
                     },
                 },
                 lualine_x = {
                     {
-                        'lsp_status',
-                        symbols = { done = '󰸞' }
+                        function()
+                            local lsps = get_lsps()
+                            return table.concat(lsps, " ")
+                        end,
+                        icon = ""
                     },
                     'filetype'
                 },
@@ -129,8 +143,7 @@ return {
                     {
                         'filename',
                         path = 1,
-                        symbols = { modified = 'δ', readonly = 'ϱ', unnamed = 'χ', newfile = 'ν' },
-                        draw_empty = true,
+                        symbols = { modified = '●' }
                     }
                 },
             },

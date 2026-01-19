@@ -38,10 +38,10 @@ return {
                     float = false,
                 },
             },
-            notifier = {
-                enabled = true,
-                timeout = 5000,
-            },
+            -- notifier = {
+            --     enabled = true,
+            --     timeout = 5000,
+            -- },
             statuscolumn = {
                 enabled = true,
             },

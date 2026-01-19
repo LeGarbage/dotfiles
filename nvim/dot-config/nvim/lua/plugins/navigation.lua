@@ -47,19 +47,7 @@ return {
                 ['_'] = { "lsp", "treesitter", "markdown", "asciidoc", "man" },
             },
             icons = icons,
-            filter_kind = {
-                ['_'] = {
-                    "Class",
-                    "Constructor",
-                    "Enum",
-                    "Function",
-                    "Interface",
-                    "Module",
-                    "Method",
-                    "Struct",
-                },
-                nix = false
-            },
+            filter_kind = false,
             show_guides = true,
             attach_mode = "global",
 

@@ -44,6 +44,9 @@ vim.opt.shortmess:append("c")
 
 vim.cmd.colorscheme("onedark")
 
+-- Neovide
+vim.g.neovide_floating_shadow = false
+
 -- *** PLUGINS ***
 require("config.lazy")
 
@@ -228,16 +231,6 @@ vim.api.nvim_create_autocmd("TextYankPost", {
 })
 
 -- *** COMMANDS ***
--- Git
-vim.api.nvim_create_user_command("G", function(opts)
-    vim.cmd("Neogit " .. opts.args)
-end, {
-    nargs = "*",
-    complete = function(args, _, _)
-        return vim.fn.getcompletion("Neogit " .. args, "cmdline")
-    end
-})
-
 -- Snacks bufdelete
 vim.api.nvim_create_user_command("Bd", function(opts)
     Snacks.bufdelete.delete({ file = opts.fargs[1] })
@@ -279,19 +272,16 @@ vim.keymap.set("n", "<leader>cc", function()
 end, { desc = "Toggle colorcolumn" })
 
 -- Snacks
-vim.keymap.set("n", "<leader>no", function()
-    require("snacks").notifier.show_history()
-end, { desc = "Show notification history" })
+vim.keymap.set('n', "<leader>bd", Snacks.bufdelete.delete)
 
 -- Neogit
-vim.keymap.set("n", "<leader>ng", "<cmd>Neogit<cr>", { desc = "Open Neogit" })
+vim.keymap.set("n", "<leader>n", "<cmd>Neogit<cr>", { desc = "Open Neogit" })
 
 -- Aerial
 vim.keymap.set('n', '<leader>a', "<cmd>AerialToggle!<cr>", { desc = "Toggle aerial sidebar" })
 vim.keymap.set('n', '<leader><leader>', "<cmd>AerialNavToggle<cr>", { desc = "Toggle aerial nav" })
 vim.keymap.set('n', '<leader>,', "<cmd>AerialPrev<cr>", { desc = "Aerial jump backward" })
 vim.keymap.set('n', '<leader>.', "<cmd>AerialNext<cr>", { desc = "Aerial jump forward" })
-vim.keymap.set('n', '<leader>fa', "<cmd>Telescope aerial<cr>", { desc = 'Telescope aerial' })
 
 -- Telescope
 local builtin = require('telescope.builtin')
@@ -309,9 +299,15 @@ vim.keymap.set("n", "<leader>vf", function()
     })
 end, { desc = "Telescope config dir" })
 vim.keymap.set('n', '<leader>ft', "<cmd>TodoTelescope<cr>", { desc = 'Telescope todos' })
+vim.keymap.set('n', '<leader>fa', function()
+    require("telescope").extensions.aerial.aerial()
+end, { desc = 'Telescope aerial' })
+vim.keymap.set('n', "<leader>fn", function()
+    require("telescope").extensions.fidget.fidget()
+end, { desc = "Telescope notification history" })
 
 -- Oil
-vim.keymap.set('n', "<leader>fo", "<cmd>Oil<cr>", { desc = "Open oil" })
+vim.keymap.set('n', "<leader>i", "<cmd>Oil<cr>", { desc = "Open oil" })
 
 -- Gitsigns
 vim.keymap.set('n', "]h", function() require("gitsigns").nav_hunk("next") end, { desc = "Next hunk" })
