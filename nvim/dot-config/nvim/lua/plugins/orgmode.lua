@@ -281,23 +281,6 @@ return {
         end,
     },
     {
-        "chipsenkbeil/org-roam.nvim",
-        enabled = false,
-        event = "VeryLazy",
-        dependencies = {
-            "nvim-orgmode/orgmode"
-        },
-        opts = {
-            directory = "~/org/roam",
-            bindings = {
-                prefix = "<leader>r"
-            },
-        },
-        -- config = function()
-        --     require("org-roam").setup()
-        -- end
-    },
-    {
         "nvim-orgmode/telescope-orgmode.nvim",
         event = "VeryLazy",
         dependencies = {
