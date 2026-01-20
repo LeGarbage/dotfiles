@@ -131,8 +131,13 @@ vim.api.nvim_create_autocmd('LspAttach', {
 
         -- Add codelens
         if client:supports_method('textDocument/codeLens') then
-            -- Toggle codelens
             local enable_codelens = false
+            vim.keymap.set("n", "grc",
+                function()
+                    vim.lsp.codelens.run()
+                end, { desc = "Run codelens" })
+
+            -- Toggle codelens
             vim.keymap.set("n", "<leader>dl",
                 function()
                     enable_codelens = not enable_codelens
