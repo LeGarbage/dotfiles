@@ -48,7 +48,14 @@ return {
             dashboard = {
                 preset = {
                     keys = {
-                        { icon = " ", key = "f", desc = "Find File", action = "<leader>ff" },
+                        {
+                            icon = " ",
+                            key = "l",
+                            desc = "Load Last Session",
+                            action = function()
+                                require("session_manager").load_last_session(false)
+                            end
+                        },
                         { icon = " ", key = "a", desc = "Open Agenda", action = ":Org agenda a" },
                         {
                             icon = " ",
@@ -58,7 +65,7 @@ return {
                                 require("session_manager").load_session(false)
                             end
                         },
-                        { icon = "󰒲 ", key = "l", desc = "Manage Plugins", action = ":Lazy" },
+                        { icon = "󰒲 ", key = "p", desc = "Manage Plugins", action = ":Lazy" },
                         { icon = " ", key = "q", desc = "Quit NVim", action = ":qa" },
                     },
                 },
@@ -70,7 +77,6 @@ return {
                 sections = {
                     { text = { neovim_text, hl = "Function" },                                           padding = 3 },
                     { section = "keys",                                                                  gap = 1,    padding = 2 },
-                    -- { icon = " ", title = "Projects", section = "projects", indent = 2, padding = 2 },
                     { text = { vim.fn.system("fortune -s"), hl = "String", width = 0, align = "center" } },
                 },
             },

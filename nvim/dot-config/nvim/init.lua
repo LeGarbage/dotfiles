@@ -237,12 +237,6 @@ vim.api.nvim_create_user_command("Bd", function(opts)
 end, { nargs = "?", complete = "buffer" })
 
 -- *** KEYMAPS ***
--- Config utilities
-vim.keymap.set("n", "<leader>ve", "<cmd>split $MYVIMRC<cr>", { desc = "Open init.lua in split" })
-vim.keymap.set("n", "<leader>vs", function()
-    vim.cmd("source $MYVIMRC")
-    vim.notify("Successfuly sourced init.lua", vim.log.levels.INFO, { title = "init.lua" })
-end, { desc = "Source init.lua" })
 
 -- Disable arrow keys
 vim.keymap.set("n", "<Up>", "")
@@ -256,6 +250,7 @@ vim.keymap.set("i", "<Right>", "")
 
 -- General utils
 vim.keymap.set("i", "jk", "<esc>", { desc = "Exit insert mode" })
+vim.keymap.set("n", "<leader><leader>", "<cmd>w<cr>", { desc = "Write file" })
 vim.keymap.set("n", "<leader>w", "<C-w>", { desc = "Alias for <C-w> for easier window management" })
 vim.keymap.set("n", "<leader>z", "za", { desc = "Toggle fold" })
 vim.keymap.set("n", "<C-u>", "<C-u>zz")
@@ -270,15 +265,42 @@ vim.keymap.set("n", "<leader>cc", function()
     end
 end, { desc = "Toggle colorcolumn" })
 
+-- Quickfix
+vim.keymap.set("n", "-", function()
+    local windows = vim.fn.getwininfo()
+
+    for _, win in ipairs(windows) do
+        if win.quickfix == 1 and win.loclist == 0 then
+            vim.cmd("cclose")
+            return
+        end
+    end
+    vim.cmd("copen")
+end)
+vim.keymap.set("n", "+", function()
+    local windows = vim.fn.getwininfo()
+
+    for _, win in ipairs(windows) do
+        if win.quickfix == 1 and win.loclist == 1 then
+            vim.cmd("lclose")
+            return
+        end
+    end
+    vim.cmd("lopen")
+end)
+
 -- Snacks
 vim.keymap.set('n', "<leader>bd", Snacks.bufdelete.delete)
+
+-- Todo comments
+vim.keymap.set("n", "<leader>tq", "<cmd>TodoQuickFix<cr>", { desc = "Quickfix todos" })
 
 -- Neogit
 vim.keymap.set("n", "<leader>n", "<cmd>Neogit<cr>", { desc = "Open Neogit" })
 
 -- Aerial
-vim.keymap.set('n', '<leader>a', "<cmd>AerialToggle!<cr>", { desc = "Toggle aerial sidebar" })
-vim.keymap.set('n', '<leader><leader>', "<cmd>AerialNavToggle<cr>", { desc = "Toggle aerial nav" })
+vim.keymap.set('n', '<leader>at', "<cmd>AerialToggle!<cr>", { desc = "Toggle aerial sidebar" })
+vim.keymap.set('n', '<leader>an', "<cmd>AerialNavToggle<cr>", { desc = "Toggle aerial nav" })
 vim.keymap.set('n', '<leader>,', "<cmd>AerialPrev<cr>", { desc = "Aerial jump backward" })
 vim.keymap.set('n', '<leader>.', "<cmd>AerialNext<cr>", { desc = "Aerial jump forward" })
 
@@ -292,11 +314,6 @@ vim.keymap.set('n', '<leader>fi', builtin.current_buffer_fuzzy_find, { desc = 'T
 vim.keymap.set('n', '<leader>fr', builtin.registers, { desc = 'Telescope registers' })
 vim.keymap.set('n', '<leader>fj', builtin.jumplist, { desc = 'Telescope jump points' })
 vim.keymap.set('n', '<leader>fd', builtin.diagnostics, { desc = 'Telescope diagnostics' })
-vim.keymap.set("n", "<leader>vf", function()
-    builtin.find_files({
-        cwd = vim.fn.stdpath("config")
-    })
-end, { desc = "Telescope config dir" })
 vim.keymap.set('n', '<leader>ft', "<cmd>TodoTelescope<cr>", { desc = 'Telescope todos' })
 vim.keymap.set('n', '<leader>fa', function()
     require("telescope").extensions.aerial.aerial()
@@ -311,13 +328,16 @@ vim.keymap.set('n', "<leader>i", "<cmd>Oil<cr>", { desc = "Open oil" })
 -- Gitsigns
 vim.keymap.set('n', "]h", function() require("gitsigns").nav_hunk("next") end, { desc = "Next hunk" })
 vim.keymap.set('n', "[h", function() require("gitsigns").nav_hunk("prev") end, { desc = "Previous hunk" })
+vim.keymap.set('n', "<leader>hs", function() require("gitsigns").stage_hunk() end, { desc = "Stage hunk" })
+vim.keymap.set('v', "<leader>hs", function() require("gitsigns").stage_hunk({ vim.fn.line("."), vim.fn.line("v") }) end,
+    { desc = "Stage hunk" })
 vim.keymap.set('n', "<leader>hr", function() require("gitsigns").reset_hunk() end, { desc = "Reset hunk" })
 vim.keymap.set('v', "<leader>hr", function() require("gitsigns").reset_hunk({ vim.fn.line("."), vim.fn.line("v") }) end,
     { desc = "Reset hunk" })
 vim.keymap.set('n', "<leader>hi", function() require("gitsigns").preview_hunk_inline() end, { desc = "Preview hunk" })
 vim.keymap.set('n', "<leader>hb", function() require("gitsigns").toggle_current_line_blame() end, { desc = "Blame line" })
 vim.keymap.set('n', "<leader>hQ", function() require("gitsigns").setqflist("all") end, { desc = "Quickfix repo diff" })
-vim.keymap.set('n', "<leader>hq", function() require("gitsigns").setqflist() end, { desc = "Quickfix buffer diff" })
+vim.keymap.set('n', "<leader>hq", function() require("gitsigns").setloclist() end, { desc = "Quickfix buffer diff" })
 vim.keymap.set({ 'o', 'x' }, "ih", function() require("gitsigns").select_hunk() end)
 
 -- Session management
