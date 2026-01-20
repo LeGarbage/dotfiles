@@ -161,9 +161,6 @@ return {
                 }
             },
             extensions = {
-                "lazy",
-                "mason",
-                "aerial",
                 "nvim-dap-ui",
                 "oil",
                 "toggleterm",
