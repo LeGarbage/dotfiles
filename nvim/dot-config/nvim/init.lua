@@ -1,7 +1,7 @@
 vim.o.hidden = true
 vim.g.mapleader = " "
 
-vim.opt.sessionoptions = { "buffers", "curdir", "folds", "help", "tabpages", "terminal", "winsize" }
+vim.opt.sessionoptions = { "buffers", "curdir", "folds", "globals", "help", "tabpages", "terminal", "winsize" }
 
 vim.o.belloff = "all"
 vim.o.errorbells = false
@@ -256,7 +256,6 @@ vim.keymap.set("i", "<Right>", "")
 
 -- General utils
 vim.keymap.set("i", "jk", "<esc>", { desc = "Exit insert mode" })
-vim.keymap.set("n", "<leader>b", "<C-^>", { desc = "Swap between buffers" })
 vim.keymap.set("n", "<leader>w", "<C-w>", { desc = "Alias for <C-w> for easier window management" })
 vim.keymap.set("n", "<leader>z", "za", { desc = "Toggle fold" })
 vim.keymap.set("n", "<C-u>", "<C-u>zz")

@@ -79,5 +79,20 @@ return {
                 end
             require('leap').opts.equivalence_classes = { ' \t\r\n', '([{', ')]}', '\'"`' }
         end
+    },
+    {
+        "serhez/bento.nvim",
+        opts = {
+            main_keymap = "\\",
+            lock_char = "󰌾",
+            ui = {
+                floating = {
+                    max_rendered_buffers = 8,
+                }
+            },
+            highlights = {
+                previous = "ErrorMsg"
+            }
+        }
     }
 }
