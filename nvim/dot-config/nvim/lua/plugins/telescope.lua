@@ -59,6 +59,7 @@ return {
                 ["ui-select"] = { require("telescope.themes").get_dropdown({}) },
                 fzf = {},
                 aerial = {},
+                fidget = {}
             }
         })
         telescope.load_extension('fzf')

@@ -162,6 +162,10 @@ vim.g.terminal_color_13 = purple
 vim.g.terminal_color_14 = cyan
 vim.g.terminal_color_15 = gray5
 
+-- Telescope
+define_highlight("TelescopeSelection", '', gray3, '')
+define_highlight("TelescopePreviewLine", '', gray3, '')
+
 -- Org
 define_highlight('@org.agenda.time_grid', gray5, '', '')
 define_highlight('@org.agenda.weekend', '', '', 'italic')
