@@ -48,7 +48,7 @@ return {
                 ['<C-p>'] = { "snippet_backward", "fallback" },
                 ['<S-Tab>'] = { "select_prev", "snippet_backward", "fallback" },
                 ['<Enter>'] = { "accept", "fallback" },
-                ['<C-s>'] = { "show_signature", "fallback" },
+                ['<C-s>'] = { "show_signature" },
             },
 
             completion = {

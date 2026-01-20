@@ -129,6 +129,30 @@ vim.api.nvim_create_autocmd('LspAttach', {
                 end, { desc = "Toggle inlay hints" })
         end
 
+        -- Add codelens
+        if client:supports_method('textDocument/codeLens') then
+            -- Toggle codelens
+            local enable_codelens = false
+            vim.keymap.set("n", "<leader>dl",
+                function()
+                    enable_codelens = not enable_codelens
+                    if enable_codelens then
+                        vim.lsp.codelens.refresh({ bufnr = 0 })
+                    else
+                        vim.lsp.codelens.clear(nil, 0)
+                    end
+                end, { desc = "Toggle codelens" })
+
+            vim.api.nvim_create_autocmd({ 'BufEnter', 'CursorHold', 'InsertLeave' }, {
+                buffer = args.buf,
+                callback = function()
+                    if enable_codelens then
+                        vim.lsp.codelens.refresh()
+                    end
+                end,
+            })
+        end
+
         -- Auto-format ("lint") on save.
         -- Usually not needed if server supports "textDocument/willSaveWaitUntil".
         if not client:supports_method('textDocument/willSaveWaitUntil')

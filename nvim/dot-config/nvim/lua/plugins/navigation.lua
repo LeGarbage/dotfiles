@@ -85,6 +85,7 @@ return {
         opts = {
             main_keymap = "\\",
             lock_char = "󰌾",
+            map_last_accessed = true,
             ui = {
                 floating = {
                     max_rendered_buffers = 8,
