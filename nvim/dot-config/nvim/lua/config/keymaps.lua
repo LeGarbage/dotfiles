@@ -1,3 +1,5 @@
+vim.g.mapleader = " "
+
 local function open_float()
     vim.diagnostic.open_float()
 end
@@ -28,8 +30,12 @@ vim.keymap.set("n", "<leader>w", "<C-w>", { desc = "Alias for <C-w> for easier w
 vim.keymap.set("n", "<leader>z", "za", { desc = "Toggle fold" })
 vim.keymap.set("n", "<C-u>", "<C-u>zz")
 vim.keymap.set("n", "<C-d>", "<C-d>zz")
-vim.keymap.set("n", "n", "nzzzv")
-vim.keymap.set("n", "N", "Nzzzv")
+vim.keymap.set("n", "n", "nzz")
+vim.keymap.set("n", "N", "Nzz")
+vim.keymap.set("n", "*", "*zz")
+vim.keymap.set("n", "#", "#zz")
+vim.keymap.set("n", "g*", "g*zz")
+vim.keymap.set("n", "g#", "g#zz")
 vim.keymap.set("n", "<leader>cc", function()
     if vim.wo.colorcolumn == "" then
         vim.wo.colorcolumn = "80"

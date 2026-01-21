@@ -1,5 +1,4 @@
 vim.o.hidden = true
-vim.g.mapleader = " "
 
 vim.opt.sessionoptions = { "buffers", "curdir", "folds", "globals", "help", "tabpages", "terminal", "winsize" }
 

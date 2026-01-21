@@ -1,5 +1,15 @@
--- Relative lines in visual mode
 local init_group = vim.api.nvim_create_augroup("my.init_group", {})
+
+-- Breifly highlight text after it's yanked
+vim.api.nvim_create_autocmd("TextYankPost", {
+    group = init_group,
+    callback = function()
+        vim.highlight.on_yank({ timeout = 300 })
+    end
+})
+
+
+-- Relative lines in visual mode
 vim.api.nvim_create_autocmd("ModeChanged", {
     group = init_group,
     pattern = { "*:[vV\x16]*" },
@@ -7,6 +17,8 @@ vim.api.nvim_create_autocmd("ModeChanged", {
         vim.wo.relativenumber = true
     end,
 })
+
+-- Turn off relative lines after leaving visual mode
 vim.api.nvim_create_autocmd("ModeChanged", {
     group = init_group,
     pattern = { "[vV\x16]*:*" },
@@ -15,6 +27,7 @@ vim.api.nvim_create_autocmd("ModeChanged", {
     end,
 })
 
+-- Do some things for each buffer load
 vim.api.nvim_create_autocmd("FileType", {
     group = init_group,
     pattern = "*",
@@ -56,14 +69,5 @@ vim.api.nvim_create_autocmd("FileType", {
     callback = function()
         local winid = vim.api.nvim_get_current_win()
         vim.wo[winid][0].statuscolumn = ""
-    end
-})
-
--- Breifly highlight text after it's yanked
-vim.api.nvim_create_autocmd("TextYankPost", {
-    group = init_group,
-    pattern = "*",
-    callback = function()
-        vim.highlight.on_yank({ timeout = 300 })
     end
 })
