@@ -219,7 +219,6 @@ return {
                 org_agenda_files = '~/org/**/*',
                 org_default_notes_file = '~/org/refile.org',
                 -- org_todo_keywords = { 'TODO', 'STARTED', 'WAITING', '|', 'DONE', 'CANCELLED' },
-                org_startup_folded = "inherit",
                 -- org_startup_indented = true,
                 -- org_indent_mode_turns_on_hiding_stars = false,
                 org_agenda_start_on_weekday = 7,
@@ -280,6 +279,8 @@ return {
                     },
                 },
             })
+
+            vim.lsp.enable("org")
         end,
     },
     {
