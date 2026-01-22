@@ -248,6 +248,8 @@ return {
                     org = {
                         ---@diagnostic disable-next-line: assign-type-mismatch
                         org_refile = false,
+                        ---@diagnostic disable-next-line: assign-type-mismatch
+                        org_return = false
                     },
                     capture = {
                         org_capture_finalize = "<C-c><C-c>",
