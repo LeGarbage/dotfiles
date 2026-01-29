@@ -48,13 +48,20 @@ end, { desc = "Toggle colorcolumn" })
 vim.keymap.set("n", "-", function()
     local windows = vim.fn.getwininfo()
 
+    local should_open = true
     for _, win in ipairs(windows) do
         if win.quickfix == 1 and win.loclist == 0 then
             vim.cmd("cclose")
-            return
+            should_open = false
+        elseif win.quickfix == 1 and win.loclist == 1 then
+            vim.cmd("lclose")
+            should_open = false
         end
     end
-    vim.cmd("copen")
+
+    if should_open then
+        vim.cmd("copen")
+    end
 end)
 vim.keymap.set("n", "+", function()
     local windows = vim.fn.getwininfo()
@@ -163,24 +170,24 @@ local winid = -1
 vim.keymap.set("n", "<leader>co", function()
     if vim.api.nvim_win_is_valid(winid) then
         vim.api.nvim_win_close(winid, false)
-    else
-        winid = vim.api.nvim_open_win(0, false, {
-            split = "below",
-            height = 12,
-        })
-
-        require("overseer").create_task_output_view(winid, {
-            list_task_opts = {
-                filter = function(task)
-                    return task.time_start ~= nil
-                end
-            },
-            select = function(_, tasks)
-                table.sort(tasks, function(a, b)
-                    return a.time_start > b.time_start
-                end)
-                return tasks[1]
-            end
-        })
+        return
     end
+    winid = vim.api.nvim_open_win(0, false, {
+        split = "below",
+        height = 12,
+    })
+
+    require("overseer").create_task_output_view(winid, {
+        list_task_opts = {
+            filter = function(task)
+                return task.time_start ~= nil
+            end
+        },
+        select = function(_, tasks)
+            table.sort(tasks, function(a, b)
+                return a.time_start > b.time_start
+            end)
+            return tasks[1]
+        end
+    })
 end, { desc = "Open an output stream of the last task's output" })

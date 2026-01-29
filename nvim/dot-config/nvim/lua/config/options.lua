@@ -41,6 +41,8 @@ vim.o.list = true
 
 vim.opt.shortmess:append("c")
 
+vim.o.quickfixtextfunc = "v:lua.require'modules.quickfix'.format"
+
 vim.cmd.colorscheme("onedark")
 
 -- Neovide

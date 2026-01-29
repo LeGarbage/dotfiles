@@ -32,7 +32,6 @@ return {
                 },
 
                 notification = {
-                    override_vim_notify = true,
                     filter = vim.log.levels.TRACE,
                     configs = {
                         default = default_config

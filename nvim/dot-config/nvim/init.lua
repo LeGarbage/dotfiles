@@ -14,5 +14,6 @@ require("illuminate").configure({
         'oil',
         'snacks_dashboard',
         'orgagenda',
+        'qf'
     },
 })
