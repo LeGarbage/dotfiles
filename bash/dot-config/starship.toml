@@ -33,7 +33,7 @@ format = '[$time]($style)'
 time_format = '%R'
 
 [custom.userhost]
-command = 'echo $(whoami)@$(hostname -s)'
+command = 'echo $(whoami)@$(hostnamectl hostname)'
 when = '[ -z "$IN_NIX_SHELL"]'
 style = 'bright-white'
 format = '[$output]($style)'
