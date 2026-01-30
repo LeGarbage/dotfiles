@@ -49,7 +49,10 @@ shopt -s globstar
 set -o vi
 
 # Enable direnv
-eval "$(direnv hook bash)"
+[ -x "$(command -v direnv)" ] && eval "$(direnv hook bash)"
 
 # Enable starship
-eval "$(starship init bash)"
+[ -x "$(command -v starship)" ] && eval "$(starship init bash)"
+
+HM_SESSION_VARS_PATH="/etc/profiles/per-user/$USER/etc/profile.d/hm-session-vars.sh"
+[ -x "$HM_SESSION_VARS_PATH" ] && . "$HM_SESSION_VARS_PATH"
