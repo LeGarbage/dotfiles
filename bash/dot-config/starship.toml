@@ -1,6 +1,6 @@
 add_newline = false
 format = '''
-┌──\[${custom.userhost}$nix_shell\]$directory$git_branch$git_state$cmd_duration$direnv
+┌──\[${custom.user}$nix_shell${custom.localhost}${custom.sshhost}\]$directory$git_branch$git_state$cmd_duration$direnv
 └─$character'''
 
 [character]
@@ -32,8 +32,20 @@ disabled = false
 format = '[$time]($style)'
 time_format = '%R'
 
-[custom.userhost]
-command = 'echo $(whoami)@$(hostnamectl hostname)'
+[custom.user]
+command = 'echo $(whoami)'
 when = '[ -z "$IN_NIX_SHELL"]'
 style = 'bright-white'
+format = '[$output]($style)'
+
+[custom.localhost]
+command = 'echo @$(hostnamectl hostname)'
+when = '[ -z "$IN_NIX_SHELL" && -z "$SSH_CONNECTION" ]'
+style = 'bright-white'
+format = '[$output]($style)'
+
+[custom.sshhost]
+command = 'echo @$(hostnamectl hostname)'
+when = '[ -n "$SSH_CONNECTION" ]'
+style = 'bold red'
 format = '[$output]($style)'
