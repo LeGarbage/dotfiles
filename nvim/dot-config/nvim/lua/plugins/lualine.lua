@@ -77,6 +77,9 @@ return {
                 globalstatus = true,
                 always_show_tabline = false,
                 theme = theme,
+                disabled_filetypes = {
+                    winbar = { "toggleterm" }
+                }
             },
             sections = {
                 lualine_b = {

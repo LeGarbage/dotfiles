@@ -1,7 +1,5 @@
 vim.o.hidden = true
 
-vim.opt.sessionoptions = { "buffers", "curdir", "folds", "globals", "help", "tabpages", "terminal", "winsize" }
-
 vim.o.belloff = "all"
 vim.o.errorbells = false
 vim.o.number = true

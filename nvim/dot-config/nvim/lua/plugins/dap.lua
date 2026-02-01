@@ -40,22 +40,8 @@ return {
             vim.fn.sign_define("DapBreakpoint", { text = "●", texthl = "DiagnosticError" })
 
             mason_dap.setup({
-                ensure_installed = { "codelldb" },
+                ensure_installed = {},
                 automatic_installation = true,
-                handlers = {
-                    function(config)
-                        mason_dap.default_setup(config)
-                    end,
-
-                    codelldb = function(config)
-                        dap.adapters.codelldb = {
-                            type = "executable",
-                            command = "codelldb",
-                        }
-
-                        mason_dap.default_setup(config)
-                    end
-                },
             })
 
             dap.configurations.c = {

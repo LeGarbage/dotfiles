@@ -141,7 +141,14 @@ vim.keymap.set("n", "<leader>sd", function() require("session_manager").delete_s
 vim.keymap.set({ "n", "t" }, "<leader>tf", "<cmd>ToggleTerm direction=float<cr>", { desc = "Toggle floating terminal" })
 vim.keymap.set({ "n", "t" }, "<leader>tb", "<cmd>ToggleTerm direction=horizontal<cr>",
     { desc = "Toggle bottom terminal" })
-vim.keymap.set("t", "jk", [[<C-\><C-n>]])
+vim.keymap.set({ "n", "t" }, "<leader>tn", "<cmd>TermNew<cr>", { desc = "Create new terminal" })
+vim.keymap.set({ "n", "t" }, "<leader>ts", "<cmd>TermSelect<cr>", { desc = "Select terminal" })
+vim.keymap.set({ "n", "t" }, "<leader>tr", "<cmd>ToggleTermSetName<cr>", { desc = "Rename terminal" })
+vim.keymap.set("t", "<esc>", [[<C-\><C-n>]])
+vim.keymap.set('t', '<C-h>', [[<cmd>wincmd h<cr>]])
+vim.keymap.set('t', '<C-j>', [[<cmd>wincmd j<cr>]])
+vim.keymap.set('t', '<C-k>', [[<cmd>wincmd k<cr>]])
+vim.keymap.set('t', '<C-l>', [[<cmd>wincmd l<cr>]])
 
 -- Dap
 local dap = require("dap")
