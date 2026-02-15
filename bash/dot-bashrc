@@ -8,6 +8,7 @@
 alias ls='ls --color=auto'
 alias grep='grep --color=auto'
 alias vim='nvim'
+alias :q='exit'
 
 # Safety aliases
 alias rm='rm -I'
@@ -27,6 +28,7 @@ HISTIGNORE_COMMANDS=(
     "history"
     "[bf]g"
     "exit"
+    ":q"
     "* --help"
     "* -h"
 )
