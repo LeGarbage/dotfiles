@@ -82,7 +82,7 @@ define_highlight('FoldedIcon', gray4, '', '')
 define_highlight('FoldedText', gray1, gray4, '')
 define_highlight('IncSearch', yellow, '', '')
 define_highlight('LineNr', gray3, '', '')
-define_highlight('LspInlayHint', gray4, '', 'italic')
+define_highlight('LspInlayHint', gray4, '', '')
 vim.g.matchparen_disable_cursor_hl = true
 define_highlight('MatchParen', red, gray3, 'bold')
 define_highlight('ModeMsg', green, '', '')
@@ -136,8 +136,10 @@ define_highlight('Structure', cyan, '', '')
 define_highlight('Special', indigo, '', '')
 define_highlight('Delimiter', gray5, '', '')
 define_highlight('Underlined', blue, '', 'none')
-define_highlight('Error', red, gray1, 'bold')
-define_highlight('Todo', orange, gray1, 'bold')
+define_highlight('Error', red, '', 'bold')
+define_highlight('Todo', orange, '', 'bold')
+
+-- Treesitter
 define_highlight('@variable.parameter', red, '', 'italic')
 define_highlight('@variable', red, '', '')
 define_highlight('@property', blue2, '', '')
@@ -145,6 +147,10 @@ define_highlight('@tag', yellow, '', '')
 define_highlight('@tag.html', red, '', '')
 define_highlight('@tag.delimiter', gray5, '', '')
 define_highlight('@tag.attribute', blue2, '', '')
+
+-- Lsp
+vim.cmd("hi link @lsp.type.typeAlias @type")
+vim.cmd("hi link @lsp.type.procMacro @constant.macro")
 
 -- Terminal
 vim.g.terminal_color_0  = gray1
