@@ -27,7 +27,7 @@ vim.api.nvim_create_autocmd("ModeChanged", {
     end,
 })
 
--- Do some things for each buffer load
+-- Set folding and intent options on file load
 vim.api.nvim_create_autocmd("FileType", {
     group = init_group,
     pattern = "*",
@@ -37,9 +37,6 @@ vim.api.nvim_create_autocmd("FileType", {
         vim.o.foldlevelstart = 99
         vim.opt.foldcolumn = "1"
 
-        -- Enable treesitter
-        -- This call will fail if the language does not have a parser
-        pcall(vim.treesitter.start)
         vim.opt.indentkeys:append("!<Tab>")
 
         -- Org does its own indent handling
@@ -48,6 +45,28 @@ vim.api.nvim_create_autocmd("FileType", {
             vim.bo.indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
         end
     end,
+})
+
+-- Treesitter stuff
+vim.api.nvim_create_autocmd("FileType", {
+    group = init_group,
+    pattern = "*",
+    callback = function(opt)
+        local ts = require("nvim-treesitter")
+        local lang = vim.treesitter.language.get_lang(opt.match)
+
+        if vim.tbl_contains(ts.get_available(), lang) then
+            -- Enable treesitter
+            -- This call will fail if the language does not have a parser
+            local ok = pcall(vim.treesitter.start, opt.buf, lang)
+
+            if not ok then
+                ts.install(lang):await(function()
+                    vim.treesitter.start(opt.buf, lang)
+                end)
+            end
+        end
+    end
 })
 
 -- Check spelling for org and markdown
