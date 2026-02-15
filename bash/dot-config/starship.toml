@@ -40,7 +40,7 @@ format = '[$output]($style)'
 
 [custom.localhost]
 command = 'echo @$(hostnamectl hostname)'
-when = '[ -z "$IN_NIX_SHELL" && -z "$SSH_CONNECTION" ]'
+when = '[ -z "$IN_NIX_SHELL" ] && [ -z "$SSH_CONNECTION" ]'
 style = 'bright-white'
 format = '[$output]($style)'
 
