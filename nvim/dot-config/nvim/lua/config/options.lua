@@ -24,7 +24,6 @@ vim.o.shiftwidth = 4
 vim.o.smartindent = true
 vim.o.smarttab = true
 vim.o.expandtab = true
-vim.opt.indentkeys:append("!<Tab>")
 
 vim.o.ignorecase = true
 vim.o.smartcase = true

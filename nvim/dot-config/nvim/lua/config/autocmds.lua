@@ -40,6 +40,7 @@ vim.api.nvim_create_autocmd("FileType", {
         -- Enable treesitter
         -- This call will fail if the language does not have a parser
         pcall(vim.treesitter.start)
+        vim.opt.indentkeys:append("!<Tab>")
 
         -- Org does its own indent handling
         -- Don't enable treesitter intents when not spported
