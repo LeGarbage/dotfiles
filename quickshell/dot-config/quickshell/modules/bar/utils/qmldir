@@ -1,4 +1,0 @@
-singleton HyprUtils 1.0 HyprUtils.qml
-singleton Network 1.0 Network.qml
-singleton LockKeys 1.0 LockKeys.qml
-singleton Notifications 1.0 Notifications.qml
