@@ -69,15 +69,11 @@ vim.api.nvim_create_autocmd("FileType", {
     end
 })
 
--- Check spelling for org and markdown
+-- Set textwidth for org and markdown
 vim.api.nvim_create_autocmd("FileType", {
     group = init_group,
     pattern = { "org", "markdown" },
     callback = function()
-        local winid = vim.api.nvim_get_current_win()
-        vim.wo[winid][0].spell = true
-        vim.bo.spelllang = "en_us"
-
         vim.bo.textwidth = 80
     end
 })

@@ -73,8 +73,8 @@ define_highlight('DiffChange', 'NONE', diff_change, 'none')
 define_highlight('DiffDelete', 'NONE', diff_delete, 'none')
 define_highlight('DiffText', 'NONE', diff_text, 'none')
 define_highlight('ErrorMsg', red, gray1, 'bold')
-define_highlight('NormalFloat', gray5, gray2, '')
-define_highlight('FloatBorder', gray5, gray2, '')
+define_highlight('NormalFloat', gray5, gray1, '')
+define_highlight('FloatBorder', gray5, gray1, '')
 define_highlight('FoldColumn', gray4, gray1, '')
 -- define_highlight('Folded', '', gray1, '')
 vim.cmd("hi clear Folded")
@@ -197,6 +197,9 @@ vim.cmd("hi link NvimDapVirtualText DiagnosticInfo")
 define_highlight("IlluminatedWordText", "", gray3, "")
 define_highlight("IlluminatedWordRead", "", gray3, "")
 define_highlight("IlluminatedWordWrite", "", gray3, "")
+
+-- RenderMarkdown
+define_highlight("RenderMarkdownCodeInline", '', 'NONE', '')
 
 -- Completion
 define_highlight('BlinkCmpKindFunction', blue, '', '')

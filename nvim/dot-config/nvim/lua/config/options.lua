@@ -15,7 +15,11 @@ vim.opt.backspace = { "indent", "eol", "start" }
 
 vim.o.wrap = true
 vim.o.linebreak = true
-vim.o.showbreak = "+++ "
+vim.o.showbreak = "󱞩 "
+
+vim.o.spell = true
+vim.o.spelllang = "en_us"
+
 
 vim.o.showcmd = true
 
