@@ -77,9 +77,21 @@ return {
             },
 
             sources = {
-                default = { "lazydev", "lsp", "path", "buffer", "snippets" },
+                default = function(_)
+                    local success, node = pcall(vim.treesitter.get_node)
+                    if success and node and vim.tbl_contains({ "comment", "line_comment", "block_comment", "string" }, node:type()) then
+                        -- Only show buffer completions in comments and strings
+                        return { "buffer" }
+                    elseif vim.bo.filetype == "lua" then
+                        -- Use lazydev completions in lua
+                        return { "lazydev", "lsp", "snippets", "path" }
+                    else
+                        return { "lsp", "snippets", "path" }
+                    end
+                end,
                 per_filetype = {
-                    markdown = { inherit_defaults = true }
+                    markdown = { "buffer" },
+                    org = { "buffer" }
                 },
                 providers = {
                     lazydev = {
@@ -88,6 +100,11 @@ return {
                         -- make lazydev completions top priority (see `:h blink.cmp`)
                         score_offset = 100,
                     },
+                    snippets = {
+                        should_show_items = function(ctx)
+                            return ctx.trigger.initial_kind ~= "trigger_character"
+                        end
+                    }
                 },
             },
 
