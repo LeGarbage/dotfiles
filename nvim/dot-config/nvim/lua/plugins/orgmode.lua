@@ -300,12 +300,35 @@ return {
     },
     {
         "MeanderingProgrammer/render-markdown.nvim",
-        dependencies = { "nvim-treesitter/nvim-treesitter", "nvim-tree/nvim-web-devicons", "nvim-orgmode/orgmode" },
+        dependencies = { "nvim-treesitter/nvim-treesitter", "nvim-tree/nvim-web-devicons" },
         ft = { "markdown", "org" },
         opts = {
-            completions = { blink = { enabled = true } },
+            completions = { lsp = { enabled = true } },
+            render_modes = { "n", "c", "t", "i" },
             sign = {
                 enabled = false,
+            },
+            code = {
+                width = "block",
+                left_pad = 1,
+                right_pad = 4,
+                border = "thick",
+                language_border = " ",
+                language_left = "",
+                language_right = "",
+            },
+            heading = {
+                backgrounds = {},
+                foregrounds = {
+                    "Title",
+                    "Constant",
+                    "Identifier",
+                    "Statement",
+                    "PreProc",
+                    "Type",
+                    "Special",
+                    "String",
+                },
             },
             custom_handlers = {
                 org = {
