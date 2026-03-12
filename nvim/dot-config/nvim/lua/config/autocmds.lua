@@ -1,30 +1,11 @@
 local init_group = vim.api.nvim_create_augroup("my.init_group", {})
 
--- Breifly highlight text after it's yanked
+-- Briefly highlight text after it's yanked
 vim.api.nvim_create_autocmd("TextYankPost", {
     group = init_group,
     callback = function()
         vim.highlight.on_yank({ timeout = 300 })
     end
-})
-
-
--- Relative lines in visual mode
-vim.api.nvim_create_autocmd("ModeChanged", {
-    group = init_group,
-    pattern = { "*:[vV\x16]*" },
-    callback = function()
-        vim.wo.relativenumber = true
-    end,
-})
-
--- Turn off relative lines after leaving visual mode
-vim.api.nvim_create_autocmd("ModeChanged", {
-    group = init_group,
-    pattern = { "[vV\x16]*:*" },
-    callback = function()
-        vim.wo.relativenumber = false
-    end,
 })
 
 -- Set folding and intent options on file load
@@ -40,7 +21,7 @@ vim.api.nvim_create_autocmd("FileType", {
         vim.opt.indentkeys:append("!<Tab>")
 
         -- Org does its own indent handling
-        -- Don't enable treesitter intents when not spported
+        -- Don't enable treesitter intents when not supported
         if opt.match ~= "org" and vim.treesitter.query.get(vim.bo.filetype, "indents") then
             vim.bo.indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
         end

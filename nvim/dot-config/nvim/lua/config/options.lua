@@ -3,6 +3,7 @@ vim.o.hidden = true
 vim.o.belloff = "all"
 vim.o.errorbells = false
 vim.o.number = true
+vim.o.relativenumber = true
 
 vim.o.mouse = "a"
 vim.o.scrolloff = 7
@@ -19,7 +20,6 @@ vim.o.showbreak = "󱞩 "
 
 vim.o.spell = true
 vim.o.spelllang = "en_us"
-
 
 vim.o.showcmd = true
 
