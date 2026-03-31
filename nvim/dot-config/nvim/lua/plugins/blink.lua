@@ -123,6 +123,14 @@ return {
                     preset = 'inherit',
                     ['<Tab>'] = { "select_next", "show_and_insert" },
                     ['<Enter>'] = { "accept_and_enter", "fallback" },
+                    ['<Space>'] = { function(cmp)
+                        -- Accept the selected item and insert a space
+                        cmp.accept({
+                            callback = function()
+                                vim.api.nvim_feedkeys(" ", "i", false)
+                            end
+                        })
+                    end, "fallback" },
                 },
                 completion = {
                     menu = { auto_show = true, },
