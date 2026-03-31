@@ -8,6 +8,14 @@ vim.api.nvim_create_autocmd("TextYankPost", {
     end
 })
 
+-- Disable spellchecking in the terminal
+vim.api.nvim_create_autocmd("TermOpen", {
+    callback = function()
+        local winid = vim.api.nvim_get_current_win()
+        vim.wo[winid][0].spell = false
+    end
+})
+
 -- Set folding and intent options on file load
 vim.api.nvim_create_autocmd("FileType", {
     group = init_group,
@@ -66,5 +74,6 @@ vim.api.nvim_create_autocmd("FileType", {
     callback = function()
         local winid = vim.api.nvim_get_current_win()
         vim.wo[winid][0].statuscolumn = ""
+        vim.wo[winid][0].spell = false
     end
 })
