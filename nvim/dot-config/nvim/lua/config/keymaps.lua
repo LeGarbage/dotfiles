@@ -150,21 +150,6 @@ vim.keymap.set('t', '<C-j>', [[<cmd>wincmd j<cr>]])
 vim.keymap.set('t', '<C-k>', [[<cmd>wincmd k<cr>]])
 vim.keymap.set('t', '<C-l>', [[<cmd>wincmd l<cr>]])
 
--- Dap
-local dap = require("dap")
-vim.keymap.set("n", "<leader>dd", require("persistent-breakpoints.api").toggle_breakpoint,
-    { desc = "Toggle breakpoint" })
-vim.keymap.set("n", "<leader>d?", function()
-    require("dapui").eval(nil)
-end, { desc = "Evaluate under cursor" })
-vim.keymap.set("n", "<leader>dc", dap.continue, { desc = "Continue" })
-vim.keymap.set("n", "<leader>dq", dap.terminate, { desc = "Quit debugging session" })
-vim.keymap.set("n", "<leader>dr", dap.restart, { desc = "Restart" })
-vim.keymap.set("n", "<Up>", dap.restart_frame, { desc = "Restart frame" })
-vim.keymap.set("n", "<Down>", dap.step_over, { desc = "Step over" })
-vim.keymap.set("n", "<Left>", dap.step_out, { desc = "Step out" })
-vim.keymap.set("n", "<Right>", dap.step_into, { desc = "Step into" })
-
 -- Overseer
 vim.keymap.set("n", "<leader>cr", "<cmd>OverseerRun<cr>",
     { desc = "Run an Overseer task from a template" })
