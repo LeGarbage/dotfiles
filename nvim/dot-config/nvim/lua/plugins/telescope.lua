@@ -66,5 +66,6 @@ return {
         telescope.load_extension('ui-select')
         telescope.load_extension('aerial')
         telescope.load_extension('fidget')
+        telescope.load_extension('session-lens')
     end,
 }

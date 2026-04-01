@@ -3,6 +3,13 @@ return {
         "stevearc/overseer.nvim",
         ---@module 'overseer'
         ---@type overseer.SetupOpts
-        opts = {},
+        opts = {
+            form = {
+                border = "rounded"
+            },
+            task_win = {
+                border = "rounded"
+            }
+        },
     }
 }

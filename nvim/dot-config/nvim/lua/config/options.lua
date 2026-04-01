@@ -21,6 +21,8 @@ vim.o.showbreak = "󱞩 "
 vim.o.spell = true
 vim.o.spelllang = "en_us"
 
+vim.o.sessionoptions = "blank,buffers,curdir,folds,help,tabpages,winsize,winpos,terminal,localoptions"
+
 vim.o.showcmd = true
 
 vim.o.softtabstop = 4

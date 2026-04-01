@@ -53,7 +53,7 @@ return {
                             key = "l",
                             desc = "Load Last Session",
                             action = function()
-                                require("session_manager").load_last_session(false)
+                                require("modules.sessions").load_last_session()
                             end
                         },
                         { icon = " ", key = "a", desc = "Open Agenda", action = ":Org agenda a" },
@@ -62,7 +62,7 @@ return {
                             key = "s",
                             desc = "List Sessions",
                             action = function()
-                                require("session_manager").load_session(false)
+                                require("auto-session").search()
                             end
                         },
                         { icon = "󰒲 ", key = "p", desc = "Manage Plugins", action = ":Lazy" },

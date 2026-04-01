@@ -1,5 +1,6 @@
 {
   "aerial.nvim": { "branch": "master", "commit": "645d108a5242ec7b378cbe643eb6d04d4223f034" },
+  "auto-session": { "branch": "main", "commit": "62437532b38495551410b3f377bcf4aaac574ebe" },
   "bento.nvim": { "branch": "main", "commit": "aee8a542bc1839ff1764992ef2aa41c981d0bba4" },
   "blink.cmp": { "branch": "main", "commit": "451168851e8e2466bc97ee3e026c3dcb9141ce07" },
   "blink.download": { "branch": "main", "commit": "b68335357e9fcc2b20445acfcee48034376d64b5" },
@@ -18,7 +19,6 @@
   "mason-nvim-dap.nvim": { "branch": "main", "commit": "9a10e096703966335bd5c46c8c875d5b0690dade" },
   "mason.nvim": { "branch": "main", "commit": "44d1e90e1f66e077268191e3ee9d2ac97cc18e65" },
   "neogit": { "branch": "master", "commit": "4681c1fdac1b730592ae195576e87406f7255750" },
-  "neovim-session-manager": { "branch": "master", "commit": "89d253a6c68af60b49570044591d5b8701866601" },
   "nvim-bqf": { "branch": "main", "commit": "f65fba733268ffcf9c5b8ac381287eca7c223422" },
   "nvim-dap": { "branch": "master", "commit": "4f5deb110d9ff8994d96c21df95e2271d11214f9" },
   "nvim-dap-ui": { "branch": "master", "commit": "f5b6673f374626515401c5bc51b005f784a4f252" },

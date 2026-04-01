@@ -130,11 +130,11 @@ vim.keymap.set("n", "<leader>hq", function() require("gitsigns").setloclist() en
 vim.keymap.set({ "o", "x" }, "ih", function() require("gitsigns").select_hunk() end)
 
 -- Session management
-vim.keymap.set("n", "<leader>ss", function() require("session_manager").load_session(false) end,
+vim.keymap.set("n", "<leader>ss", function() require("auto-session").search() end,
     { desc = "Load session" })
-vim.keymap.set("n", "<leader>sl", function() require("session_manager").load_last_session(false) end,
+vim.keymap.set("n", "<leader>sl", function() require("modules.sessions").load_last_session() end,
     { desc = "Load last session" })
-vim.keymap.set("n", "<leader>sd", function() require("session_manager").delete_session() end,
+vim.keymap.set("n", "<leader>sd", function() require("auto-session").delete_picker() end,
     { desc = "Delete session" })
 
 -- Toggleterm
