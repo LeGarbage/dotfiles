@@ -58,6 +58,7 @@ return {
                     auto_show = true,
                     max_height = 5,
                     scrollbar = false,
+                    border = "none"
                 },
 
                 documentation = {

@@ -56,7 +56,6 @@ return {
                                 require("modules.sessions").load_last_session()
                             end
                         },
-                        { icon = " ", key = "a", desc = "Open Agenda", action = ":Org agenda a" },
                         {
                             icon = " ",
                             key = "s",
@@ -65,7 +64,15 @@ return {
                                 require("auto-session").search()
                             end
                         },
-                        { icon = "󰒲 ", key = "p", desc = "Manage Plugins", action = ":Lazy" },
+                        {
+                            icon = " ",
+                            key = "f",
+                            desc = "Find File",
+                            action = function()
+                                require("telescope.builtin").find_files()
+                            end
+                        },
+                        { icon = " ", key = "i", desc = "Browse Files", action = ":Oil" },
                         { icon = " ", key = "q", desc = "Quit NVim", action = ":qa" },
                     },
                 },

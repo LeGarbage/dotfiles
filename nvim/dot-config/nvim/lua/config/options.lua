@@ -10,7 +10,7 @@ vim.o.scrolloff = 7
 vim.o.cursorline = true
 vim.o.showmode = false
 
-vim.o.hlsearch = false
+vim.cmd.packadd("nohlsearch")
 
 vim.opt.backspace = { "indent", "eol", "start" }
 
@@ -43,6 +43,7 @@ vim.opt.listchars = { trail = "~", tab = "⭲ " }
 vim.o.list = true
 
 vim.opt.shortmess:append("c")
+vim.o.winborder = "rounded"
 
 vim.o.quickfixtextfunc = "v:lua.require'modules.quickfix'.format"
 
