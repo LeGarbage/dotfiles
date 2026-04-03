@@ -10,8 +10,6 @@ vim.o.scrolloff = 7
 vim.o.cursorline = true
 vim.o.showmode = false
 
-vim.cmd.packadd("nohlsearch")
-
 vim.opt.backspace = { "indent", "eol", "start" }
 
 vim.o.wrap = true
@@ -43,11 +41,15 @@ vim.opt.listchars = { trail = "~", tab = "⭲ " }
 vim.o.list = true
 
 vim.opt.shortmess:append("c")
+
 vim.o.winborder = "rounded"
+vim.o.splitright = true
 
 vim.o.quickfixtextfunc = "v:lua.require'modules.quickfix'.format"
 
 vim.cmd.colorscheme("onedark")
+
+require("vim._core.ui2").enable({ enable = true })
 
 -- Neovide
 vim.g.neovide_floating_shadow = false

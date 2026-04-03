@@ -9,6 +9,9 @@ vim.lsp.config("*", {
     capabilities = capabilities,
 })
 
+-- Completely disable the Gitlab lsp so it doesn't start every time :lsp enable is run
+vim.lsp.config("gitlab_duo", { filetypes = {} })
+
 vim.api.nvim_create_autocmd('LspAttach', {
     group = vim.api.nvim_create_augroup('my.lsp', {}),
     callback = function(args)
@@ -29,31 +32,16 @@ vim.api.nvim_create_autocmd('LspAttach', {
 
         -- Add codelens
         if client:supports_method('textDocument/codeLens') then
-            local enable_codelens = false
-            vim.keymap.set("n", "grc",
-                function()
-                    vim.lsp.codelens.run()
-                end, { desc = "Run codelens" })
-
             -- Toggle codelens
             vim.keymap.set("n", "<leader>dl",
                 function()
-                    enable_codelens = not enable_codelens
-                    if enable_codelens then
-                        vim.lsp.codelens.refresh({ bufnr = 0 })
-                    else
-                        vim.lsp.codelens.clear(nil, 0)
-                    end
-                end, { desc = "Toggle codelens" })
+                    vim.lsp.codelens.enable(not vim.lsp.codelens.is_enabled({ bufnr = 0 }), { bufnr = 0 })
+                end, { desc = "Toggle codelens (buffer)" })
 
-            vim.api.nvim_create_autocmd({ 'BufEnter', 'CursorHold', 'InsertLeave' }, {
-                buffer = args.buf,
-                callback = function()
-                    if enable_codelens then
-                        vim.lsp.codelens.refresh()
-                    end
-                end,
-            })
+            vim.keymap.set("n", "<leader>dL",
+                function()
+                    vim.lsp.codelens.enable(not vim.lsp.codelens.is_enabled())
+                end, { desc = "Toggle codelens (workspace)" })
         end
 
         -- Auto-format ("lint") on save.

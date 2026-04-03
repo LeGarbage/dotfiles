@@ -3,7 +3,7 @@ vim.o.background = "dark"
 vim.cmd.highlight("clear")
 
 if vim.fn.exists("syntax_on") then
-    vim.cmd.syntax = "reset"
+    vim.cmd.syntax("reset")
 end
 
 vim.g.colors_name = "onedark"
@@ -61,6 +61,7 @@ define_highlight('DiagnosticUnderlineWarn', '', '', 'undercurl guisp=' .. warnin
 define_highlight('DiagnosticUnderlineInfo', '', '', 'undercurl guisp=' .. info)
 -- Vim Editor
 define_highlight('ColorColumn', '', gray2, '')
+define_highlight('CurSearch', gray1, yellow, '')
 define_highlight('Cursor', gray2, gray5, '')
 define_highlight('CursorColumn', '', gray2, '')
 define_highlight('CursorLine', '', gray2, 'none')

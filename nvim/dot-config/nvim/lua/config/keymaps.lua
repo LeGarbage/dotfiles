@@ -43,6 +43,11 @@ vim.keymap.set("n", "<leader>cc", function()
         vim.wo.colorcolumn = ""
     end
 end, { desc = "Toggle colorcolumn" })
+vim.keymap.set("n", "<leader>u", function()
+    require("undotree").open({
+        command = math.floor(vim.api.nvim_win_get_width(0) / 4) .. "vnew"
+    })
+end, { desc = "Toggle undotree" })
 
 -- Quickfix
 vim.keymap.set("n", "-", function()
