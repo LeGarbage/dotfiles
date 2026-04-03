@@ -1,31 +1,3 @@
-local icons = {
-    File = ' ',
-    Module = ' ',
-    Namespace = ' ',
-    Package = ' ',
-    Class = ' ',
-    Method = ' ',
-    Property = ' ',
-    Field = ' ',
-    Constructor = ' ',
-    Enum = ' ',
-    Interface = ' ',
-    Function = ' ',
-    Variable = ' ',
-    Constant = ' ',
-    String = ' ',
-    Number = ' ',
-    Boolean = '󰦐 ',
-    Array = ' ',
-    Object = ' ',
-    Key = ' ',
-    Null = ' ',
-    EnumMember = ' ',
-    Struct = ' ',
-    Event = ' ',
-    Operator = ' ',
-    TypeParameter = ' '
-}
 return {
     {
         "Bekaboo/dropbar.nvim",
@@ -34,7 +6,7 @@ return {
             bar = { enable = false },
             icons = {
                 kinds = {
-                    symbols = icons,
+                    symbols = require("modules.icons").symbol_icons,
                 }
             }
         },
@@ -46,7 +18,7 @@ return {
             backends = {
                 ['_'] = { "lsp", "treesitter", "markdown", "asciidoc", "man" },
             },
-            icons = icons,
+            icons = require("modules.icons").symbol_icons,
             filter_kind = false,
             show_guides = true,
             attach_mode = "global",

@@ -8,30 +8,7 @@ return {
 
         opts = {
             appearance = {
-                kind_icons = {
-                    Class = " ",
-                    Color = " ",
-                    Constant = " ",
-                    Constructor = " ",
-                    Enum = " ",
-                    EnumMember = " ",
-                    Event = " ",
-                    Field = " ",
-                    File = " ",
-                    Folder = " ",
-                    Function = "󰊕 ",
-                    Interface = " ",
-                    Keyword = " ",
-                    Method = "ƒ ",
-                    Module = "󰏗 ",
-                    Property = " ",
-                    Snippet = " ",
-                    Struct = " ",
-                    Text = " ",
-                    Unit = " ",
-                    Value = " ",
-                    Variable = " ",
-                },
+                kind_icons = require("modules.icons").completion_icons,
             },
             keymap = {
                 preset = "none",
