@@ -31,6 +31,7 @@ return {
             lsp_file_methods = {
                 autosave_changes = "unmodified"
             },
+            constrain_cursor = "name",
             skip_confirm_for_simple_edits = true,
             confirmation = {
                 border = "rounded"

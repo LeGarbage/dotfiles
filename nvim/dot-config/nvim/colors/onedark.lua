@@ -18,7 +18,6 @@ local red         = '#e86671'
 local green       = '#98c379'
 local yellow      = '#e5c07b'
 local blue        = '#61afef'
-local blue2       = '#5873dd'
 local purple      = '#c678dd'
 local cyan        = '#56b6c2'
 local orange      = '#d19a66'
@@ -84,8 +83,7 @@ define_highlight('FoldedText', gray1, gray4, '')
 define_highlight('IncSearch', yellow, '', '')
 define_highlight('LineNr', gray3, '', '')
 define_highlight('LspInlayHint', gray4, '', '')
-vim.g.matchparen_disable_cursor_hl = true
-define_highlight('MatchParen', red, gray3, 'bold')
+define_highlight('MatchParen', '', gray3, 'none')
 define_highlight('ModeMsg', green, '', '')
 define_highlight('MoreMsg', green, '', '')
 define_highlight('NonText', gray4, '', 'none')
@@ -136,18 +134,18 @@ define_highlight('Type', yellow, '', 'none')
 define_highlight('Structure', cyan, '', '')
 define_highlight('Special', indigo, '', '')
 define_highlight('Delimiter', gray5, '', '')
-define_highlight('Underlined', blue, '', 'none')
+define_highlight('Underlined', '', '', 'underline')
 define_highlight('Error', red, '', 'bold')
 define_highlight('Todo', orange, '', 'bold')
 
 -- Treesitter
 define_highlight('@variable.parameter', red, '', 'italic')
 define_highlight('@variable', red, '', '')
-define_highlight('@property', blue2, '', '')
 define_highlight('@tag', yellow, '', '')
 define_highlight('@tag.html', red, '', '')
 define_highlight('@tag.delimiter', gray5, '', '')
-define_highlight('@tag.attribute', blue2, '', '')
+define_highlight('@tag.attribute', orange, '', '')
+define_highlight('@markup.link.label.html', gray5, '', 'none')
 
 -- Lsp
 vim.cmd("hi link @lsp.type.typeAlias @type")
@@ -207,7 +205,7 @@ define_highlight('BlinkCmpKindFunction', blue, '', '')
 define_highlight('BlinkCmpKindMethod', blue, '', '')
 define_highlight('BlinkCmpKindField', red, '', '')
 define_highlight('BlinkCmpKindVariable', red, '', '')
-define_highlight('BlinkCmpKindProperty', blue2, '', '')
+define_highlight('BlinkCmpKindProperty', red, '', '')
 define_highlight('BlinkCmpKindClass', yellow, '', '')
 define_highlight('BlinkCmpKindConstructor', yellow, '', '')
 define_highlight('BlinkCmpKindModule', yellow, '', '')
@@ -241,6 +239,10 @@ define_highlight("OilGitStatusWorkingTreeUnmerged", orange, '', 'italic')
 
 -- Pairs
 define_highlight('BlinkPairsUnmatched', error, '', '')
+define_highlight('BlinkPairsMatchParen', '', '', '')
+define_highlight('BlinkPairsOrange', orange, '', '')
+define_highlight('BlinkPairsPurple', purple, '', '')
+define_highlight('BlinkPairsBlue', cyan, '', '')
 
 -- CSS
 define_highlight('cssAttrComma', gray5, '', '')

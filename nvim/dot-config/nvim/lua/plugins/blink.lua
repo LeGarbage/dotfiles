@@ -142,7 +142,7 @@ return {
             },
         },
 
-        opts_extend = { "sources.default" },
+        -- opts_extend = { "sources.default" },
     },
     {
         "saghen/blink.pairs",
@@ -150,7 +150,10 @@ return {
         dependencies = "saghen/blink.download",
         opts = {
             highlights = {
-                enabled = false
+                enabled = true,
+                matchparen = {
+                    include_surrounding = true
+                },
             }
         }
     }
