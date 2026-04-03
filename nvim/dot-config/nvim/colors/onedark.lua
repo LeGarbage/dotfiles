@@ -219,6 +219,26 @@ define_highlight('BlinkCmpKindConstant', orange, '', '')
 define_highlight('BlinkCmpKindSnippet', pink, '', '')
 define_highlight('BlinkCmpKindFile', cyan, '', '')
 
+-- Oil Git
+define_highlight("OilGitStatusIndexIgnored", gray4, '', 'italic')
+define_highlight("OilGitStatusWorkingTreeIgnored", gray4, '', 'italic')
+define_highlight("OilGitStatusIndexUntracked", blue, '', '')
+define_highlight("OilGitStatusWorkingTreeUntracked", blue, '', '')
+define_highlight("OilGitStatusIndexAdded", green, '', '')
+define_highlight("OilGitStatusWorkingTreeAdded", green, '', 'italic')
+define_highlight("OilGitStatusIndexCopied", purple, '', '')
+define_highlight("OilGitStatusWorkingTreeCopied", purple, '', 'italic')
+define_highlight("OilGitStatusIndexDeleted", red, '', '')
+define_highlight("OilGitStatusWorkingTreeDeleted", red, '', 'italic')
+define_highlight("OilGitStatusIndexModified", yellow, '', '')
+define_highlight("OilGitStatusWorkingTreeModified", yellow, '', 'italic')
+define_highlight("OilGitStatusIndexRenamed", purple, '', '')
+define_highlight("OilGitStatusWorkingTreeRenamed", purple, '', 'italic')
+define_highlight("OilGitStatusIndexTypeChanged", indigo, '', '')
+define_highlight("OilGitStatusWorkingTreeTypeChanged", indigo, '', 'italic')
+define_highlight("OilGitStatusIndexUnmerged", orange, '', '')
+define_highlight("OilGitStatusWorkingTreeUnmerged", orange, '', 'italic')
+
 -- Pairs
 define_highlight('BlinkPairsUnmatched', error, '', '')
 
