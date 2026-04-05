@@ -9,10 +9,6 @@ vim.keymap.set("n", "<S-k>", function()
     require("snacks").image.hover()
 end)
 
-vim.keymap.set("n", "<leader>ds", function()
-    vim.diagnostic.setqflist()
-end, { desc = "Add diagnostics to quickfix list" })
-
 -- Disable arrow keys
 vim.keymap.set("n", "<Up>", "")
 vim.keymap.set("n", "<Down>", "")
@@ -49,42 +45,8 @@ vim.keymap.set("n", "<leader>u", function()
     })
 end, { desc = "Toggle undotree" })
 
--- Quickfix
-vim.keymap.set("n", "-", function()
-    local windows = vim.fn.getwininfo()
-
-    local should_open = true
-    for _, win in ipairs(windows) do
-        if win.quickfix == 1 and win.loclist == 0 then
-            vim.cmd("cclose")
-            should_open = false
-        elseif win.quickfix == 1 and win.loclist == 1 then
-            vim.cmd("lclose")
-            should_open = false
-        end
-    end
-
-    if should_open then
-        vim.cmd("copen")
-    end
-end)
-vim.keymap.set("n", "+", function()
-    local windows = vim.fn.getwininfo()
-
-    for _, win in ipairs(windows) do
-        if win.quickfix == 1 and win.loclist == 1 then
-            vim.cmd("lclose")
-            return
-        end
-    end
-    vim.cmd("lopen")
-end)
-
 -- Snacks
 vim.keymap.set("n", "<leader>bd", require("snacks").bufdelete.delete)
-
--- Todo comments
-vim.keymap.set("n", "<leader>tq", "<cmd>TodoQuickFix<cr>", { desc = "Quickfix todos" })
 
 -- Neogit
 vim.keymap.set("n", "<leader>n", "<cmd>Neogit<cr>", { desc = "Open Neogit" })
@@ -130,8 +92,6 @@ vim.keymap.set("v", "<leader>hr", function() require("gitsigns").reset_hunk({ vi
     { desc = "Reset hunk" })
 vim.keymap.set("n", "<leader>hi", function() require("gitsigns").preview_hunk_inline() end, { desc = "Preview hunk" })
 vim.keymap.set("n", "<leader>hb", function() require("gitsigns").toggle_current_line_blame() end, { desc = "Blame line" })
-vim.keymap.set("n", "<leader>hQ", function() require("gitsigns").setqflist("all") end, { desc = "Quickfix repo diff" })
-vim.keymap.set("n", "<leader>hq", function() require("gitsigns").setloclist() end, { desc = "Quickfix buffer diff" })
 vim.keymap.set({ "o", "x" }, "ih", function() require("gitsigns").select_hunk() end)
 
 -- Session management

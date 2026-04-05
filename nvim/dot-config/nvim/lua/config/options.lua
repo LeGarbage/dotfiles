@@ -45,8 +45,6 @@ vim.opt.shortmess:append("c")
 vim.o.winborder = "rounded"
 vim.o.splitright = true
 
-vim.o.quickfixtextfunc = "v:lua.require'modules.quickfix'.format"
-
 vim.cmd.colorscheme("onedark")
 
 require("vim._core.ui2").enable({ enable = true })

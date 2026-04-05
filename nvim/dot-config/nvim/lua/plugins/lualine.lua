@@ -164,11 +164,9 @@ return {
                 }
             },
             extensions = {
-                "nvim-dap-ui",
                 "oil",
                 "toggleterm",
                 "overseer",
-                "quickfix",
                 "man"
             },
         }
