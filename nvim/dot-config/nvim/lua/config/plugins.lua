@@ -169,3 +169,58 @@ end):totable())
 for _, plugin in ipairs(plugins) do
     if plugin.setup then plugin.setup() end
 end
+
+local function complete_packages(arg_lead)
+    arg_lead = arg_lead or ""
+
+    return vim.iter(vim.pack.get())
+        :map(function(pack)
+            return pack.spec.name
+        end)
+        :filter(function(name)
+            return vim.startswith(name, arg_lead)
+        end)
+        :totable()
+end
+
+vim.api.nvim_create_user_command("PackUpdate", function(args)
+    if #args.fargs then
+        vim.pack.update(args.fargs, { force = args.bang })
+    else
+        vim.pack.update(nil, { force = args.bang })
+    end
+end, {
+    desc = "Update plugins",
+    nargs = "*",
+    bang = true,
+    complete = complete_packages
+})
+
+vim.api.nvim_create_user_command("PackRestore", function(args)
+    if #args.fargs then
+        vim.pack.update(args.fargs, { force = args.bang, target = "lockfile" })
+    else
+        vim.pack.update(nil, { force = args.bang, target = "lockfile" })
+    end
+end, {
+    desc = "Restore plugins to state in lockfile",
+    nargs = "*",
+    bang = true,
+    complete = complete_packages
+})
+
+vim.api.nvim_create_user_command("PackInfo", function(_)
+    vim.pack.update(nil, { offline = true })
+end, {
+    desc = "Get plugin info",
+    nargs = 0
+})
+
+vim.api.nvim_create_user_command("PackDelete", function(args)
+    vim.pack.del(args.fargs, { force = args.bang })
+end, {
+    desc = "Delete plugins",
+    nargs = "+",
+    bang = true,
+    complete = complete_packages
+})
