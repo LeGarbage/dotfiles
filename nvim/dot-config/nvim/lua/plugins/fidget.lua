@@ -1,8 +1,8 @@
+---@type Plugin
 return {
     {
-        "j-hui/fidget.nvim",
-        config = function()
-            local notification = require("fidget.notification")
+        src = "gh:j-hui/fidget.nvim",
+        setup = function()
             local default_config = {
                 name = "Notifications",
                 icon = "❰❰",
@@ -19,7 +19,7 @@ return {
                 warn_annote = "WARN",
                 error_annote = "ERROR",
                 update_hook = function(item)
-                    notification.set_content_key(item)
+                    require("fidget.notification").set_content_key(item)
                 end
             }
 
@@ -47,11 +47,12 @@ return {
             vim.notify = function(msg, level, opts)
                 if opts and opts.title then
                     opts.group = opts.title
-                    notification.set_config(opts.title, vim.tbl_extend("force", default_config, { name = opts.group }),
+                    require("fidget.notification").set_config(opts.title,
+                        vim.tbl_extend("force", default_config, { name = opts.group }),
                         false)
                 end
 
-                notification.notify(msg, level, opts)
+                require("fidget.notification").notify(msg, level, opts)
             end
         end
     }

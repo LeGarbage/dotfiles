@@ -1,174 +1,177 @@
-local function diff_source()
-    local gitsigns = vim.b.gitsigns_status_dict
-    if gitsigns then
-        return {
-            added = gitsigns.added,
-            modified = gitsigns.changed,
-            removed = gitsigns.removed
-        }
-    end
-end
-
-local function get_lsps()
-    local buf_clients = vim.lsp.get_clients({ bufnr = 0 })
-    local buf_client_names = {}
-
-    for _, client in ipairs(buf_clients) do
-        table.insert(buf_client_names, client.name)
-    end
-
-    return buf_client_names
-end
-
-local colors = {
-    gray1  = '#282c34',
-    gray2  = '#31353f',
-    gray3  = '#393f4a',
-    gray4  = '#5c6370',
-    gray5  = '#abb2bf',
-    red    = '#e86671',
-    green  = '#98c379',
-    yellow = '#e5c07b',
-    blue   = '#61afef',
-    purple = '#c678dd',
-    cyan   = '#56b6c2',
-    orange = '#d19a66',
-    indigo = '#7681de',
-}
-local theme = {
-    normal = {
-        a = { bg = colors.blue, fg = colors.gray2 },
-        b = { bg = colors.gray3, fg = colors.gray5 },
-        c = { bg = colors.gray2, fg = colors.gray4 }
-    },
-    insert = {
-        a = { bg = colors.green, fg = colors.gray2 },
-        b = { bg = colors.gray3, fg = colors.gray5 },
-        c = { bg = colors.gray2, fg = colors.gray4 }
-    },
-    visual = {
-        a = { bg = colors.purple, fg = colors.gray2 },
-        b = { bg = colors.gray3, fg = colors.gray5 },
-        c = { bg = colors.gray2, fg = colors.gray4 }
-    },
-    replace = {
-        a = { bg = colors.red, fg = colors.gray2 },
-        b = { bg = colors.gray3, fg = colors.gray5 },
-        c = { bg = colors.gray2, fg = colors.gray4 }
-    },
-    command = {
-        a = { bg = colors.orange, fg = colors.gray2 },
-        b = { bg = colors.gray3, fg = colors.gray5 },
-        c = { bg = colors.gray2, fg = colors.gray4 }
-    },
-    inactive = {
-        a = { bg = colors.gray4, fg = colors.gray2 },
-        b = { bg = colors.gray3, fg = colors.gray5 },
-        c = { bg = colors.gray2, fg = colors.gray4 }
-    },
-}
-
+---@type Plugin
 return {
     {
-        "nvim-lualine/lualine.nvim",
-        dependencies = { "nvim-tree/nvim-web-devicons" },
-        opts = {
-            options = {
-                globalstatus = true,
-                always_show_tabline = false,
-                theme = theme,
-                disabled_filetypes = {
-                    winbar = { "toggleterm" }
-                }
-            },
-            sections = {
-                lualine_b = {
-                    { 'b:gitsigns_head', icon = '󰘬' },
-                    function()
-                        return require("direnv").statusline()
-                    end,
-                    {
-                        'diagnostics',
-                        sources = { 'nvim_diagnostic' },
-                        update_in_insert = true,
-                    },
+        src = "gh:nvim-lualine/lualine.nvim",
+        dependencies = { "gh:nvim-tree/nvim-web-devicons" },
+        setup = function()
+            local function diff_source()
+                local gitsigns = vim.b.gitsigns_status_dict
+                if gitsigns then
+                    return {
+                        added = gitsigns.added,
+                        modified = gitsigns.changed,
+                        removed = gitsigns.removed
+                    }
+                end
+            end
+
+            local function get_lsps()
+                local buf_clients = vim.lsp.get_clients({ bufnr = 0 })
+                local buf_client_names = {}
+
+                for _, client in ipairs(buf_clients) do
+                    table.insert(buf_client_names, client.name)
+                end
+
+                return buf_client_names
+            end
+
+            local colors = {
+                gray1  = '#282c34',
+                gray2  = '#31353f',
+                gray3  = '#393f4a',
+                gray4  = '#5c6370',
+                gray5  = '#abb2bf',
+                red    = '#e86671',
+                green  = '#98c379',
+                yellow = '#e5c07b',
+                blue   = '#61afef',
+                purple = '#c678dd',
+                cyan   = '#56b6c2',
+                orange = '#d19a66',
+                indigo = '#7681de',
+            }
+            local theme = {
+                normal = {
+                    a = { bg = colors.blue, fg = colors.gray2 },
+                    b = { bg = colors.gray3, fg = colors.gray5 },
+                    c = { bg = colors.gray2, fg = colors.gray4 }
                 },
-                lualine_c = {
-                    {
-                        'filename',
-                        path = 1,
-                        newfile_status = true,
-                        symbols = { modified = '●' }
-                    },
+                insert = {
+                    a = { bg = colors.green, fg = colors.gray2 },
+                    b = { bg = colors.gray3, fg = colors.gray5 },
+                    c = { bg = colors.gray2, fg = colors.gray4 }
                 },
-                lualine_x = {
-                    {
+                visual = {
+                    a = { bg = colors.purple, fg = colors.gray2 },
+                    b = { bg = colors.gray3, fg = colors.gray5 },
+                    c = { bg = colors.gray2, fg = colors.gray4 }
+                },
+                replace = {
+                    a = { bg = colors.red, fg = colors.gray2 },
+                    b = { bg = colors.gray3, fg = colors.gray5 },
+                    c = { bg = colors.gray2, fg = colors.gray4 }
+                },
+                command = {
+                    a = { bg = colors.orange, fg = colors.gray2 },
+                    b = { bg = colors.gray3, fg = colors.gray5 },
+                    c = { bg = colors.gray2, fg = colors.gray4 }
+                },
+                inactive = {
+                    a = { bg = colors.gray4, fg = colors.gray2 },
+                    b = { bg = colors.gray3, fg = colors.gray5 },
+                    c = { bg = colors.gray2, fg = colors.gray4 }
+                },
+            }
+
+            require("lualine").setup({
+                options = {
+                    globalstatus = true,
+                    always_show_tabline = false,
+                    theme = theme,
+                    disabled_filetypes = {
+                        winbar = { "toggleterm" }
+                    }
+                },
+                sections = {
+                    lualine_b = {
+                        { 'b:gitsigns_head', icon = '󰘬' },
                         function()
-                            local lsps = get_lsps()
-                            return table.concat(lsps, " ")
+                            return require("direnv").statusline()
                         end,
-                        icon = ""
+                        {
+                            'diagnostics',
+                            sources = { 'nvim_diagnostic' },
+                            update_in_insert = true,
+                        },
                     },
-                    'filetype'
-                },
-                lualine_y = {
-                    {
-                        'diff', source = diff_source
+                    lualine_c = {
+                        {
+                            'filename',
+                            path = 1,
+                            newfile_status = true,
+                            symbols = { modified = '●' }
+                        },
                     },
-                    { 'overseer' },
-                    function()
-                        return vim.fn.fnamemodify(vim.fn.getcwd(), ':~:t')
-                    end
-                },
-                lualine_z = { '%l/%L:%v' }
-            },
-            winbar = {
-                lualine_c = {
-                    {
+                    lualine_x = {
+                        {
+                            function()
+                                local lsps = get_lsps()
+                                return table.concat(lsps, " ")
+                            end,
+                            icon = ""
+                        },
+                        'filetype'
+                    },
+                    lualine_y = {
+                        {
+                            'diff', source = diff_source
+                        },
+                        { 'overseer' },
                         function()
-                            ---@diagnostic disable-next-line: undefined-field
-                            return _G.dropbar()
-                        end,
-                        color = "Winbar",
-                    },
-                },
-                lualine_x = {
-                    {
-                        function()
-                            ---@diagnostic disable-next-line: undefined-field
-                            return _G.orgmode.statusline()
+                            return vim.fn.fnamemodify(vim.fn.getcwd(), ':~:t')
                         end
                     },
+                    lualine_z = { '%l/%L:%v' }
                 },
-            },
-            inactive_winbar = {
-                lualine_c = {
-                    {
-                        'filename',
-                        path = 1,
-                        symbols = { modified = '●' }
-                    }
-                },
-            },
-            tabline = {
-                lualine_a = {
-                    {
-                        'tabs',
-                        max_length = vim.o.columns,
-                        use_mode_colors = true,
-                        mode = 2,
-                        tabs_color = {
-                            inactive = 'lualine_c_inactive',
+                winbar = {
+                    lualine_c = {
+                        {
+                            function()
+                                ---@diagnostic disable-next-line: undefined-field
+                                return _G.dropbar()
+                            end,
+                            color = "Winbar",
                         },
+                    },
+                    lualine_x = {
+                        {
+                            function()
+                                ---@diagnostic disable-next-line: undefined-field
+                                return _G.orgmode.statusline()
+                            end
+                        },
+                    },
+                },
+                inactive_winbar = {
+                    lualine_c = {
+                        {
+                            'filename',
+                            path = 1,
+                            symbols = { modified = '●' }
+                        }
+                    },
+                },
+                tabline = {
+                    lualine_a = {
+                        {
+                            'tabs',
+                            max_length = vim.o.columns,
+                            use_mode_colors = true,
+                            mode = 2,
+                            tabs_color = {
+                                inactive = 'lualine_c_inactive',
+                            },
+                        }
                     }
-                }
-            },
-            extensions = {
-                "oil",
-                "toggleterm",
-                "overseer",
-                "man"
-            },
-        }
+                },
+                extensions = {
+                    "oil",
+                    "toggleterm",
+                    "overseer",
+                    "man"
+                },
+            })
+        end
     }
 }

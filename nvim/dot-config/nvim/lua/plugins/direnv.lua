@@ -1,7 +1,8 @@
+---@type Plugin
 return {
     {
-        "NotAShelf/direnv.nvim",
-        config = function()
+        src = "gh:NotAShelf/direnv.nvim",
+        setup = function()
             require("direnv").setup({
                 statusline = {
                     enabled = true,
@@ -24,6 +25,6 @@ return {
                     vim.cmd("lsp enable")
                 end
             })
-        end,
+        end
     }
 }

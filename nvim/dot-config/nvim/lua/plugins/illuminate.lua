@@ -1,6 +1,19 @@
+---@type Plugin
 return {
     {
-        "RRethy/vim-illuminate",
-        -- Configuration is in init.lua. See issue 118 for vim-illuminate
+        src = "gh:RRethy/vim-illuminate",
+        setup = function()
+            require("illuminate").configure({
+                filetypes_denylist = {
+                    'NeogitStatus',
+                    'TelescopePrompt',
+                    'aerial-nav',
+                    'oil',
+                    'snacks_dashboard',
+                    'orgagenda',
+                    'qf'
+                },
+            })
+        end
     }
 }

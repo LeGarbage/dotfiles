@@ -4,7 +4,7 @@ local init_group = vim.api.nvim_create_augroup("my.init_group", {})
 vim.api.nvim_create_autocmd("TextYankPost", {
     group = init_group,
     callback = function()
-        vim.highlight.on_yank({ timeout = 300 })
+        vim.hl.on_yank({ timeout = 300 })
     end
 })
 

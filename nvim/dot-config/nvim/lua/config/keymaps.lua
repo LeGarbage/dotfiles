@@ -48,6 +48,14 @@ end, { desc = "Toggle undotree" })
 -- Snacks
 vim.keymap.set("n", "<leader>bd", require("snacks").bufdelete.delete)
 
+-- Todo comments
+vim.keymap.set("n", "]t", function()
+    require("todo-comments").jump_next()
+end, { desc = "Next todo comment" })
+vim.keymap.set("n", "[t", function()
+    require("todo-comments").jump_prev()
+end, { desc = "Previous todo comment" })
+
 -- Neogit
 vim.keymap.set("n", "<leader>n", "<cmd>Neogit<cr>", { desc = "Open Neogit" })
 

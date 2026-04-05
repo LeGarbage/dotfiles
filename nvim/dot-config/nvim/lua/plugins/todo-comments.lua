@@ -1,15 +1,13 @@
+---@type Plugin
 return {
     {
-        "folke/todo-comments.nvim",
+        src = "gh:folke/todo-comments.nvim",
         dependencies = {
-            "nvim-lua/plenary.nvim",
-            "nvim-telescope/telescope.nvim",
+            "gh:nvim-lua/plenary.nvim",
+            "gh:nvim-telescope/telescope.nvim",
         },
-        lazy = false,
-        opts = {},
-        keys = {
-            { "]t", function() require("todo-comments").jump_next() end, desc = "Next todo comment" },
-            { "[t", function() require("todo-comments").jump_prev() end, desc = "Previous todo comment" },
-        }
+        setup = function()
+            require("todo-comments").setup()
+        end
     }
 }
