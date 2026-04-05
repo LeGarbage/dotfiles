@@ -16,22 +16,13 @@ vim.api.nvim_create_autocmd("TermOpen", {
     end
 })
 
--- Set folding and intent options on file load
 vim.api.nvim_create_autocmd("FileType", {
     group = init_group,
     pattern = "*",
     callback = function(opt)
-        -- Set folding
-        vim.opt.foldlevel = 99
-        vim.o.foldlevelstart = 99
-        vim.opt.foldcolumn = "1"
-
-        vim.opt.indentkeys:append("!<Tab>")
-
-        -- Org does its own indent handling
-        -- Don't enable treesitter intents when not supported
-        if opt.match ~= "org" and vim.treesitter.query.get(vim.bo.filetype, "indents") then
-            vim.bo.indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
+        local winid = vim.api.nvim_get_current_win()
+        if not vim.bo[opt.buf].modifiable then
+            vim.wo[winid][0].spell = false
         end
     end,
 })
@@ -44,6 +35,8 @@ vim.api.nvim_create_autocmd("FileType", {
         local ts = require("nvim-treesitter")
         local lang = vim.treesitter.language.get_lang(opt.match)
 
+        if not lang then return end
+
         if vim.tbl_contains(ts.get_available(), lang) then
             -- Enable treesitter
             -- This call will fail if the language does not have a parser
@@ -53,6 +46,12 @@ vim.api.nvim_create_autocmd("FileType", {
                 ts.install(lang):await(function()
                     vim.treesitter.start(opt.buf, lang)
                 end)
+            end
+
+            -- Org does its own indent handling
+            -- Don't enable treesitter intents when not supported
+            if opt.match ~= "org" and vim.treesitter.query.get(lang, "indents") then
+                vim.bo.indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
             end
         end
     end

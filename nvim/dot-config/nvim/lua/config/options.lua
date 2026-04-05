@@ -12,6 +12,7 @@ vim.o.showmode = false
 
 vim.opt.backspace = { "indent", "eol", "start" }
 
+vim.o.breakindent = true
 vim.o.wrap = true
 vim.o.linebreak = true
 vim.o.showbreak = "󱞩 "
@@ -28,6 +29,10 @@ vim.o.shiftwidth = 4
 vim.o.smartindent = true
 vim.o.smarttab = true
 vim.o.expandtab = true
+
+vim.o.foldlevel = 99
+vim.o.foldlevelstart = 99
+vim.opt.indentkeys:append("!<Tab>")
 
 vim.o.ignorecase = true
 vim.o.smartcase = true
