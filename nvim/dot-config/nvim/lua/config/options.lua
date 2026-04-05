@@ -45,6 +45,8 @@ vim.opt.shortmess:append("c")
 vim.o.winborder = "rounded"
 vim.o.splitright = true
 
+vim.g.mapleader = " "
+
 vim.cmd.colorscheme("onedark")
 
 require("vim._core.ui2").enable({ enable = true })

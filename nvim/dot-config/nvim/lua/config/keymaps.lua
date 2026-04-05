@@ -1,5 +1,3 @@
-vim.g.mapleader = " "
-
 local function open_float()
     vim.diagnostic.open_float()
 end
