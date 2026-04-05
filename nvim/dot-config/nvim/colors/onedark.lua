@@ -109,7 +109,7 @@ define_highlight('TabLineFill', gray4, gray2, 'none')
 define_highlight('TabLineSel', yellow, gray3, 'none')
 define_highlight('Title', gray5, '', 'none')
 define_highlight('VertSplit', gray4, gray1, 'none')
-define_highlight('Visual', gray5, gray3, '')
+define_highlight('Visual', '', gray3, '')
 define_highlight('WarningMsg', red, '', '')
 define_highlight('WildMenu', gray2, indigo, '')
 define_highlight("Winbar", gray5, gray2, '')
@@ -196,6 +196,9 @@ vim.cmd("hi link NvimDapVirtualText DiagnosticInfo")
 define_highlight("IlluminatedWordText", "", gray3, "")
 define_highlight("IlluminatedWordRead", "", gray3, "")
 define_highlight("IlluminatedWordWrite", "", gray3, "")
+
+-- Visual Whitespace
+define_highlight("VisualNonText", gray4, gray3, "")
 
 -- RenderMarkdown
 define_highlight("RenderMarkdownCodeInline", '', 'NONE', '')

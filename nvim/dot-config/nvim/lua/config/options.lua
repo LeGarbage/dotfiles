@@ -42,7 +42,7 @@ vim.opt.concealcursor = ''
 
 vim.o.undofile = true
 
-vim.opt.listchars = { trail = "~", tab = "⭲ " }
+vim.opt.listchars = { tab = "⭲ " }
 vim.o.list = true
 
 vim.opt.shortmess:append("c")
