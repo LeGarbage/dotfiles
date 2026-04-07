@@ -85,7 +85,12 @@ vim.keymap.set("n", "<leader>fn", function()
 end, { desc = "Telescope notification history" })
 
 -- Oil
-vim.keymap.set("n", "<leader>i", "<cmd>Oil<cr>", { desc = "Open oil" })
+vim.keymap.set("n", "-", function()
+    require("oil").open()
+end, { desc = "Open parent directory" })
+vim.keymap.set("n", "<leader>i", function()
+    require("oil").open(vim.fn.getcwd())
+end, { desc = "Open current working directory" })
 
 -- Gitsigns
 vim.keymap.set("n", "]h", function() require("gitsigns").nav_hunk("next") end, { desc = "Next hunk" })

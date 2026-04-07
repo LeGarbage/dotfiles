@@ -40,6 +40,8 @@ vim.o.smartcase = true
 vim.opt.conceallevel = 2
 vim.opt.concealcursor = ''
 
+vim.o.splitkeep = "screen"
+
 vim.o.undofile = true
 
 vim.opt.listchars = { tab = "⭲ " }

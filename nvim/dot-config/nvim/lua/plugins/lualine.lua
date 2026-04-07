@@ -166,9 +166,6 @@ return {
                     }
                 },
                 extensions = {
-                    "oil",
-                    "toggleterm",
-                    "overseer",
                     "man"
                 },
             })

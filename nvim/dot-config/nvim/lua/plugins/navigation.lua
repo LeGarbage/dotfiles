@@ -28,6 +28,16 @@ return {
                 show_guides = true,
                 attach_mode = "global",
 
+                ignore = {
+                    filetypes = {
+                        "oil"
+                    }
+                },
+
+                layout = {
+                    placement = "edge"
+                },
+
                 nav = {
                     win_opts = {
                         winblend = 0,

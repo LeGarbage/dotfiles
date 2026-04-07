@@ -35,12 +35,6 @@ return {
                 },
                 constrain_cursor = "name",
                 skip_confirm_for_simple_edits = true,
-                confirmation = {
-                    border = "rounded"
-                },
-                keymaps_help = {
-                    border = "rounded"
-                }
             })
         end
     },
