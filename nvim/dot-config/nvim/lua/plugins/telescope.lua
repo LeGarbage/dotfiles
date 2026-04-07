@@ -4,6 +4,7 @@ return {
         src = "gh:nvim-telescope/telescope.nvim",
         dependencies = {
             "gh:nvim-lua/plenary.nvim",
+            "gh:nvim-tree/nvim-web-devicons",
             {
                 src = "gh:nvim-telescope/telescope-fzf-native.nvim",
                 build = function(data)
@@ -25,15 +26,25 @@ return {
                             ["<esc>"] = actions.close
                         },
                     },
+                    file_ignore_patterns = { ".git/" }
                 },
 
                 pickers = {
                     buffers = {
                         sort_lastused = true,
-                        sort_mru = true
+                        sort_mru = true,
+                        mappings = {
+                            i = {
+                                -- Double backslash switches to alternate buffer
+                                ["\\"] = actions.select_default
+                            },
+                        },
                     },
                     find_files = {
                         hidden = true
+                    },
+                    live_grep = {
+                        additional_args = { "--hidden" }
                     }
                 },
 
