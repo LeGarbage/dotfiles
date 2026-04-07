@@ -57,4 +57,6 @@ vim.cmd.colorscheme("onedark")
 require("vim._core.ui2").enable({ enable = true })
 
 -- Neovide
-vim.g.neovide_floating_shadow = false
+if vim.g.neovide then
+    vim.g.neovide_floating_shadow = false
+end
