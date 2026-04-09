@@ -17,19 +17,14 @@ return {
                     kind = "floating",
                     show_staged_diff = false,
                 },
+                commit_view = {
+                    kind = "tab",
+                    verify_commit = vim.fn.executable("gpg") == 1
+                },
                 commit_select_view = {
                     kind = "floating",
                 },
-                log_view = {
-                    kind = "floating",
-                },
-                reflog_view = {
-                    kind = "floating",
-                },
                 stash = {
-                    kind = "floating",
-                },
-                refs_view = {
                     kind = "floating",
                 },
                 signs = {

@@ -6,6 +6,8 @@ return {
             require("illuminate").configure({
                 filetypes_denylist = {
                     'NeogitStatus',
+                    'NeogitCommitView',
+                    'NeogitDiffView',
                     'TelescopePrompt',
                     'aerial-nav',
                     'oil',
