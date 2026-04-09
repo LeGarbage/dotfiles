@@ -56,6 +56,14 @@ vim.api.nvim_create_autocmd('LspAttach', {
                 end,
             })
         end
+
+        local builtin = require("telescope.builtin")
+        vim.keymap.set("n", "gri", builtin.lsp_implementations, { desc = "Telescope LSP implementations" })
+        vim.keymap.set("n", "grr", builtin.lsp_references, { desc = "Telescope LSP references" })
+        vim.keymap.set("n", "grt", builtin.lsp_type_definitions, { desc = "Telescope LSP type definitions" })
+        vim.keymap.set("n", "gd", builtin.lsp_definitions, { desc = "Telescope LSP definitions" })
+        vim.keymap.set("n", "go", builtin.lsp_document_symbols, { desc = "Telescope LSP symbols (buffer)" })
+        vim.keymap.set("n", "gO", builtin.lsp_workspace_symbols, { desc = "Telescope LSP symbols (workspace)" })
     end,
 })
 
