@@ -12,6 +12,9 @@ vim.lsp.config("*", {
 -- Completely disable the Gitlab lsp so it doesn't start every time :lsp enable is run
 vim.lsp.config("gitlab_duo", { filetypes = {} })
 
+-- Show colors as colored squares
+vim.lsp.document_color.enable(true, nil, { style = "virtual" })
+
 vim.api.nvim_create_autocmd('LspAttach', {
     group = vim.api.nvim_create_augroup('my.lsp', {}),
     callback = function(args)
