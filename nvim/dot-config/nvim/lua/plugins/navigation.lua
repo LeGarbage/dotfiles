@@ -34,6 +34,10 @@ return {
                     }
                 },
 
+                keymaps = {
+                    ["<Tab>"] = "actions.tree_toggle"
+                },
+
                 layout = {
                     placement = "edge"
                 },

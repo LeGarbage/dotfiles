@@ -126,7 +126,7 @@ return {
         setup = function()
             require("blink-pairs").setup({
                 highlights = {
-                    enabled = false,
+                    enabled = true,
                     matchparen = {
                         include_surrounding = true
                     },

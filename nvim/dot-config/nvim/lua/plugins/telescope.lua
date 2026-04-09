@@ -31,14 +31,14 @@ return {
 
                 pickers = {
                     buffers = {
-                        sort_lastused = true,
-                        sort_mru = true,
                         mappings = {
                             i = {
                                 -- Double backslash switches to alternate buffer
                                 ["\\"] = actions.select_default
                             },
                         },
+                        sort_lastused = true,
+                        sort_mru = true,
                     },
                     find_files = {
                         hidden = true

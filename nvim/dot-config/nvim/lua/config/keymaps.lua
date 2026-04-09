@@ -30,6 +30,10 @@ vim.keymap.set("n", "*", "*zz")
 vim.keymap.set("n", "#", "#zz")
 vim.keymap.set("n", "g*", "g*zz")
 vim.keymap.set("n", "g#", "g#zz")
+vim.keymap.set("n", "]]", "]]zz")
+vim.keymap.set("n", "[[", "[[zz")
+vim.keymap.set("n", "}", "}zz")
+vim.keymap.set("n", "{", "{zz")
 vim.keymap.set("n", "<leader>cc", function()
     if vim.wo.colorcolumn == "" then
         vim.wo.colorcolumn = "80"
@@ -59,9 +63,8 @@ vim.keymap.set("n", "<leader>n", "<cmd>Neogit<cr>", { desc = "Open Neogit" })
 
 -- Aerial
 vim.keymap.set("n", "<leader>at", "<cmd>AerialToggle!<cr>", { desc = "Toggle aerial sidebar" })
+vim.keymap.set("n", "<leader>ao", "<cmd>AerialOpen<cr>", { desc = "Open aerial sidebar" })
 vim.keymap.set("n", "<leader>an", "<cmd>AerialNavToggle<cr>", { desc = "Toggle aerial nav" })
-vim.keymap.set("n", "<leader>,", "<cmd>AerialPrev<cr>", { desc = "Aerial jump backward" })
-vim.keymap.set("n", "<leader>.", "<cmd>AerialNext<cr>", { desc = "Aerial jump forward" })
 
 -- Telescope
 local builtin = require("telescope.builtin")

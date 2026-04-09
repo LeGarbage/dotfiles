@@ -10,6 +10,7 @@
 ---                                           Strings are treated as the src of the plugin and should be used to specify only the order of plugins.
 ---                                           PluginSpecs install the specified plugin using the spec and should not be added anywhere else
 ---@field build? fun(data: PluginEventData) Function to be executed when the plugin is affected by a PackChanged event. Receives the data passed into the PackChanged event
+---@field disable? boolean Whether to disable this plugin.
 
 ---@class (exact) ResolvedPluginSpec: vim.pack.Spec
 ---@field setup? fun() Function to be executed when the plugin is loaded
@@ -81,10 +82,17 @@ local function expand_plugin_src(plugin)
 end
 
 ---@param plugins PluginSpec[]
+---@return ResolvedPluginSpec[]
 local function resolve_plugins(plugins)
     local i = 1
+    ---@type ResolvedPluginSpec[]
+    local result = {}
     while i <= #plugins do
         local plugin = plugins[i]
+
+        if plugin.disable then goto continue end
+
+        table.insert(result, plugin)
         plugin.dependencies = plugin.dependencies or {}
 
         for j, dependency in ipairs(plugin.dependencies) do
@@ -94,8 +102,11 @@ local function resolve_plugins(plugins)
             end
         end
 
+        ::continue::
         i = i + 1
     end
+
+    return result
 end
 
 --- Makes sure that every string dependency is defined and that the same plugin isn't defined twice
@@ -123,12 +134,9 @@ end
 ---@type PluginSpec[]
 local flattened_plugins = vim.iter(require("modules.utils").require_all("plugins")):flatten():totable()
 
----@cast flattened_plugins -number
 local unsorted_plugins = flattened_plugins
 
-resolve_plugins(unsorted_plugins)
-
----@cast unsorted_plugins ResolvedPluginSpec[]
+unsorted_plugins = resolve_plugins(unsorted_plugins)
 
 for _, plugin in ipairs(unsorted_plugins) do
     expand_plugin_src(plugin)
@@ -184,7 +192,7 @@ local function complete_packages(arg_lead)
 end
 
 vim.api.nvim_create_user_command("PackUpdate", function(args)
-    if #args.fargs then
+    if #args.fargs > 0 then
         vim.pack.update(args.fargs, { force = args.bang })
     else
         vim.pack.update(nil, { force = args.bang })

@@ -73,3 +73,5 @@ vim.api.nvim_create_autocmd('LspDetach', {
         end
     end,
 })
+
+-- TODO: :help LspProgress once ui2 becomes more stable

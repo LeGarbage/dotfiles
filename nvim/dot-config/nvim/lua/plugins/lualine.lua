@@ -104,6 +104,7 @@ return {
                         },
                     },
                     lualine_x = {
+                        -- TODO: :help LspProgress
                         {
                             function()
                                 local lsps = get_lsps()
@@ -132,14 +133,6 @@ return {
                                 return _G.dropbar()
                             end,
                             color = "Winbar",
-                        },
-                    },
-                    lualine_x = {
-                        {
-                            function()
-                                ---@diagnostic disable-next-line: undefined-field
-                                return _G.orgmode.statusline()
-                            end
                         },
                     },
                 },

@@ -53,6 +53,10 @@ vim.api.nvim_create_autocmd("FileType", {
             if opt.match ~= "org" and vim.treesitter.query.get(lang, "indents") then
                 vim.bo.indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
             end
+
+            local winid = vim.api.nvim_get_current_win()
+            vim.wo[winid][0].foldmethod = "expr"
+            vim.wo[winid][0].foldexpr = "v:lua.vim.treesitter.foldexpr()"
         end
     end
 })
