@@ -6,7 +6,7 @@ return {
         setup = function()
             require("render-markdown").setup({
                 completions = { lsp = { enabled = true } },
-                render_modes = { "n", "c", "t", "i" },
+                render_modes = true,
                 sign = {
                     enabled = false,
                 },
@@ -32,6 +32,14 @@ return {
                         "String",
                     },
                 },
+                overrides = {
+                    buftype = {
+                        nofile = {
+                            anti_conceal = { enabled = false },
+                            code = { border = "hide", language = false }
+                        }
+                    }
+                }
             })
         end
     }

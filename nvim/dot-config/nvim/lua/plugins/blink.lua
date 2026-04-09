@@ -125,6 +125,9 @@ return {
         dependencies = { { src = "gh:saghen/blink.download" } },
         setup = function()
             require("blink-pairs").setup({
+                mappings = {
+                    disabled_filetypes = { "markdown" }
+                },
                 highlights = {
                     enabled = true,
                     matchparen = {
