@@ -67,6 +67,8 @@ vim.api.nvim_create_autocmd("FileType", {
     pattern = { "org", "markdown" },
     callback = function()
         vim.bo.textwidth = 80
+        -- formatexpr overrides textwidth, so unset it
+        vim.bo.formatexpr = ""
     end
 })
 

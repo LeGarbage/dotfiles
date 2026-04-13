@@ -12,7 +12,6 @@ return {
                 graph_style = "unicode",
                 initial_branch_name = "main",
                 kind = "split_above_all",
-                process_spinner = true,
                 commit_editor = {
                     kind = "floating",
                     show_staged_diff = false,

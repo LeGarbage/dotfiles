@@ -32,6 +32,16 @@ return {
                         "String",
                     },
                 },
+                html = {
+                    comment = {
+                        conceal = false
+                    }
+                },
+                link = {
+                    footnote = {
+                        icon = " "
+                    }
+                },
                 overrides = {
                     buftype = {
                         nofile = {

@@ -34,7 +34,6 @@ return {
                         auto_show = true,
                         max_height = 5,
                         scrollbar = false,
-                        border = "none"
                     },
 
                     documentation = {
@@ -67,8 +66,8 @@ return {
                         end
                     end,
                     per_filetype = {
-                        markdown = { "buffer" },
-                        org = { "buffer" }
+                        markdown = { "lsp", "snippets", "buffer", "path" },
+                        org = { "lsp", "snippets", "buffer", "path" }
                     },
                     providers = {
                         lazydev = {
@@ -125,9 +124,6 @@ return {
         dependencies = { { src = "gh:saghen/blink.download" } },
         setup = function()
             require("blink-pairs").setup({
-                mappings = {
-                    disabled_filetypes = { "markdown" }
-                },
                 highlights = {
                     enabled = true,
                     matchparen = {

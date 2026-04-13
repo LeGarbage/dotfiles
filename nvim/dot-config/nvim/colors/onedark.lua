@@ -47,6 +47,7 @@ local function define_highlight(group, fg, bg, attr)
 end
 
 -- Define the highlights
+define_highlight('DiagnosticOk', pink, '', 'italic')
 define_highlight('DiagnosticError', error, '', 'italic')
 define_highlight('DiagnosticWarn', warning, '', 'italic')
 define_highlight('DiagnosticInfo', info, '', 'italic')
@@ -88,7 +89,7 @@ define_highlight('ModeMsg', green, '', '')
 define_highlight('MoreMsg', green, '', '')
 define_highlight('NonText', gray4, '', 'none')
 define_highlight('Normal', gray5, gray1, 'none')
-define_highlight('Pmenu', gray5, gray3, '')
+define_highlight('Pmenu', gray5, gray1, '')
 define_highlight('PmenuSbar', 'NONE', 'NONE', '')
 define_highlight('PmenuSel', gray2, indigo, '')
 define_highlight('PmenuThumb', 'NONE', 'NONE', '')
@@ -129,7 +130,7 @@ define_highlight('Operator', cyan, '', '')
 define_highlight('PreProc', cyan, '', '')
 define_highlight('Include', blue, '', '')
 define_highlight('Define', purple, '', 'none')
-define_highlight('Macro', purple, '', '')
+define_highlight('Macro', orange, '', '')
 define_highlight('Type', yellow, '', 'none')
 define_highlight('Structure', cyan, '', '')
 define_highlight('Special', indigo, '', '')
@@ -141,6 +142,7 @@ define_highlight('Todo', orange, '', 'bold')
 -- Treesitter
 define_highlight('@variable.parameter', red, '', 'italic')
 define_highlight('@variable', red, '', '')
+define_highlight('@function.macro', orange, '', '')
 define_highlight('@tag', yellow, '', '')
 define_highlight('@tag.html', red, '', '')
 define_highlight('@tag.delimiter', gray5, '', '')
@@ -189,9 +191,6 @@ define_highlight("TreesitterContextLineNumberBottom", "", "", "underdotted guisp
 define_highlight("SnacksIndentScope", gray3, '', '')
 define_highlight("SnacksIndent", gray2, '', '')
 
--- Debugger
-vim.cmd("hi link NvimDapVirtualText DiagnosticInfo")
-
 -- Illuminate
 define_highlight("IlluminatedWordText", "", gray3, "")
 define_highlight("IlluminatedWordRead", "", gray3, "")
@@ -202,6 +201,11 @@ define_highlight("VisualNonText", gray4, gray3, "")
 
 -- RenderMarkdown
 define_highlight("RenderMarkdownCodeInline", '', 'NONE', '')
+vim.cmd("hi link RenderMarkdownInfo DiagnosticInfo")
+vim.cmd("hi link RenderMarkdownSuccess DiagnosticHint")
+vim.cmd("hi link RenderMarkdownHint Identifier")
+vim.cmd("hi link RenderMarkdownWarn DiagnosticWarn")
+vim.cmd("hi link RenderMarkdownError DiagnosticError")
 
 -- Completion
 define_highlight('BlinkCmpKindFunction', blue, '', '')

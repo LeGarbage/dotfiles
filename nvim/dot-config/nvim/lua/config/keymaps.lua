@@ -32,10 +32,11 @@ vim.keymap.set("n", "[[", "[[zz")
 vim.keymap.set("n", "}", "}zz")
 vim.keymap.set("n", "{", "{zz")
 vim.keymap.set("n", "<leader>cc", function()
-    if vim.wo.colorcolumn == "" then
-        vim.wo.colorcolumn = "80"
+    local winid = vim.api.nvim_get_current_win()
+    if vim.wo[winid][0].colorcolumn == "" then
+        vim.wo[winid][0].colorcolumn = "80"
     else
-        vim.wo.colorcolumn = ""
+        vim.wo[winid][0].colorcolumn = ""
     end
 end, { desc = "Toggle colorcolumn" })
 vim.keymap.set("n", "<leader>u", function()
