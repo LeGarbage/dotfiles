@@ -27,19 +27,19 @@ return {
             end
 
             local colors = {
-                gray1  = '#282c34',
-                gray2  = '#31353f',
-                gray3  = '#393f4a',
-                gray4  = '#5c6370',
-                gray5  = '#abb2bf',
-                red    = '#e86671',
-                green  = '#98c379',
-                yellow = '#e5c07b',
-                blue   = '#61afef',
-                purple = '#c678dd',
-                cyan   = '#56b6c2',
-                orange = '#d19a66',
-                indigo = '#7681de',
+                gray1  = "#282c34",
+                gray2  = "#31353f",
+                gray3  = "#393f4a",
+                gray4  = "#5c6370",
+                gray5  = "#abb2bf",
+                red    = "#e86671",
+                green  = "#98c379",
+                yellow = "#e5c07b",
+                blue   = "#61afef",
+                purple = "#c678dd",
+                cyan   = "#56b6c2",
+                orange = "#d19a66",
+                indigo = "#7681de",
             }
             local theme = {
                 normal = {
@@ -85,22 +85,22 @@ return {
                 },
                 sections = {
                     lualine_b = {
-                        { 'b:gitsigns_head', icon = '󰘬' },
+                        { "b:gitsigns_head", icon = "󰘬" },
                         function()
                             return require("direnv").statusline()
                         end,
                         {
-                            'diagnostics',
-                            sources = { 'nvim_diagnostic' },
+                            "diagnostics",
+                            sources = { "nvim_diagnostic" },
                             update_in_insert = true,
                         },
                     },
                     lualine_c = {
                         {
-                            'filename',
+                            "filename",
                             path = 1,
                             newfile_status = true,
-                            symbols = { modified = '●' }
+                            symbols = { modified = "●" }
                         },
                     },
                     lualine_x = {
@@ -112,49 +112,89 @@ return {
                             end,
                             icon = ""
                         },
-                        'filetype'
+                        "filetype"
                     },
                     lualine_y = {
                         {
-                            'diff', source = diff_source
+                            "diff", source = diff_source
                         },
-                        { 'overseer' },
+                        { "overseer" },
                         function()
-                            return vim.fn.fnamemodify(vim.fn.getcwd(), ':~:t')
+                            return vim.fn.fnamemodify(vim.fn.getcwd(), ":~:t")
                         end
                     },
-                    lualine_z = { '%l/%L:%v' }
+                    lualine_z = { "%l/%L:%v" }
                 },
                 winbar = {
                     lualine_c = {
                         {
                             function()
-                                ---@diagnostic disable-next-line: undefined-field
-                                return _G.dropbar()
+                                local sep = "%#NonText# %#WinBar#"
+
+                                local file_path = vim.api.nvim_buf_get_name(0)
+                                local path_list = {}
+
+                                if file_path == "" then
+                                    table.insert(path_list, "[No Name]")
+                                else
+                                    local relative_path =
+                                        vim.fs.normalize(vim.fs.relpath(vim.fn.getcwd(0), file_path) or file_path)
+                                    local path_components = vim.split(relative_path, "/", { trimempty = true })
+                                    for i, component in ipairs(path_components) do
+                                        -- Last component is the file name, use icon
+                                        if i == #path_components then
+                                            local icon
+                                            local icon_hl
+
+                                            icon, icon_hl = require("nvim-web-devicons").get_icon(component)
+                                            table.insert(path_list,
+                                                "%#" ..
+                                                icon_hl .. "#" .. icon .. "%#WinBar#" .. " " .. component)
+                                        else
+                                            table.insert(path_list, component)
+                                        end
+                                    end
+                                end
+
+                                local breadcrumbs = table.concat(path_list, sep)
+                                local end_icon = ""
+
+                                if #require("aerial").get_location(true) > 0 then
+                                    end_icon = sep
+                                end
+
+                                return breadcrumbs .. end_icon
                             end,
-                            color = "Winbar",
+                            color = "WinBar",
+                            padding = { left = 1, right = 0 },
+                        },
+                        {
+                            "aerial",
+                            sep = " ",
+                            padding = { left = 0, right = 1 },
                         },
                     },
                 },
                 inactive_winbar = {
                     lualine_c = {
                         {
-                            'filename',
+                            "filename",
                             path = 1,
-                            symbols = { modified = '●' }
+                            symbols = { modified = "●" }
                         }
                     },
                 },
                 tabline = {
                     lualine_a = {
                         {
-                            'tabs',
+                            "tabs",
                             max_length = vim.o.columns,
                             use_mode_colors = true,
                             mode = 2,
                             tabs_color = {
-                                inactive = 'lualine_c_inactive',
+                                inactive = "lualine_c_inactive",
                             },
+                            show_modified_status = false,
                         }
                     }
                 },
