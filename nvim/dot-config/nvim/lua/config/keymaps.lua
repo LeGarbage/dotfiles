@@ -5,14 +5,10 @@ vim.keymap.set("n", "<S-k>", function()
 end)
 
 -- Disable arrow keys
-vim.keymap.set("n", "<Up>", "")
-vim.keymap.set("n", "<Down>", "")
-vim.keymap.set("n", "<Left>", "")
-vim.keymap.set("n", "<Right>", "")
-vim.keymap.set("i", "<Up>", "")
-vim.keymap.set("i", "<Down>", "")
-vim.keymap.set("i", "<Left>", "")
-vim.keymap.set("i", "<Right>", "")
+vim.keymap.set({ "n", "i" }, "<Up>", "")
+vim.keymap.set({ "n", "i" }, "<Down>", "")
+vim.keymap.set({ "n", "i" }, "<Left>", "")
+vim.keymap.set({ "n", "i" }, "<Right>", "")
 
 -- General utils
 vim.keymap.set("i", "jk", "<esc>", { desc = "Exit insert mode" })
@@ -106,7 +102,7 @@ vim.keymap.set("n", "<leader>hr", function() require("gitsigns").reset_hunk() en
 vim.keymap.set("v", "<leader>hr", function() require("gitsigns").reset_hunk({ vim.fn.line("."), vim.fn.line("v") }) end,
     { desc = "Reset hunk" })
 vim.keymap.set("n", "<leader>hi", function() require("gitsigns").preview_hunk_inline() end, { desc = "Preview hunk" })
-vim.keymap.set("n", "<leader>hb", function() require("gitsigns").toggle_current_line_blame() end, { desc = "Blame line" })
+vim.keymap.set("n", "<leader>hb", function() require("gitsigns").blame_line() end, { desc = "Blame line" })
 vim.keymap.set({ "o", "x" }, "ih", function() require("gitsigns").select_hunk() end)
 
 -- Session management

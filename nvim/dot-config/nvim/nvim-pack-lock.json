@@ -55,7 +55,7 @@
       "src": "https://github.com/NeogitOrg/neogit"
     },
     "nvim-lspconfig": {
-      "rev": "8a9378a822719346a0288fa004dab302ca3c0a8f",
+      "rev": "4b7fbaa239c5db6b36f424a4521ca9f1a401be33",
       "src": "https://github.com/neovim/nvim-lspconfig"
     },
     "nvim-surround": {
@@ -108,7 +108,7 @@
       "src": "https://github.com/nvim-telescope/telescope-ui-select.nvim"
     },
     "telescope.nvim": {
-      "rev": "3ab376cfae65b921dda454df5967f8df673effc6",
+      "rev": "471eebb1037899fd942cc0f52c012f8773505da1",
       "src": "https://github.com/nvim-telescope/telescope.nvim"
     },
     "todo-comments.nvim": {

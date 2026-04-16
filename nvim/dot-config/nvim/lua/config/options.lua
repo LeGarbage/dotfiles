@@ -1,7 +1,3 @@
-vim.o.hidden = true
-
-vim.o.belloff = "all"
-vim.o.errorbells = false
 vim.o.number = true
 vim.o.relativenumber = true
 
@@ -51,7 +47,6 @@ vim.o.list = true
 vim.opt.shortmess:append("c")
 
 vim.o.winborder = "rounded"
-vim.o.splitright = true
 
 vim.g.mapleader = " "
 
