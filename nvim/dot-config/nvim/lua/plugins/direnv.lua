@@ -22,7 +22,9 @@ return {
             vim.api.nvim_create_autocmd("User", {
                 pattern = "DirenvLoaded",
                 callback = function()
-                    vim.cmd("lsp enable")
+                    for _, lsp in ipairs(vim.lsp.get_configs({ enabled = true })) do
+                        vim.lsp.enable(lsp.name)
+                    end
                 end
             })
         end
