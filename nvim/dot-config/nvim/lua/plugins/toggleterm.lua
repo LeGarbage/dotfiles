@@ -6,6 +6,7 @@ return {
             require("toggleterm").setup({
                 close_on_exit = true,
                 shade_terminals = false,
+                open_mapping = [[<C-\>]],
                 float_opts = {
                     border = "rounded",
                     title_pos = "center",

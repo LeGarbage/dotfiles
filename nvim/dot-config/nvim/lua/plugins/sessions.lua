@@ -8,6 +8,7 @@ return {
                 suppressed_dirs = { "~" },
                 bypass_save_filetypes = { "snacks_dashboard", "oil" },
                 legacy_cmds = false,
+                close_filetypes_on_save = { "checkhealth", "aerial" },
                 show_auto_restore_notif = true,
 
                 ---@class Data
