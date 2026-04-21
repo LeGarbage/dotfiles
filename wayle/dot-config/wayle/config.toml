@@ -1,0 +1,105 @@
+[general]
+font-mono = "CommitMono Nerd Font"
+font-sans = "CommitMono Nerd Font"
+
+[bar]
+location = "bottom"
+button-label-padding = 0.75
+button-variant = "basic"
+button-group-background = "bg-base"
+button-group-module-gap = 0.0
+
+[[bar.layout]]
+monitor = "eDP-1"
+left = ["dashboard", "hyprland-workspaces"]
+center = []
+right = [
+  "systray",
+  # "media",
+  "volume",
+  { modules = [
+    "network",
+    "bluetooth",
+    "battery",
+  ], name = "system" },
+  "weather",
+  "clock",
+  "notifications"
+]
+
+[[bar.layout]]
+monitor = "*"
+left = ["dashboard", "hyprland-workspaces"]
+center = []
+right = ["volume", "weather", "clock", "notifications"]
+
+[osd]
+position = "bottom-right"
+margin = 0
+
+[wallpaper]
+engine-enabled = false
+
+[modules.battery]
+label-show = false
+button-bg-color = "bg-base"
+
+[modules.bluetooth]
+label-show = false
+button-bg-color = "bg-base"
+
+[modules.clock]
+dropdown-show-seconds = true
+format = "%H:%M"
+icon-show = false
+border-color = "green"
+icon-bg-color = "green"
+label-color = "green"
+button-bg-color = "bg-base"
+
+[modules.hyprland-workspaces]
+container-bg-color = "bg-base"
+
+[modules.media]
+format = "{{ title }}"
+label-max-length = 20
+button-bg-color = "bg-base"
+
+[modules.network]
+label-show = false
+button-bg-color = "bg-base"
+
+[modules.notification]
+popup-position = "bottom-right"
+border-color = "blue"
+icon-bg-color = "blue"
+icon-color = "blue"
+label-color = "blue"
+label-show = false
+button-bg-color = "bg-base"
+
+[modules.systray]
+button-bg-color = "bg-base"
+
+[modules.volume]
+button-bg-color = "bg-base"
+
+[modules.weather]
+location = "Arvada"
+provider = "weather-api"
+time-format = "24h"
+units = "imperial"
+weatherapi-key = "$WEATHER_KEY"
+button-bg-color = "bg-base"
+
+[styling.palette]
+bg = "#21252b"
+blue = "#61afef"
+elevated = "#393f4a"
+fg = "#abb2bf"
+fg-muted = "#5c6370"
+green = "#98c379"
+primary = "#56b6c2"
+red = "#e86671"
+surface = "#282c34"
+yellow = "#e5c07b"

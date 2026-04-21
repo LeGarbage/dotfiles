@@ -13,5 +13,8 @@
       devShells.nvim = pkgs: {
         packages = with pkgs; [ lua-language-server ];
       };
+      devShells.wayle = pkgs: {
+        packages = with pkgs; [ tombi ];
+      };
     };
 }
