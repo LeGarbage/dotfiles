@@ -15,6 +15,11 @@ return {
                     'orgagenda',
                     'qf'
                 },
+                modes_denylist = {
+                    "v",
+                    "V",
+                    "\x16"
+                }
             })
         end
     }
