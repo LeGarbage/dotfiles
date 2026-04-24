@@ -47,7 +47,7 @@ local function define_highlight(group, fg, bg, attr)
 end
 
 -- Define the highlights
-define_highlight('DiagnosticOk', pink, '', 'italic')
+define_highlight('DiagnosticOk', green, '', 'italic')
 define_highlight('DiagnosticError', error, '', 'italic')
 define_highlight('DiagnosticWarn', warning, '', 'italic')
 define_highlight('DiagnosticInfo', info, '', 'italic')

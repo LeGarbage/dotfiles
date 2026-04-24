@@ -13,7 +13,8 @@ return {
                     'oil',
                     'snacks_dashboard',
                     'orgagenda',
-                    'qf'
+                    'qf',
+                    'checkhealth'
                 },
                 modes_denylist = {
                     "v",
