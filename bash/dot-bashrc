@@ -46,6 +46,7 @@ export HISTIGNORE
 shopt -s autocd
 shopt -s cdspell
 shopt -s globstar
+shopt -s histappend
 
 # Use vim motions
 set -o vi
