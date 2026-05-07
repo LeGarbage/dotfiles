@@ -1,8 +1,8 @@
 vim.o.number = true
 vim.o.relativenumber = true
 
-vim.o.mouse = "a"
-vim.o.scrolloff = 7
+vim.o.mouse = "nv"
+vim.o.scrolloff = 10
 vim.o.cursorline = true
 vim.o.showmode = false
 

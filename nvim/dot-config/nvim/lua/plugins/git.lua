@@ -3,7 +3,6 @@ return {
     {
         src = "gh:NeogitOrg/neogit",
         dependencies = {
-            "gh:nvim-lua/plenary.nvim",
             "gh:nvim-telescope/telescope.nvim",
         },
         setup = function()

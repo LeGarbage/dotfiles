@@ -15,7 +15,7 @@ vim.diagnostic.config({
         -- focusable = false,
         style = "minimal",
         border = "rounded",
-        source = false,
+        source = "if_many",
         header = "",
         prefix = "",
     },
