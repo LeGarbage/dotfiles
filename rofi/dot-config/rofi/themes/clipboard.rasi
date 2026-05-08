@@ -1,0 +1,5 @@
+@import "onedark"
+
+icon-search {
+    filename: "clipboard";
+}
