@@ -19,21 +19,20 @@ display[shutdown]="Shut Down"
 if [ -n "$1" ]; then
     case "$ROFI_INFO" in
         suspend)
-            systemctl suspend
+            coproc ( sleep 1 && systemctl suspend  > /dev/null  2>&1 )
             ;;
         lock)
-            loginctl lock-session
+            coproc ( sleep 1 && loginctl lock-session  > /dev/null  2>&1 )
             ;;
         logout)
-            loginctl terminate-session $XDG_SESSION_ID
+            coproc ( sleep 1 && loginctl terminate-session $XDG_SESSION_ID  > /dev/null  2>&1 )
             ;;
         reboot)
-            systemctl reboot
+            coproc ( sleep 1 && systemctl reboot  > /dev/null  2>&1 )
             ;;
         shutdown)
-            systemctl poweroff
+            coproc ( sleep 1 && systemctl poweroff  > /dev/null  2>&1 )
             ;;
-
     esac
     exit 0
 fi
