@@ -1,5 +1,8 @@
 #!/usr/bin/env bash
 
+# Don't allow custom entries
+echo -e "\0no-custom\x1ftrue"
+
 # If there is an entry
 if [ -n "$1" ]; then
     # Was it deleted?

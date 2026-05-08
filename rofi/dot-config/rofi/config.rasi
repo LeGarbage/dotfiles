@@ -3,11 +3,18 @@ configuration {
     show-icons: true;
     matching: "fuzzy";
 
+    // Scroll continuously
     scroll-method: 1;
 
-    drun-match-fields: "name";
+    // Allow mouse selection
+    me-select-entry: "";
+    me-accept-entry: "MousePrimary";
+
+    // Only display and match application names
+    drun-match-fields: "name,keywords";
     drun-display-format: "{name}";
 
+    // Just show window titles in the window switcher
     window-format: "{t}";
 
     calc {
@@ -19,23 +26,3 @@ configuration {
 }
 
 @theme "spotlight-dark"
-
-* {
-    font: "CommitMonoNerdFont 12";
-
-    // bg0:    #242424;
-    // bg1:    #7E7E7E;
-    // bg2:    #0860f2;
-    //
-    // fg0:    #DEDEDE;
-    // fg1:    #FFFFFF;
-    // fg2:    #DEDEDE;
-
-    bg0:    #282C34;
-    bg1:    #5D677A;
-    bg2:    #61AFEF;
-
-    fg0:    #DCDFE4;
-    fg1:    #DCDFE4;
-    fg2:    #DCDFE4;
-}

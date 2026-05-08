@@ -1,0 +1,44 @@
+* {
+    font: "CommitMonoNerdFont 12";
+
+    bg: #282C34;
+    bg-alt: #5D677A;
+    selected: #61AFEF;
+    fg: #DCDFE4;
+
+    background-color: transparent;
+    text-color: @fg;
+
+    margin: 0;
+    padding: 0;
+    spacing: 0;
+}
+
+window {
+    background-color: @bg;
+
+    location: center;
+    width: 640;
+
+    border: 2px;
+    border-color: @fg;
+    border-radius: 8;
+}
+
+element {
+    padding: 8px 16px;
+    spacing: 16px;
+    background-color: transparent;
+}
+
+element selected {
+    background-color: @selected;
+}
+
+element-text {
+    text-color: @bg;
+}
+
+element-icon {
+    size: 1em;
+}
