@@ -26,8 +26,6 @@ entry {
 
     placeholder : "Search";
     placeholder-color : @bg-alt;
-
-    hide-cursor-on-empty: true;
 }
 
 message {

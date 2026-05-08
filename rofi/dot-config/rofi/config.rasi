@@ -22,7 +22,8 @@ configuration {
         terse: true;
         no-history: true;
         calc-command: "wl-copy {result}";
+        hint-welcome: "Result:";
     }
 }
 
-@theme "spotlight-dark"
+@theme "onedark"

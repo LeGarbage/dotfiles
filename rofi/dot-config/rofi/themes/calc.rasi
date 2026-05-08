@@ -1,0 +1,13 @@
+@import "onedark"
+
+mainbox {
+    children: [ inputbar, message ];
+}
+
+entry {
+    placeholder : "";
+}
+
+icon-search {
+    filename: "calc";
+}
