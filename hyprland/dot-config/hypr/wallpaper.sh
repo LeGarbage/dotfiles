@@ -35,25 +35,11 @@ stop_wallpapers() {
 }
 
 watch_monitors() {
-    socat - UNIX-CONNECT:"$HYPRLAND_SOCKET" | while read -r event; do
+    socat - UNIX-CONNECT:"$XDG_RUNTIME_DIR/hypr/$HYPRLAND_INSTANCE_SIGNATURE/.socket2.sock" | while read -r event; do
         case "$event" in
-            monitoradded*|monitorremoved*|monitorchanged*)
-               MONITORS=$(hyprctl -j monitors | jq -r ".[].name")
-               for PID in $(pgrep -f "linux-wallpaperengine --screen-root "); do
-                    MON=$(ps -o args= -p "$PID" | grep -oP '(?<=--screen-root )\S+')
-                    if ! echo "$MONITORS" | grep -qx "$MON"; then
-                        kill "$PID"
-                    fi
-               done
-
-                for MONITOR in $MONITORS; do
-                    if ! pgrep -f "linux-wallpaperengine --screen-root $MONITOR" >/dev/null; then
-                        (
-                            sleep 1
-                            set_wallpaper "$MONITOR"
-                        ) &
-                    fi
-                done
+            "monitoradded>>"*|"monitorremoved>>"*|"monitorchanged>>"*)
+                stop_wallpapers
+                start_wallpapers
                 ;;
         esac
     done
@@ -62,7 +48,7 @@ watch_monitors() {
 case "$1" in
     start)
         start_wallpapers
-        watch_monitors &
+        watch_monitors
         ;;
     stop)
         stop_wallpapers
