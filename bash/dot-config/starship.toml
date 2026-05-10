@@ -11,6 +11,8 @@ error_symbol = '[λ](red bold)'
 format = '─\[[$duration]($style)\]'
 
 [directory]
+truncation_symbol = "…/"
+read_only = " 󰌾"
 format = '─\[[$path]($style)[$read_only]($read_only_style)\]'
 
 [direnv]
