@@ -57,6 +57,11 @@ icon-bg-color = "green"
 label-color = "green"
 button-bg-color = "bg-base"
 
+[modules.dashboard]
+dropdown-logout-command = 'hyprshutdown -t "Logging Out..."'
+dropdown-reboot-command = 'hyprshutdown -t "Restarting..." --post-cmd "systemctl reboot"'
+dropdown-poweroff-command = 'hyprshutdown -t "Shutting Down..." --post-cmd "systemctl poweroff"'
+
 [modules.hyprland-workspaces]
 container-bg-color = "bg-base"
 

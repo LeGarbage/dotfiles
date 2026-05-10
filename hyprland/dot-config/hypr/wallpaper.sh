@@ -35,7 +35,7 @@ stop_wallpapers() {
 }
 
 watch_monitors() {
-    socat - UNIX-CONNECT:"$XDG_RUNTIME_DIR/hypr/$HYPRLAND_INSTANCE_SIGNATURE/.socket2.sock" | while read -r event; do
+    socat - UNIX-CONNECT:"$HYPRLAND_SOCKET" | while read -r event; do
         case "$event" in
             "monitoradded>>"*|"monitorremoved>>"*|"monitorchanged>>"*)
                 stop_wallpapers

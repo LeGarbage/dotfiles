@@ -25,13 +25,13 @@ if [ -n "$1" ]; then
             coproc ( sleep 1 && loginctl lock-session  > /dev/null  2>&1 )
             ;;
         logout)
-            coproc ( sleep 1 && loginctl terminate-session $XDG_SESSION_ID  > /dev/null  2>&1 )
+            coproc ( sleep 1 && hyprshutdown -t "Logging Out..." > /dev/null  2>&1 )
             ;;
         reboot)
-            coproc ( sleep 1 && systemctl reboot  > /dev/null  2>&1 )
+            coproc ( sleep 1 && hyprshutdown -t "Restarting..." --post-cmd "systemctl reboot"  > /dev/null  2>&1 )
             ;;
         shutdown)
-            coproc ( sleep 1 && systemctl poweroff  > /dev/null  2>&1 )
+            coproc ( sleep 1 && hyprshutdown -t "Shutting Down..." --post-cmd "systemctl poweroff"  > /dev/null  2>&1 )
             ;;
     esac
     exit 0
