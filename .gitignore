@@ -1,3 +1,4 @@
 .env
-.qmlls.ini
 .direnv/
+schema.json
+runtime.toml
