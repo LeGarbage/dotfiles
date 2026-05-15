@@ -42,6 +42,18 @@ return {
                     end
                 end,
 
+                pre_restore_cmds = {
+                    function()
+                        -- Stop all current LSPs before loading new session
+                        for _, lsp in ipairs(vim.lsp.get_configs({ enabled = true })) do
+                            vim.lsp.enable(lsp.name, false)
+                        end
+                        for _, lsp in ipairs(vim.lsp.get_clients()) do
+                            lsp:stop(true)
+                        end
+                    end
+                },
+
                 session_lens = {
                     picker = "telescope",
 
