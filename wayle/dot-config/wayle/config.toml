@@ -4,6 +4,7 @@ font-sans = "CommitMono Nerd Font"
 
 [bar]
 location = "bottom"
+scale = 0.8999999761581421
 button-label-padding = 0.75
 button-variant = "basic"
 button-group-background = "bg-base"
@@ -16,22 +17,32 @@ center = []
 right = [
   "systray",
   # "media",
+  "notifications",
   "volume",
   { modules = [
     "network",
     "bluetooth",
     "battery",
   ], name = "system" },
-  "weather",
-  "clock",
-  "notifications"
+  { modules = [
+    "weather",
+    "clock",
+  ], name = "time" },
 ]
 
 [[bar.layout]]
 monitor = "*"
 left = ["dashboard", "hyprland-workspaces"]
 center = []
-right = ["volume", "weather", "clock", "notifications"]
+right = [
+  "systray",
+  "notifications",
+  "volume",
+  { modules = [
+    "weather",
+    "clock",
+  ], name = "time" }
+]
 
 [osd]
 position = "bottom-right"
@@ -57,12 +68,8 @@ icon-bg-color = "green"
 label-color = "green"
 button-bg-color = "bg-base"
 
-[modules.dashboard]
-dropdown-logout-command = 'hyprshutdown -t "Logging Out..."'
-dropdown-reboot-command = 'hyprshutdown -t "Restarting..." --post-cmd "systemctl reboot"'
-dropdown-poweroff-command = 'hyprshutdown -t "Shutting Down..." --post-cmd "systemctl poweroff"'
-
 [modules.hyprland-workspaces]
+show-special = false
 container-bg-color = "bg-base"
 
 [modules.media]
@@ -87,9 +94,12 @@ button-bg-color = "bg-base"
 button-bg-color = "bg-base"
 
 [modules.volume]
+label-show = false
 button-bg-color = "bg-base"
 
 [modules.weather]
+icon-name = "ld-umbrella-off-symbolic"
+label-show = false
 location = "Arvada"
 provider = "weather-api"
 time-format = "24h"
