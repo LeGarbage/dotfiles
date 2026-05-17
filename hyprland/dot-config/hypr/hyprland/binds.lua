@@ -1,11 +1,11 @@
-local programs = require("programs")
+local programs = require("hyprland.programs")
 
 hl.bind("SUPER + Return", hl.dsp.exec_cmd(programs.terminal))
 hl.bind("SUPER + Q", hl.dsp.window.close())
 hl.bind("SUPER + ALT + L", hl.dsp.exec_cmd("hyprlock"))
 hl.bind("SUPER + P", hl.dsp.layout("togglesplit"))
-hl.bind("SUPER + F", hl.dsp.window.fullscreen())
-hl.bind("SUPER + T", hl.dsp.window.float())
+hl.bind("SUPER + SHIFT + F", hl.dsp.window.fullscreen())
+hl.bind("SUPER + F", hl.dsp.window.float())
 
 hl.bind("SUPER + grave", hl.dsp.global("com.mitchellh.ghostty:LOGO+grave"))
 
