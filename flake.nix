@@ -16,5 +16,8 @@
       devShells.wayle = pkgs: {
         packages = with pkgs; [ tombi ];
       };
+      devShells.hyprland = pkgs: {
+        packages = with pkgs; [ lua-language-server ];
+      };
     };
 }

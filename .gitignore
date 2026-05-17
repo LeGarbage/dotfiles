@@ -1,4 +1,5 @@
 .env
 .direnv/
+.luarc.json
 schema.json
 runtime.toml

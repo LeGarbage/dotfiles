@@ -1,0 +1,8 @@
+require("config")
+require("monitors")
+require("binds")
+require("rules")
+require("layouts")
+require("animations")
+require("events")
+require("wallpaper")
