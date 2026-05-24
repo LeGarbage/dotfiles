@@ -7,6 +7,7 @@ local M = {
     browser = "uwsm-app -s app.slice -- firefox.desktop",
     editor = "uwsm-app -s app.slice -- neovide.desktop",
     calendar = "uwsm-app -s app.slice -- org.gnome.Calendar.desktop",
+    tasks = "uwsm-app -s app.slice -- io.github.alainm23.planify.desktop",
     obsidian = "uwsm-app -s app.slice -- obsidian.desktop",
 
     rofi = {

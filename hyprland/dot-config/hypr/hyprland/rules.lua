@@ -9,14 +9,6 @@ hl.window_rule({
     dim_around = true
 })
 
--- Force steam big picture to always be fullscreen
-hl.window_rule({
-    match = {
-        initial_title = "Steam Big Picture Mode"
-    },
-    fullscreen = true
-})
-
 -- Ignore maximize requests from all apps. You'll probably like this.
 hl.window_rule({
     match = {
