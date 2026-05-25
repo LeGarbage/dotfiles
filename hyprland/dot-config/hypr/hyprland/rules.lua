@@ -47,3 +47,16 @@ hl.layer_rule({
     dim_around = true,
     animation = "slide"
 })
+
+local function assign_workspaces()
+    local monitors = hl.get_monitors()
+    table.sort(monitors, function(a, b) return a.id > b.id end)
+
+    for i = 1, 10 do
+        local monitor = monitors[(i % #monitors) + 1]
+        hl.workspace_rule({ workspace = tostring(i), monitor = monitor.name, default = i <= #monitors })
+    end
+end
+
+hl.on("monitor.added", assign_workspaces)
+hl.on("monitor.removed", assign_workspaces)
