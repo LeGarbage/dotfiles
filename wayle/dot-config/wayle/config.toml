@@ -5,6 +5,7 @@ font-sans = "CommitMono Nerd Font"
 [bar]
 location = "bottom"
 scale = 0.8999999761581421
+dropdown-freeze-label = false
 button-label-padding = 0.75
 button-variant = "basic"
 button-group-background = "bg-base"
@@ -16,10 +17,9 @@ left = ["dashboard", "hyprland-workspaces"]
 center = []
 right = [
   "systray",
-  # "media",
-  "notifications",
-  "volume",
+  { modules = ["notifications", "custom-update-status", "media"], name = "updates" },
   { modules = [
+    "volume",
     "network",
     "bluetooth",
     "battery",
@@ -73,8 +73,8 @@ show-special = false
 container-bg-color = "bg-base"
 
 [modules.media]
-format = "{{ title }}"
-label-max-length = 20
+icon-type = "default"
+label-show = false
 button-bg-color = "bg-base"
 
 [modules.network]
@@ -105,6 +105,26 @@ provider = "weather-api"
 time-format = "24h"
 units = "imperial"
 weatherapi-key = "$WEATHER_KEY"
+button-bg-color = "bg-base"
+
+[[modules.custom]]
+id = "update-status"
+interval-ms = 3600000
+command = """
+current_rev=$(nixos-version --revision 2>/dev/null) || {
+  exit $?
+}
+latest_rev=$(curl -fsSL --connect-timeout 5 https://nixos.org/channels/nixos-unstable/git-revision 2>/dev/null) || {
+  exit $?
+}
+
+if [ "$current_rev" != "$latest_rev" ]; then
+  echo '{"alt":"update-needed"}'
+fi
+"""
+icon-map = { update-needed = "tb-alert-triangle-symbolic" }
+label-show = false
+hide-if-empty = true
 button-bg-color = "bg-base"
 
 [styling.palette]
