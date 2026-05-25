@@ -1,11 +1,11 @@
 {
   "plugins": {
     "aerial.nvim": {
-      "rev": "43dd88ad4024b1945906887521057c73d3b0d84e",
+      "rev": "b77c47c34e11ef9102a3f6dbd12f6b835b7c3af1",
       "src": "https://github.com/stevearc/aerial.nvim"
     },
     "auto-session": {
-      "rev": "daa7c996a0395e26342934843938647d0f1e87f4",
+      "rev": "3e145ee9af42eb6764908a1a481f53fe7f0bdbe5",
       "src": "https://github.com/rmagatti/auto-session"
     },
     "blink.cmp": {
@@ -23,7 +23,7 @@
       "version": ">=0.0.0"
     },
     "codediff.nvim": {
-      "rev": "8afc229d38dc13ce71b2ffbb860084b2c726e061",
+      "rev": "76ff1b13f0bcba655dca85cea1ef0df877a53c0f",
       "src": "https://github.com/esmuellert/codediff.nvim"
     },
     "direnv.nvim": {
@@ -31,7 +31,7 @@
       "src": "https://github.com/NotAShelf/direnv.nvim"
     },
     "fidget.nvim": {
-      "rev": "889e2e96edef4e144965571d46f7a77bcc4d0ddf",
+      "rev": "82404b196e73a00b1727a91903beef5ddc319d22",
       "src": "https://github.com/j-hui/fidget.nvim"
     },
     "friendly-snippets": {
@@ -55,7 +55,7 @@
       "src": "https://github.com/NeogitOrg/neogit"
     },
     "nvim-lspconfig": {
-      "rev": "8f7e64066e2641d5e7d494962a9c7051e3d38dd5",
+      "rev": "a4ed4e761c400849e8c9f8bda33e5083f890268c",
       "src": "https://github.com/neovim/nvim-lspconfig"
     },
     "nvim-surround": {
@@ -72,7 +72,7 @@
       "src": "https://github.com/nvim-treesitter/nvim-treesitter-context"
     },
     "nvim-web-devicons": {
-      "rev": "2795c26c916bb3c57dde308b82be51971fa92747",
+      "rev": "0d7d35fa946837b8738b17c18d1faa1ac351e7f9",
       "src": "https://github.com/nvim-tree/nvim-web-devicons"
     },
     "oil-git-status.nvim": {
@@ -80,11 +80,11 @@
       "src": "https://github.com/refractalize/oil-git-status.nvim"
     },
     "oil.nvim": {
-      "rev": "0fcc83805ad11cf714a949c98c605ed717e0b83e",
+      "rev": "b91ee5a77a6a9605d9c1aaf4fda74b66082c8297",
       "src": "https://github.com/stevearc/oil.nvim"
     },
     "overseer.nvim": {
-      "rev": "3d0c7e7bbfe1a1c6f9bfecd0af8709171a97df71",
+      "rev": "a93d9f6d6defdac4bcd6d2c8ba988650e42e0a0e",
       "src": "https://github.com/stevearc/overseer.nvim"
     },
     "plenary.nvim": {
@@ -96,7 +96,7 @@
       "src": "https://github.com/MeanderingProgrammer/render-markdown.nvim"
     },
     "snacks.nvim": {
-      "rev": "ad9ede6a9cddf16cedbd31b8932d6dcdee9b716e",
+      "rev": "0770753c88228f7f15449c6a5b242e3f7cd0d71c",
       "src": "https://github.com/folke/snacks.nvim"
     },
     "telescope-fzf-native.nvim": {
@@ -124,7 +124,7 @@
       "src": "https://github.com/RRethy/vim-illuminate"
     },
     "visual-whitespace.nvim": {
-      "rev": "49ff2b1c572ed7033a584381fa23aad2bf3bb258",
+      "rev": "02714f141dc0783eb814af6be534bdb0273142ff",
       "src": "https://github.com/mcauley-penney/visual-whitespace.nvim"
     }
   }

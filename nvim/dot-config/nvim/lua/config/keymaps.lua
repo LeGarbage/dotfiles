@@ -1,6 +1,8 @@
 vim.keymap.set({ "n", "i" }, "<C-k>", vim.diagnostic.open_float)
 vim.keymap.set("n", "<S-k>", function()
     vim.lsp.buf.hover({ border = "rounded" })
+end)
+vim.keymap.set("n", "<C-S-k>", function()
     require("snacks").image.hover()
 end)
 
