@@ -16,6 +16,7 @@
     {
       "type": "os",
       "keyColor": "green",
+      "format": "{pretty-name}",
     },
     {
       "type": "packages",
@@ -34,7 +35,7 @@
     },
     "break",
     {
-      "type": "de",
+      "type": "wm",
       "keyColor": "cyan",
     },
     {
