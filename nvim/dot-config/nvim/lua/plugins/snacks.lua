@@ -1,3 +1,4 @@
+---@diagnostic disable: assign-type-mismatch
 local neovim_text =
     [[     ___          ___          ___         ___                     ___     ]] .. "\n" ..
     [[    /\__\        /\  \        /\  \       /\__\         ___       /\__\    ]] .. "\n" ..
@@ -14,7 +15,14 @@ local neovim_text =
 return {
     {
         src = "gh:folke/snacks.nvim",
+        dependencies = { "gh:rmagatti/auto-session" },
         setup = function()
+            require("modules.startup").counter_increment()
+
+            local plugin_count = #vim.pack.get(nil, { info = false })
+            local nvim_version = vim.version()
+            local streak = require("modules.startup").get_streak()
+
             require("snacks").setup({
                 bigfile = {
                     enabled = true
@@ -82,9 +90,43 @@ return {
                         desc = { "%s", hl = "Normal" },
                     },
                     sections = {
-                        { text = { neovim_text, hl = "Function" },                                           padding = 3 },
-                        { section = "keys",                                                                  gap = 1,    padding = 2 },
-                        { text = { vim.fn.system("fortune -s"), hl = "String", width = 0, align = "center" } },
+                        {
+                            text = { neovim_text, hl = "Function" }, padding = 3
+                        },
+                        {
+                            {
+                                text = {
+                                    { "󰃭  ", hl = "Special" },
+                                    { os.date("%A, %B %d, %Y") }
+                                }
+                            },
+                            {
+                                text = {
+                                    { "  ", hl = "Special" },
+                                    { vim.fn.fnamemodify(require("modules.sessions").get_last_session() or "", ":~") }
+                                }
+                            },
+                            gap = 1,
+                            padding = 2
+                        },
+                        {
+                            section = "keys", gap = 1, padding = 2
+                        },
+                        {
+                            text = {
+                                string.format(
+                                    "󰏗 %d plugins ·  v%d.%d.%d · 󰈸 %d %s",
+                                    plugin_count,
+                                    nvim_version.major,
+                                    nvim_version.minor,
+                                    nvim_version.patch,
+                                    streak,
+                                    streak == 1 and "day" or "days"
+                                ),
+                                hl = "String"
+                            },
+                            align = "center"
+                        },
                     },
                 },
             })
