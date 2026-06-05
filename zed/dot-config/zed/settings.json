@@ -7,17 +7,39 @@
 // custom settings, run `zed: open default settings` from the
 // command palette (cmd-shift-p / ctrl-shift-p)
 {
-  "show_signature_help_after_edits": true,
+  "colorize_brackets": true,
+  "diagnostics": {
+    "inline": {
+      "enabled": true,
+    },
+  },
+  "always_treat_brackets_as_autoclosed": true,
+  "toolbar": {
+    "code_actions": false,
+  },
+  "minimap": {
+    "show": "never",
+  },
+  "prettier": {
+    "parser": "",
+  },
+  "vim": {
+    "use_system_clipboard": "on_yank",
+    "toggle_relative_line_numbers": true,
+  },
+  "inlay_hints": {
+    "enabled": true,
+  },
+  "cli_default_open_behavior": "existing_window",
   "icon_theme": "VSCode Icons for Zed (Dark)",
   "ui_font_family": "CommitMono Nerd Font Propo",
   "buffer_font_family": "CommitMono Nerd Font",
   "terminal": {
     "font_family": "CommitMono Nerd Font Mono",
   },
-  "colorize_brackets": false,
   "diff_view_style": "split",
   "semantic_tokens": "combined",
-  "cursor_blink": true,
+  "cursor_blink": false,
   "git": {
     "inline_blame": {
       "enabled": false,
@@ -46,7 +68,7 @@
     "diagnostics": false,
     "metrics": false,
   },
-  "vim_mode": false,
+  "vim_mode": true,
   "global_lsp_settings": {
     "semantic_token_rules": [
       {
@@ -62,6 +84,13 @@
       },
     ],
   },
+  "lsp": {
+    "clangd": {
+      "binary": {
+        "arguments": ["-compile-commands-dir=build"],
+      },
+    },
+  },
   "base_keymap": "VSCode",
   "soft_wrap": "editor_width",
   "ui_font_size": 16,
@@ -70,5 +99,10 @@
     "mode": "system",
     "light": "One Light",
     "dark": "One Dark Pro",
+  },
+  "theme_overrides": {
+    "One Dark Pro": {
+      "accents": ["#d19a66", "#c678dd", "#56b6c2"],
+    },
   },
 }
