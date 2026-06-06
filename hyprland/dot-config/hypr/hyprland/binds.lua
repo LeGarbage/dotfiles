@@ -42,8 +42,11 @@ hl.bind("SUPER + SHIFT + L", hl.dsp.window.move({ direction = "r" }))
 hl.bind("SUPER + SHIFT + K", hl.dsp.window.move({ direction = "u" }))
 hl.bind("SUPER + SHIFT + J", hl.dsp.window.move({ direction = "d" }))
 
-hl.bind("SUPER + Tab", hl.dsp.focus({ workspace = "m+1" }))
-hl.bind("SUPER + SHIFT + Tab", hl.dsp.focus({ workspace = "m-1" }))
+hl.bind("SUPER + Tab", hl.dsp.focus({ monitor = "+1" }))
+hl.bind("SUPER + SHIFT + Tab", hl.dsp.focus({ monitor = "+1" }))
+
+hl.bind("SUPER + CTRL + Right", hl.dsp.focus({ workspace = "m+1" }))
+hl.bind("SUPER + CTRL + Left", hl.dsp.focus({ workspace = "m-1" }))
 
 for i = 1, 10 do
     local key = i % 10 -- Map workspace 1-10 to keys 1-9 and 0
@@ -61,12 +64,20 @@ hl.bind("XF86AudioRaiseVolume", hl.dsp.exec_cmd("wpctl set-volume -l 1 @DEFAULT_
     { locked = true, repeating = true })
 hl.bind("XF86AudioLowerVolume", hl.dsp.exec_cmd("wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-"),
     { locked = true, repeating = true })
+hl.bind("SHIFT + XF86AudioRaiseVolume", hl.dsp.exec_cmd("wpctl set-volume -l 1 @DEFAULT_AUDIO_SINK@ 1%+"),
+    { locked = true, repeating = true })
+hl.bind("SHIFT + XF86AudioLowerVolume", hl.dsp.exec_cmd("wpctl set-volume @DEFAULT_AUDIO_SINK@ 1%-"),
+    { locked = true, repeating = true })
 hl.bind("XF86AudioMute", hl.dsp.exec_cmd("wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"),
     { locked = true, repeating = true })
 hl.bind("XF86AudioMicMute", hl.dsp.exec_cmd("wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle"),
     { locked = true, repeating = true })
 hl.bind("XF86MonBrightnessUp", hl.dsp.exec_cmd("brightnessctl -e4 -n2 set 5%+"), { locked = true, repeating = true })
 hl.bind("XF86MonBrightnessDown", hl.dsp.exec_cmd("brightnessctl -e4 -n2 set 5%-"), { locked = true, repeating = true })
+hl.bind("SHIFT + XF86MonBrightnessUp", hl.dsp.exec_cmd("brightnessctl -e4 -n2 set 1%+"),
+    { locked = true, repeating = true })
+hl.bind("SHIFT + XF86MonBrightnessDown", hl.dsp.exec_cmd("brightnessctl -e4 -n2 set 1%-"),
+    { locked = true, repeating = true })
 
 hl.bind("XF86AudioNext", hl.dsp.exec_cmd("playerctl next"), { locked = true })
 hl.bind("XF86AudioPrev", hl.dsp.exec_cmd("playerctl previous"), { locked = true })
