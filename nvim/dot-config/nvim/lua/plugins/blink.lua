@@ -121,7 +121,12 @@ return {
     {
         src = "gh:saghen/blink.pairs",
         version = vim.version.range("*"),
-        dependencies = { { src = "gh:saghen/blink.download" } },
+        dependencies = { { src = "gh:saghen/blink.lib" } },
+        build = function(data)
+            if data.kind == "install" or data.kind == "update" then
+                require('blink.pairs').download():pwait(60000)
+            end
+        end,
         setup = function()
             require("blink-pairs").setup({
                 highlights = {
