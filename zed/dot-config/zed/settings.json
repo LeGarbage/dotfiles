@@ -103,6 +103,13 @@
   "theme_overrides": {
     "One Dark Pro": {
       "accents": ["#d19a66", "#c678dd", "#56b6c2"],
+      "syntax": {
+        "comment": { "font_style": "italic" },
+        "namespace": { "color": "#56b6c2" },
+        "operator": { "color": "#56b6c2" },
+        "string.escape": { "color": "#7681de" },
+        "type.builtin": { "color": "#7681de" },
+      },
     },
   },
 }
