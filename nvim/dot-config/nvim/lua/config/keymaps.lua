@@ -132,6 +132,17 @@ vim.keymap.set("n", "<leader>ct", "<cmd>OverseerToggle<cr>",
     { desc = "Toggle the Overseer tasks window" })
 vim.keymap.set("n", "<leader>cs", "<cmd>OverseerShell<cr>",
     { desc = "Run a shell command as an Overseer task" })
+vim.keymap.set({ "n", "i" }, "<A-t>", function()
+    local tasks = require("overseer").list_tasks({
+        status = { "SUCCESS", "FAILURE" },
+        sort = function(a, b)
+            if not (a and b) then return true end
+            return a.time_end > b.time_end
+        end
+    })
+
+    if tasks[1] then tasks[1]:restart() end
+end)
 
 local winid = -1
 vim.keymap.set("n", "<leader>co", function()

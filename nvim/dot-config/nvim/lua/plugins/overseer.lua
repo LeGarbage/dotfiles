@@ -9,6 +9,13 @@ return {
                 },
                 task_win = {
                     border = "rounded"
+                },
+                component_aliases = {
+                    default = {
+                        "on_exit_set_status",
+                        "on_complete_notify",
+                        "open_output"
+                    }
                 }
             })
         end
