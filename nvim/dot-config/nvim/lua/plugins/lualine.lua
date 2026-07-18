@@ -26,6 +26,44 @@ return {
                 return buf_client_names
             end
 
+            local function get_file_path(end_sep)
+                local sep = "%#NonText# %#WinBar#"
+
+                local file_path = vim.api.nvim_buf_get_name(0)
+                local path_list = {}
+
+                if file_path == "" then
+                    return ""
+                else
+                    local relative_path =
+                        vim.fs.normalize(vim.fs.relpath(vim.fn.getcwd(0), file_path) or file_path)
+                    local path_components = vim.split(relative_path, "/", { trimempty = true })
+                    for i, component in ipairs(path_components) do
+                        -- Last component is the file name, use icon
+                        if i == #path_components then
+                            local icon
+                            local icon_hl
+
+                            icon, icon_hl = require("nvim-web-devicons").get_icon(component)
+                            table.insert(path_list,
+                                "%#" ..
+                                icon_hl .. "#" .. icon .. "%#WinBar#" .. " " .. component)
+                        else
+                            table.insert(path_list, component)
+                        end
+                    end
+                end
+
+                local breadcrumbs = table.concat(path_list, sep)
+                local end_icon = ""
+
+                if end_sep then
+                    end_icon = sep
+                end
+
+                return breadcrumbs .. end_icon
+            end
+
             local colors = {
                 gray1  = "#282c34",
                 gray2  = "#31353f",
@@ -79,9 +117,6 @@ return {
                     globalstatus = true,
                     always_show_tabline = false,
                     theme = theme,
-                    disabled_filetypes = {
-                        winbar = { "toggleterm" }
-                    }
                 },
                 sections = {
                     lualine_b = {
@@ -129,41 +164,7 @@ return {
                     lualine_c = {
                         {
                             function()
-                                local sep = "%#NonText# %#WinBar#"
-
-                                local file_path = vim.api.nvim_buf_get_name(0)
-                                local path_list = {}
-
-                                if file_path == "" then
-                                    table.insert(path_list, "[No Name]")
-                                else
-                                    local relative_path =
-                                        vim.fs.normalize(vim.fs.relpath(vim.fn.getcwd(0), file_path) or file_path)
-                                    local path_components = vim.split(relative_path, "/", { trimempty = true })
-                                    for i, component in ipairs(path_components) do
-                                        -- Last component is the file name, use icon
-                                        if i == #path_components then
-                                            local icon
-                                            local icon_hl
-
-                                            icon, icon_hl = require("nvim-web-devicons").get_icon(component)
-                                            table.insert(path_list,
-                                                "%#" ..
-                                                icon_hl .. "#" .. icon .. "%#WinBar#" .. " " .. component)
-                                        else
-                                            table.insert(path_list, component)
-                                        end
-                                    end
-                                end
-
-                                local breadcrumbs = table.concat(path_list, sep)
-                                local end_icon = ""
-
-                                if #require("aerial").get_location(true) > 0 then
-                                    end_icon = sep
-                                end
-
-                                return breadcrumbs .. end_icon
+                                return get_file_path(#require("aerial").get_location(true) > 0)
                             end,
                             color = "WinBar",
                             padding = { left = 1, right = 0 },
@@ -178,9 +179,9 @@ return {
                 inactive_winbar = {
                     lualine_c = {
                         {
-                            "filename",
-                            path = 1,
-                            symbols = { modified = "●" }
+                            function()
+                                return get_file_path(false)
+                            end
                         }
                     },
                 },

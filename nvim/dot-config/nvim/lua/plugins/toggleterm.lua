@@ -11,13 +11,6 @@ return {
                     border = "rounded",
                     title_pos = "center",
                 },
-                winbar = {
-                    enabled = true,
-                    name_formatter = function(term)
-                        local exe = vim.fn.fnamemodify(term.display_name or vim.split(term.name, ";")[1], ":t")
-                        return string.format("%d:%s", term.id, exe)
-                    end
-                }
             })
         end
     }
