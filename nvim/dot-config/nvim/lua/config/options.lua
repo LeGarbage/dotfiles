@@ -102,4 +102,5 @@ require("vim._core.ui2").enable({
 -- Neovide
 if vim.g.neovide then
     vim.g.neovide_floating_shadow = false
+    vim.g.neovide_hide_mouse_when_typing = true
 end
