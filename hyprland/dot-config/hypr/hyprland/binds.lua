@@ -21,7 +21,7 @@ hl.bind("SUPER + B", hl.dsp.exec_cmd(programs.browser))
 hl.bind("SUPER + N", hl.dsp.exec_cmd(programs.editor))
 hl.bind("SUPER + A", hl.dsp.exec_cmd(programs.calendar))
 hl.bind("SUPER + T", hl.dsp.exec_cmd(programs.tasks))
-hl.bind("SUPER + O", hl.dsp.exec_cmd(programs.obsidian))
+hl.bind("SUPER + O", hl.dsp.exec_cmd(programs.trilium))
 hl.bind("SUPER + E", hl.dsp.exec_cmd(programs.file_manager))
 hl.bind("CTRL + SHIFT + Escape", hl.dsp.exec_cmd(programs.task_manager))
 

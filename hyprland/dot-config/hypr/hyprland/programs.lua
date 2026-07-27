@@ -8,7 +8,7 @@ local M = {
     editor = "uwsm-app -s app.slice -- neovide.desktop",
     calendar = "uwsm-app -s app.slice -- org.gnome.Calendar.desktop",
     tasks = "uwsm-app -s app.slice -- io.github.alainm23.planify.desktop",
-    obsidian = "uwsm-app -s app.slice -- obsidian.desktop",
+    trilium = "uwsm-app -s app.slice -- Trilium.desktop",
 
     rofi = {
         launcher = launcher_cmd,
