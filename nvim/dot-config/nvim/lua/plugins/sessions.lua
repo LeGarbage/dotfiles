@@ -37,7 +37,7 @@ return {
 
                     if data.tasks then
                         for _, task in ipairs(data.tasks) do
-                            require("overseer").new_task(task):start()
+                            pcall(function() require("overseer").new_task(task):start() end)
                         end
                     end
                 end,
