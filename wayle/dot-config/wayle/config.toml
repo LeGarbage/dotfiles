@@ -17,17 +17,26 @@ left = ["dashboard", "hyprland-workspaces"]
 center = []
 right = [
   "systray",
-  { modules = ["notifications", "custom-update-status", "media"], name = "updates" },
-  { modules = [
-    "volume",
-    "network",
-    "bluetooth",
-    "battery",
-  ], name = "system" },
-  { modules = [
-    "weather",
-    "clock",
-  ], name = "time" },
+  {
+    modules = ["notifications", "custom-update-status", "media"],
+    name = "updates"
+  },
+  {
+    modules = [
+      "volume",
+      "network",
+      "bluetooth",
+      "battery",
+    ],
+    name = "system"
+  },
+  {
+    modules = [
+      "weather",
+      "clock",
+    ],
+    name = "time"
+  },
 ]
 
 [[bar.layout]]
@@ -38,15 +47,18 @@ right = [
   "systray",
   "notifications",
   "volume",
-  { modules = [
-    "weather",
-    "clock",
-  ], name = "time" }
+  {
+    modules = [
+      "weather",
+      "clock",
+    ],
+    name = "time"
+  }
 ]
 
 [osd]
-position = "bottom-right"
-margin = 0
+position = "bottom"
+margin = 150.0
 
 [wallpaper]
 engine-enabled = false
@@ -81,13 +93,14 @@ button-bg-color = "bg-base"
 label-show = false
 button-bg-color = "bg-base"
 
-[modules.notification]
+[modules.notifications]
 popup-position = "bottom-right"
 border-color = "blue"
 icon-bg-color = "blue"
 icon-color = "blue"
 label-color = "blue"
 label-show = false
+popup-close-behavior = "remove"
 button-bg-color = "bg-base"
 
 [modules.systray]
