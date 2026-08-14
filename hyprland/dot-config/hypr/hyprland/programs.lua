@@ -6,8 +6,8 @@ local M = {
     task_manager = "uwsm-app -s app.slice -- io.missioncenter.MissionCenter.desktop",
     browser = "uwsm-app -s app.slice -- firefox.desktop",
     editor = "uwsm-app -s app.slice -- neovide.desktop",
-    calendar = "uwsm-app -s app.slice -- org.gnome.Calendar.desktop",
-    tasks = "uwsm-app -s app.slice -- io.github.alainm23.planify.desktop",
+    calendar = "TZDIR=/etc/zoneinfo uwsm-app -s app.slice -- org.gnome.Calendar.desktop",
+    tasks = "TZDIR=/etc/zoneinfo uwsm-app -s app.slice -- io.github.alainm23.planify.desktop",
     trilium = "uwsm-app -s app.slice -- Trilium.desktop",
 
     rofi = {
