@@ -48,7 +48,8 @@ hl.layer_rule({
     animation = "slide"
 })
 
-local function assign_workspaces()
+---@param changed_monitor HL.Monitor
+local function assign_workspaces(changed_monitor)
     local monitors = hl.get_monitors()
     table.sort(monitors, function(a, b) return a.id > b.id end)
 
@@ -56,6 +57,8 @@ local function assign_workspaces()
         local monitor = monitors[(i % #monitors) + 1]
         hl.workspace_rule({ workspace = tostring(i), monitor = monitor.name, default = i <= #monitors })
     end
+
+    hl.dispatch(hl.dsp.focus({ workspace = changed_monitor.id }))
 end
 
 hl.on("monitor.added", assign_workspaces)
