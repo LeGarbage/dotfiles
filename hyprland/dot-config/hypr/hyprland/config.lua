@@ -37,7 +37,6 @@ hl.config({
         focus_on_activate = true,
         disable_splash_rendering = true,
         middle_click_paste = false,
-        vrr = 2
     },
     xwayland = {
         force_zero_scaling = true
