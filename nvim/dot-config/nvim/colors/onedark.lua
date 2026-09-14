@@ -148,6 +148,7 @@ define_highlight('@tag.html', red, '', '')
 define_highlight('@tag.astro', red, '', '')
 define_highlight('@tag.delimiter', gray5, '', '')
 define_highlight('@tag.attribute', orange, '', '')
+define_highlight('@string.special.url', green, '', 'underline')
 define_highlight('@markup.link.label.html', gray5, '', 'none')
 
 -- Lsp
