@@ -12,6 +12,9 @@ vim.lsp.config("*", {
 -- Show colors as colored squares
 vim.lsp.document_color.enable(true, nil, { style = "virtual" })
 
+-- Enable inlay hints by default
+vim.lsp.inlay_hint.enable()
+
 vim.api.nvim_create_autocmd('LspAttach', {
     group = vim.api.nvim_create_augroup('my.lsp', {}),
     callback = function(args)
