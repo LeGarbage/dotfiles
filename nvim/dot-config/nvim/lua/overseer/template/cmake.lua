@@ -10,13 +10,20 @@ local function find_cmakelists(opts)
 end
 
 local commands = {
-    { name = "cmake configure debug",   command = "cmake", args = { "-DCMAKE_BUILD_TYPE=Debug", "-B", "build" } },
-    { name = "cmake configure release", command = "cmake", args = { "-DCMAKE_BUILD_TYPE=Release", "-B", "build" } },
-    { name = "cmake build",             command = "cmake", args = { "--build", "build", "--parallel" },             tags = { TAG.BUILD } },
-    { name = "cmake test",              command = "ctest", args = { "--test-dir", "build", "--output-on-failure" }, tags = { TAG.TEST } },
-    { name = "cmake install",           command = "cmake", args = { "--install", "build" } },
-    { name = "cmake reconfigure",       command = "cmake", args = { "build", "--fresh" } },
-    { name = "cmake clean",             command = "cmake", args = { "--build", "build", "--target", "clean" },      tags = { TAG.CLEAN } }
+    {
+        name = "cmake build && cmake test",
+        cmd = {},
+        tags = { TAG.BUILD, TAG.TEST },
+        strategy = { "orchestrator", tasks = { "cmake build", "cmake test" } }
+    },
+
+    { name = "cmake build",             cmd = { "cmake", "--build", "build", "--parallel" },             tags = { TAG.BUILD } },
+    { name = "cmake test",              cmd = { "ctest", "--test-dir", "build", "--output-on-failure" }, tags = { TAG.TEST } },
+    { name = "cmake install",           cmd = { "cmake", "--install", "build" } },
+    { name = "cmake configure debug",   cmd = { "cmake", "-DCMAKE_BUILD_TYPE=Debug", "-B", "build" } },
+    { name = "cmake configure release", cmd = { "cmake", "-DCMAKE_BUILD_TYPE=Release", "-B", "build" } },
+    { name = "cmake reconfigure",       cmd = { "cmake", "build", "--fresh" } },
+    { name = "cmake clean",             cmd = { "cmake", "--build", "build", "--target", "clean" },      tags = { TAG.CLEAN } }
 }
 
 ---@type overseer.TemplateFileProvider
@@ -35,12 +42,9 @@ return {
             table.insert(templates, {
                 name = command.name,
                 builder = function()
-                    local cmd = { command.command }
-                    for _, arg in ipairs(command.args) do
-                        table.insert(cmd, arg)
-                    end
                     return {
-                        cmd = cmd,
+                        cmd = command.cmd,
+                        strategy = command.strategy
                     }
                 end,
                 tags = command.tags

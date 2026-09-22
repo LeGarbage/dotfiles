@@ -14,7 +14,8 @@ return {
                     default = {
                         "on_exit_set_status",
                         "on_complete_notify",
-                        "open_output"
+                        "open_output",
+                        { "unique", soft = true }
                     }
                 }
             })
