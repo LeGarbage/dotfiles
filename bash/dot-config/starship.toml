@@ -38,6 +38,7 @@ command = 'echo $(whoami)'
 when = '[ -z "$IN_NIX_SHELL"]'
 style = 'bright-white'
 format = '[$output]($style)'
+ignore_timeout = true
 
 [custom.localhost]
 command = 'echo @$(hostnamectl hostname)'
