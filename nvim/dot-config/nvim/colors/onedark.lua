@@ -150,10 +150,15 @@ define_highlight('@tag.delimiter', gray5, '', '')
 define_highlight('@tag.attribute', orange, '', '')
 define_highlight('@string.special.url', green, '', 'underline')
 define_highlight('@markup.link.label.html', gray5, '', 'none')
+define_highlight('@markup.quote', gray4, '', 'none')
 
 -- Lsp
 vim.cmd("hi link @lsp.type.typeAlias @type")
 vim.cmd("hi link @lsp.type.procMacro @constant.macro")
+vim.cmd("hi link @lsp.type.selfTypeKeyword @type.special")
+vim.cmd("hi link @lsp.type.builtinType @type.builtin")
+
+define_highlight('@lsp.mod.mutable', '', '', 'underline')
 
 -- Terminal
 vim.g.terminal_color_0  = gray1
