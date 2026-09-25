@@ -7,7 +7,7 @@ return {
                 }
             },
             nix = {
-                maxMemoryMB = nil,
+                maxMemoryMB = vim.NIL,
                 flake = {
                     autoEvalInputs = true
                 }
