@@ -9,6 +9,17 @@ hl.window_rule({
     dim_around = true
 })
 
+-- Make the file previewer more ergonomic
+hl.window_rule({
+    match = {
+        class = "org.gnome.NautilusPreviewer"
+    },
+    float = true,
+    size = { 1750, 1250 },
+    stay_focused = true,
+    dim_around = true
+})
+
 -- Ignore maximize requests from all apps. You'll probably like this.
 hl.window_rule({
     match = {
